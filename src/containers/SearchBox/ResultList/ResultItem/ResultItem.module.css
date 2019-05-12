@@ -1,0 +1,48 @@
+.ResultItem {
+    text-decoration: none;
+    /* grid-template-columns: 20% 80%; */
+    border-bottom: 1px #ffd700 solid;
+    background-color: #022030;
+    display: flex;
+    align-items: center;  
+    height: 85px;
+    transition: background-color 0.3s ease;
+}
+
+.ResultPoster {
+    margin: 0 10px;
+}
+
+.Logo {
+    width:47px;
+    border-radius: 5px;
+    margin-top:5px;
+}
+
+.SearchMetaData {
+    font-size: 0.85em;
+}
+
+.MetaTitle{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+    color:#ffd700;
+}
+
+.MetaAkaTitle{
+    font-size: 0.85em;
+    text-transform: capitalize;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
+
+.MetaAdditionalInfo{
+    margin-top:4px;
+    font-size: 0.8em;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    font-weight: normal;
+    /* align-self: center; */
+}

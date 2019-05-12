@@ -1,0 +1,23 @@
+.SearchBox {
+    margin: 15px 10px;
+}
+
+.Title {
+    margin: 15px 0px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:white;
+    text-align: center;
+}
+
+.InputBox {
+    width: 100%;
+    padding: 10px 10px;
+    background-color: #115173;
+    color:inherit;
+    border: 0;
+    font-family: inherit;
+    border-radius: 3px;
+    outline: none;
+}

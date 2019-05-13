@@ -9,6 +9,12 @@
     transition: background-color 0.3s ease;
 }
 
+.ResultItem:hover {
+    background-color: #01141f;
+    cursor: pointer;
+}
+
+
 .ResultPoster {
     margin: 0 10px;
 }
@@ -27,7 +33,12 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: bold;
-    color:#ffd700;
+    color: #ffd700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:215px;
+    white-space: nowrap;
+    
 }
 
 .MetaAkaTitle{
@@ -45,4 +56,10 @@
     letter-spacing: 1px;
     font-weight: normal;
     /* align-self: center; */
+}
+
+.NoResults {
+    font-family: inherit;
+    font-weight: bold;
+    margin:auto;
 }

@@ -1,0 +1,32 @@
+.Pagination {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    align-items: center;
+    justify-content: center;
+}
+
+.PaginationLink {
+    background-color: transparent;
+    border:0;
+    outline: 0;
+    padding:10px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    width:100%;
+    
+}
+.PaginationLink:hover {
+    background-color: #01141f;
+    cursor: pointer;
+}
+
+
+.PaginationSummary {
+    color: white;
+    font-size: 0.75em;
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}

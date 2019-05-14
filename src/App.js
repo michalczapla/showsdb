@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <SearchBox configuration={this.state.configuration}/>
+          <SearchBox configuration={this.state.configuration} title="showsDB REACT v0.1"/>
           <div>SZCZEGOLY</div>
           <div>ULUBIONE</div>
         </Layout>

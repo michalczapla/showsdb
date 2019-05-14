@@ -3,7 +3,7 @@ const mapGenre = (list, ids)=>{
     const genreNames = [];    
     ids.forEach(element => {
         const genre = list.find(el=>el.id===element);
-        if (genre && (typeof genre !== 'undefinded')) genreNames.push(genre.name);
+        if (genre && (typeof genre !== 'undefined')) genreNames.push(genre.name);
         
     });
     return genreNames.join(', ');

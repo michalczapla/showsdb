@@ -1,0 +1,14 @@
+.MetaInfoList {
+    margin-left:30px;
+}
+
+.MetaInfoList ul{
+    text-decoration: none;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+.MetaInfoList li{
+    padding: 5px 0px; 
+}

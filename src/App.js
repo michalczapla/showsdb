@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import './App.css';
 import Layout from './components/Layout/Layout';
 import SearchBox from './containers/SearchBox/SearchBox';
+import DetailsBox from './containers/DetailsBox/DetailsBox';
 
 // HELPERY:
 import configuration from './helpers/configuration';
 
 class App extends Component {
   state = {
-    currentShow: null,
+    currentShowID: null,
     configuration: null
   }
 
@@ -25,8 +26,8 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <SearchBox configuration={this.state.configuration} title="showsDB REACT v0.1"/>
-          <div>SZCZEGOLY</div>
+          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.1.12 r"/></div>
+          <div><DetailsBox configuration={this.state.configuration} currentShowID={1399}/></div>
           <div>ULUBIONE</div>
         </Layout>
       </div>

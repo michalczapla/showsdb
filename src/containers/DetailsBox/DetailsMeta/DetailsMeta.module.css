@@ -1,0 +1,21 @@
+.DeatilsMeta {
+
+}
+
+.MetaDescription {
+    font-size: 0.8em;
+    background-color: #022030;
+    padding: 10px 10px;
+    border-bottom: 1px solid #ffd700;
+    text-align: justify;
+}
+
+.MetaData {
+    font-size: 0.8em;
+    background-color: #022030;
+    padding: 10px 10px;
+    border-bottom: 1px solid #ffd700;
+    text-align: justify;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}

@@ -1,0 +1,20 @@
+{
+    "todo": 
+    [
+        "### TODO",
+        "DetailsBox - dodać logikę pobierania z API",
+        "DetailsBox - dodać logikę nawigowania z SearchBoxa (przełączanie znalezionych odcinków)",
+        "FavoriteBox - stworzyć i dodać",
+        "Wykres premier jako nowa strona",
+        "Landing Page - dokończyć"
+    ],
+    "done":
+    [
+        "### DONE",
+        "15.05.2019 - Landing Page initial done"
+    ],
+    "errors":
+    [
+        "### ERRORS"
+    ]
+}

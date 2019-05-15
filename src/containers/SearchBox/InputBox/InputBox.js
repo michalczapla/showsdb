@@ -13,9 +13,9 @@ const InputBox = (props) => {
     });
 
     return(
-    <div className={classes.SearchBox}>
+    <div className={classes.InputBox}>
                     <div className={classes.Title}>{props.title}</div>
-                    <input className={classes.InputBox} type="text" placeholder={props.placeholder} onKeyDown={props.enterHandler} ref={inputSearchBox}/>
+                    <input className={classes.Input} type="text" placeholder={props.placeholder} onKeyDown={props.enterHandler} ref={inputSearchBox}/>
     </div>
     )
 };

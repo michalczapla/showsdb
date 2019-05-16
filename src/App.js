@@ -22,12 +22,16 @@ class App extends Component {
     }
   }
 
+  showSearchHandler= (id) => {
+    this.setState({currentShowID: id});
+  }
+
   render() {  
     return (
       <div className="App">
         <Layout>
-          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.1.12 r"/></div>
-          <div><DetailsBox configuration={this.state.configuration} currentShowID={1399}/></div>
+          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.2.00 r" selectShow={this.showSearchHandler}/></div>
+          <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID}/></div>
           <div>ULUBIONE</div>
         </Layout>
       </div>

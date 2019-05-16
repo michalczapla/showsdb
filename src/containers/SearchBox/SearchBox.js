@@ -57,6 +57,7 @@ class SearchBox extends Component {
                     totalResults: response.data.total_results, 
                     totalLoadedResults: response.data.results.length, 
                     loading: false});
+               
                 
 
             }
@@ -93,7 +94,7 @@ class SearchBox extends Component {
         } else if (this.state.searchResults!==null && this.props.configuration!==null) {
             const from = (this.state.actualPage-1)*this.state.resultsPerPage;
             const to = (this.state.actualPage-1)*this.state.resultsPerPage +this.state.resultsPerPage; 
-            resultToRender = (<ResultList results={this.state.searchResults} configuration={this.props.configuration} from={from} to={to}/>);
+            resultToRender = (<ResultList results={this.state.searchResults} configuration={this.props.configuration} from={from} to={to} selectShow={this.props.selectShow}/>);
         }  
 
         return (

@@ -9,7 +9,7 @@ const detailsMeta =(props) => {
 
         const genreList = ()=> {
             const genres = [];
-            props.currentShow.genres.map(el=>{genres.push(el.id)});
+            props.currentShow.genres.map(el=>(genres.push(el.id)));
             return genres;
         }
         const meta = [
@@ -21,7 +21,7 @@ const detailsMeta =(props) => {
             {title: 'in production', information: (props.currentShow.in_production) ? 'yes' : 'no'},
             {title: 'episodes', information: props.currentShow.number_of_episodes},
             {title: 'seasons', information: props.currentShow.number_of_seasons},
-            {title: 'espisode run time', information: props.currentShow.episode_run_time.join(', ')},
+            {title: 'espisode run time', information: props.currentShow.episode_run_time.join(', ')+' min'},
         ]
 
         return (

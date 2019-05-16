@@ -5,7 +5,7 @@ import CalendarIcon from 'react-ionicons/lib/MdCalendar';
 import NoPicture from '../../../../assets/images/cancel.png';
 
 const resultItem = (props) => (
-    <a className={classes.ResultItem} href={'#'+props.href}>
+    <a className={classes.ResultItem} href={'#'+props.href} onClick={()=>props.selectShow(props.id)}>
         <div className={classes.ResultPoster}>
             <img className={classes.Logo} src={(props.imgsrc) ? props.imgsrc : NoPicture} alt={props.title}/>
         </div>

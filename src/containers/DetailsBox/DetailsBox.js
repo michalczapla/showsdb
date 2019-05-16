@@ -11,12 +11,12 @@ import api_key from '../../helpers/APIKey';
 
 class DetailsBox extends Component {
     state= {
-        // currentShowID: null,     // odwołanie jako props a nie state
+        currentShowID: null,     // odwołanie jako props a nie state
         currentShow: null,
         loading: false
     }
 
-    //aktuaizacja stanu na podstawie przekazanych własćiwości
+    // aktuaizacja stanu na podstawie przekazanych własćiwości
     // static getDerivedStateFromProps(nextProps, prevState){
     //     if (nextProps.currentShowID!==prevState.currentShowID){
     //         return {currentShowID: nextProps.currentShowID}
@@ -24,13 +24,19 @@ class DetailsBox extends Component {
     //     return null;
     // };
 
-    async componentDidUpdate() {
-        if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { // || (this.props.currentShowID!==this.state.currentShow.id)
-                const details_request_url = `https://api.themoviedb.org/3/tv/${this.props.currentShowID}?api_key=${api_key}&language=en-US`;
+    getShowDetails = async (id) => {
+        if (id!==null) {
+            const details_request_url = `https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}&language=en-US`;
             this.setState({loading:true});
             const response = await axios(details_request_url);
-            console.log(response.data);
-            this.setState({currentShow: response.data, loading:false});
+            this.setState({currentShow: response.data, loading:false, currentShowID: id});
+        };
+    };
+
+    componentDidUpdate= async () => {
+        // if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { //|| (this.state.currentShow.id!==null && this.props.currentShowID!==this.state.currentShow.id)) 
+         if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
+            await this.getShowDetails(this.props.currentShowID);
     
         }
     };

@@ -2,8 +2,7 @@
     "todo": 
     [
         "### TODO",
-        "DetailsBox - dodać logikę pobierania z API",
-        "DetailsBox - dodać logikę nawigowania z SearchBoxa (przełączanie znalezionych odcinków)",
+        "SeasonList - dodać",
         "FavoriteBox - stworzyć i dodać",
         "Wykres premier jako nowa strona",
         "Landing Page - dokończyć"
@@ -11,6 +10,8 @@
     "done":
     [
         "### DONE",
+        "16.05.2019 - DetailsBox - dodać logikę pobierania z API",
+        "16.05.2019 - DetailsBox - dodać logikę nawigowania z SearchBoxa (przełączanie znalezionych odcinków)",
         "15.05.2019 - Landing Page initial done"
     ],
     "errors":

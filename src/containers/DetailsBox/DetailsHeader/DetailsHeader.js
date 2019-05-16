@@ -9,10 +9,12 @@ import FavoriteEmpty from 'react-ionicons/lib/MdStarOutline';
 
 const detailsHeader = (props) => (
     <div className={classes.DetailsHeader}>
-        <img className={classes.BackgroungImg} src={props.imageBasePath+props.currentShow.backdrop_path} alt={props.currentShow.name}/>
+    {(props.currentShow.backdrop_path) ? 
+        <img className={classes.BackgroungImg} src={props.imageBasePath+props.currentShow.backdrop_path} alt={props.currentShow.name} title={props.currentShow.name}/>
+    : null}
     <div className={classes.Title}>
         <div className={classes.NetworkLogoContainer}>
-        {props.currentShow.networks.map(el=>(<img key={el.id} className={classes.NetworkLogo} src={props.imageBasePath+el.logo_path} alt={el.name} />))}
+        {props.currentShow.networks.map(el=>(<img key={el.id} className={classes.NetworkLogo} src={props.imageBasePath+el.logo_path} alt={el.name} title={el.name}/>))}
        </div>
         <div className={classes.Text}>{props.currentShow.name}</div>
         <div className={classes.Icon}><FavoriteEmpty color='white' fontSize='2em'/></div>

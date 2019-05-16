@@ -30,7 +30,7 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.2.00 r" selectShow={this.showSearchHandler}/></div>
+          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.3.00 r" selectShow={this.showSearchHandler}/></div>
           <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID}/></div>
           <div>ULUBIONE</div>
         </Layout>

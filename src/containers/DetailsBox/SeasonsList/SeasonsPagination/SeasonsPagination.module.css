@@ -1,0 +1,25 @@
+.SeasonsPagination{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    border-bottom: 1px solid #ffd700;
+}
+
+.Button {
+    padding:10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    width:100%;
+    color:#ffd700;
+    background-color: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.0em;
+}
+
+.Button:hover {
+    background-color: #01141f;
+}

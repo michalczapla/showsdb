@@ -8,6 +8,7 @@ import Loader from '../Loading/Loading';
 // HELPERY
 import axios from '../../helpers/axios-external';
 import api_key from '../../helpers/APIKey';
+import SeasonsList from './SeasonsList/SeasonsList';
 
 class DetailsBox extends Component {
     state= {
@@ -41,6 +42,7 @@ class DetailsBox extends Component {
         }
     };
 
+
     render() {
 
         if (this.state.loading) {
@@ -51,6 +53,7 @@ class DetailsBox extends Component {
         <div className={classes.DetailsBox}>
             <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase}/>
             <DetailsMeta genres={this.props.configuration.genreList} currentShow={this.state.currentShow} />
+            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} imageStillBase={this.props.configuration.stillBase}/>
         </div>);
         } else {
             return (<LandingPage />);

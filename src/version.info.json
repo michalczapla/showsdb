@@ -4,7 +4,8 @@
         "### TODO",
         "FavoriteBox - stworzyć i dodać",
         "Wykres premier jako nowa strona",
-        "Landing Page (główna strona) - dokończyć"
+        "Landing Page (główna strona) - dokończyć",
+        "Stworzyć MENU + nawigację"
     ],
     "done":
     [
@@ -16,6 +17,7 @@
     ],
     "errors":
     [
-        "### ERRORS"
+        "### ERRORS",
+        "W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania"
     ]
 }

@@ -10,9 +10,9 @@ const episode = (props) => {
     return (
     <div className={classes.Episode}>
         <div className={classes.EpisodeNumber}>S{properDigitNumber(props.episode.season_number)} E{properDigitNumber(props.episode.episode_number)}</div>
-        <div className={classes.EpisodeImageContainer}>
+        {/* <div className={classes.EpisodeImageContainer}> */}
             <img className={classes.EpisodeImage} src={imageSrc} alt={props.episode.name} title={props.episode.name}/> 
-        </div>
+        {/* </div> */}
         <div className={classes.EpisodeDetailsContainer}>
             <div className={classes.EpisodeTitle}>{(props.episode.name===null) ? <NoResultsIcon /> : props.episode.name}</div>
             <div className={classes.EpisodeMetaContainer}>

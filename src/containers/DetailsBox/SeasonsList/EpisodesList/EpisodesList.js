@@ -3,7 +3,6 @@ import Episode from './Episode/Episode';
 import api_key from '../../../../helpers/APIKey';
 import axios from '../../../../helpers/axios-external';
 import Loader from './../../../Loading/Loading';
-import { async } from 'q';
 
 class EpisodesList extends Component{
     state= {
@@ -21,13 +20,13 @@ class EpisodesList extends Component{
         };
     };
 
-    componentDidUpdate = async() => {
+    componentDidUpdate = () => {
         if (!this.state.loading && this.state.activeSeasonID!==this.props.activeSeasonID) {
             this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
         }
     };
 
-    componentDidMount = async() => {
+    componentDidMount = () => {
             this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
     };
 

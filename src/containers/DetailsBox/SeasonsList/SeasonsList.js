@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import classes from './SeasonsList.module.css';
 import SeasonsPagination from './SeasonsPagination/SeasonsPagination';
 import EpisodesList from './EpisodesList/EpisodesList';
 

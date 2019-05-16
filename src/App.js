@@ -10,6 +10,7 @@ import configuration from './helpers/configuration';
 class App extends Component {
   state = {
     currentShowID: null,
+    favorites: [],
     configuration: null
   }
 
@@ -22,6 +23,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    // localStorage.getItem()
+  };
+
   showSearchHandler= (id) => {
     this.setState({currentShowID: id});
   }
@@ -30,7 +35,7 @@ class App extends Component {
     return (
       <div className="App">
         <Layout>
-          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.3.00 r" selectShow={this.showSearchHandler}/></div>
+          <div><SearchBox configuration={this.state.configuration} title="showsDB v0.3.01 r" selectShow={this.showSearchHandler}/></div>
           <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID}/></div>
           <div>ULUBIONE</div>
         </Layout>

@@ -4,6 +4,7 @@ import Layout from './components/Layout/Layout';
 import SearchBox from './containers/SearchBox/SearchBox';
 import DetailsBox from './containers/DetailsBox/DetailsBox';
 
+
 // HELPERY:
 import configuration from './helpers/configuration';
 
@@ -23,9 +24,21 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    // localStorage.getItem()
-  };
+  updateFavorites=(element) => {
+    const favoritesIDs = () =>{
+      const IDs = [];  
+      if (this.state.favorites.length!==0) {
+        this.state.favorites.map((el)=>{
+          IDs.push(el.id);
+        })
+        }
+      return IDs;
+    };
+
+    if (this.state.favorites.length===0) {
+
+    }
+  }
 
   showSearchHandler= (id) => {
     this.setState({currentShowID: id});

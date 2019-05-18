@@ -18,6 +18,7 @@
     "errors":
     [
         "### ERRORS",
-        "W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania"
+        "W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania",
+        "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek"
     ]
 }

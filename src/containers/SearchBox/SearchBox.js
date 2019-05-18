@@ -7,6 +7,7 @@ import api_key from './../../helpers/APIKey';
 import NoResults from './ResultList/ResultItem/ResultItemNoResults';
 import Loading from '../Loading/Loading';
 import Pagination from './Pagination/Pagination';
+import withErrorHandler from './../../components/withErrorHandler/withErrorHandler';
 
 class SearchBox extends Component {
     state = {
@@ -45,7 +46,7 @@ class SearchBox extends Component {
                     totalLoadedResults: -1,
                     loading: true
                 });
-                
+                try {
                 const response = await this.getAxiosSearchResults(value,1);
                 
                 this.setState({
@@ -57,7 +58,10 @@ class SearchBox extends Component {
                     totalResults: response.data.total_results, 
                     totalLoadedResults: response.data.results.length, 
                     loading: false});
-               
+                }
+                catch {
+                    this.setState({loading:false})      //w przypadku bledu konczy wyswietlanie loadinga
+                }
                 
 
             }
@@ -67,14 +71,28 @@ class SearchBox extends Component {
     nextPageHandler = async () => {
         if ((this.state.actualPage+1)*this.state.resultsPerPage >= this.state.totalLoadedResults && this.state.totalLoadedResults!==this.state.totalResults) {
             this.setState({loading:true})
-            const response = await this.getAxiosSearchResults(this.state.searchString,this.state.actualDownloadedPage+1);
-            this.setState((prevState) => ({
-                searchResults: [...prevState.searchResults, ...response.data.results],  
-                actualPage: prevState.actualPage +1,  
-                actualDownloadedPage: response.data.page, 
-                totalLoadedResults: prevState.totalLoadedResults + response.data.results.length,
-                loading:false}
-                ));
+           
+                const response = await this.getAxiosSearchResults(this.state.searchString,this.state.actualDownloadedPage+1);
+                if (typeof response !== 'undefined') {
+                this.setState((prevState) => ({
+                    searchResults: [...prevState.searchResults, ...response.data.results],  
+                    actualPage: prevState.actualPage +1,  
+                    actualDownloadedPage: response.data.page, 
+                    totalLoadedResults: prevState.totalLoadedResults + response.data.results.length,
+                    loading:false}
+                    ));
+                } else {        //warunejk, kiedy wystapil blad - resetowanie stanu komponentu 
+                    this.setState({ searchResults: null,
+                        searchString:null,
+                        actualPage:null,
+                        actualDownloadedPage: null,
+                        totalPages:null,
+                        totalResults: null,
+                        totalLoadedResults: -1,
+                        loading: false})      //w przypadku bledu konczy wyswietlanie loadinga
+                }
+            
+
         } else {
         this.setState((prevState) => ({actualPage: prevState.actualPage +1 }));
         }
@@ -107,6 +125,6 @@ class SearchBox extends Component {
     }
 }
 
-export default SearchBox;
+export default withErrorHandler(SearchBox, axios);
 
 // {(this.state.searchResults!==null && this.props.configuration!==null) ? <ResultList results={this.state.searchResults} configuration={this.props.configuration}/> : null}

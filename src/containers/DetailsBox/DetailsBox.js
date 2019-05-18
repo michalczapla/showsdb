@@ -4,6 +4,7 @@ import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
 import LandingPage from './../../components/LandingPage/LandingPage';
 import Loader from '../Loading/Loading';
+import withErrorHandler from '../../components/withErrorHandler/withErrorHandler';
 
 // HELPERY
 import axios from '../../helpers/axios-external';
@@ -29,15 +30,23 @@ class DetailsBox extends Component {
         if (id!==null) {
             const details_request_url = `https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}&language=en-US`;
             this.setState({loading:true});
-            const response = await axios(details_request_url);
-            this.setState({currentShow: response.data, loading:false, currentShowID: id});
+            try {
+                const response = await axios(details_request_url);
+                this.setState({currentShow: response.data, loading:false, currentShowID: id});
+            } catch {
+                this.setState({   
+                    currentShowID: id, 
+                    loading: false
+                })
+            }
         };
     };
 
     componentDidUpdate= async () => {
         // if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { //|| (this.state.currentShow.id!==null && this.props.currentShowID!==this.state.currentShow.id)) 
-         if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
-            await this.getShowDetails(this.props.currentShowID);
+        // if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
+            if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
+                await this.getShowDetails(this.props.currentShowID);
     
         }
     };
@@ -61,4 +70,4 @@ class DetailsBox extends Component {
     };
 }
 
-export default DetailsBox;
+export default withErrorHandler(DetailsBox,axios);

@@ -3,6 +3,7 @@ import Episode from './Episode/Episode';
 import api_key from '../../../../helpers/APIKey';
 import axios from '../../../../helpers/axios-external';
 import Loader from './../../../Loading/Loading';
+import withErrorHandler from './../../../../components/withErrorHandler/withErrorHandler';
 
 class EpisodesList extends Component{
     state= {
@@ -16,7 +17,11 @@ class EpisodesList extends Component{
             const details_request_url = `https://api.themoviedb.org/3/tv/${showid}/season/${seasonid}?api_key=${api_key}&language=en-US`;
             this.setState({loading:true});
             const response = await axios(details_request_url);
-            this.setState({episodes: response.data.episodes, loading:false, activeSeasonID:seasonid});
+            if (typeof response !== 'undefined') {
+                this.setState({episodes: response.data.episodes, loading:false, activeSeasonID:seasonid});
+            } else {
+                this.setState({loading:false, activeSeasonID:seasonid});
+            }
         };
     };
 
@@ -42,4 +47,4 @@ class EpisodesList extends Component{
     }
 };
 
-export default EpisodesList;
+export default withErrorHandler(EpisodesList,axios);

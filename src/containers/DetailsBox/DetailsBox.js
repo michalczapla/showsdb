@@ -53,14 +53,19 @@ class DetailsBox extends Component {
 
 
     render() {
-
+        // console.log(this.props.favorites);
+        let isFavorite = false;
+        if (this.props.favorites) {
+            isFavorite = this.props.favorites.isFavorite(this.state.currentShowID);
+        }
+        
         if (this.state.loading) {
             return (<Loader />);
         }
         else if (this.state.currentShow) {
         return (
         <div className={classes.DetailsBox}>
-            <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase}/>
+            <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase} updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} isFavorite={isFavorite}/>
             <DetailsMeta genres={this.props.configuration.genreList} currentShow={this.state.currentShow} />
             <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} imageStillBase={this.props.configuration.stillBase}/>
         </div>);

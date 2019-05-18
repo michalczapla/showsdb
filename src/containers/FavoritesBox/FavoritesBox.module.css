@@ -1,0 +1,15 @@
+.FavoritesBox {
+    background-color: #022c43;
+    border-radius: 5px;
+    /* min-width: 300px; */
+}
+
+.Title {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-weight: bold;
+    color:white;
+    text-align: center;
+}

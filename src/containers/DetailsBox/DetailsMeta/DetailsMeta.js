@@ -15,7 +15,7 @@ const detailsMeta =(props) => {
         }
         const countryFlags = (list) =>{
             const flags = [];
-            list.map(flag=>(flags.push(<ReactCountryFlag code={flag} svg/>)));
+            list.map(flag=>(flags.push(<ReactCountryFlag key={flag} code={flag} svg/>)));
             return flags;
         }
         const meta = [

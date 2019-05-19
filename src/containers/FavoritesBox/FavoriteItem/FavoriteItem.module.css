@@ -1,0 +1,86 @@
+.FavoriteItem {
+    box-sizing: border-box;
+    text-decoration: none;
+    /* grid-template-columns: 20% 80%; */
+    background-color: #022030;
+    display: flex;
+    align-items: center;  
+    height: 85px;
+    
+    position: relative;
+}
+
+.NotAllWatched {
+    border-right: 3px solid #ffd700;
+}
+
+.AllWatched {
+    border-right: 3px solid #009432;
+}
+
+
+
+.BackgroundImage{
+    margin:0 auto;
+    width: 100%;
+    height: inherit;
+    position: relative;
+    object-fit: cover;
+    object-position: top; 
+    border-bottom: 1px #01141f solid;
+}
+
+.Container {
+    display: flex;
+    flex-flow: column;
+    padding:10px;
+    height: inherit;
+    align-content: space-between;
+    position: absolute;
+    top:0px;
+    left:0px;
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.7); 
+    transition: background-color 0.3s ease;
+    width: 100%; 
+}
+
+.Container:hover {
+    background: rgba(0, 0, 0, 0.9); 
+    cursor: pointer;
+}
+
+.Title {
+    color: #ffd700;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: right;
+}
+
+.DataContainer {
+    display: grid;
+    height: 70%;
+    grid-template-columns: auto auto;
+
+}
+.Data {
+    position: relative;
+  
+}
+.DataDescription {
+font-size: 0.7em;
+text-decoration: overline;    
+position: absolute;
+bottom: 0;
+left: 0;
+}
+
+.DataNumber {
+    font-size: 1.1em;
+    font-weight: bold;   
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+}

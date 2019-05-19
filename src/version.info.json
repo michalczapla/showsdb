@@ -2,7 +2,11 @@
     "todo": 
     [
         "### TODO",
-        "FavoriteBox - stworzyć i dodać",
+        "",
+        "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
+        "Dodać ostzreżenie przy susuwaniu ulubionych",
+        "Dodać narzędzia do zanaczania/odznaczania sezonu obejrzanego i może podsumowanie obejrzanych/nie obejrzanych dla sezonu",
+        "Dopracować ikonkę dodwania obejrzanego odcinka",
         "Wykres premier jako nowa strona",
         "Landing Page (główna strona) - dokończyć",
         "Stworzyć MENU + nawigację"
@@ -10,6 +14,10 @@
     "done":
     [
         "### DONE",
+        "",
+        "19.05.2019 - Logika i wyglad dla zaznaczania obejrzanych odcinkow",
+        "19.05.2019 - wygląd i logika pojedynczego itemu FAVORITE",
+        "18.05.2019 - FavoriteBox - stworzyć i dodać",
         "18.05.2019 - axios error Handler (withErrorHandler)",
         "16.05.2019 - SeasonList - dodać",
         "16.05.2019 - DetailsBox - dodać logikę pobierania z API",
@@ -19,6 +27,7 @@
     "errors":
     [
         "### ERRORS",
+        "",
         "W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
         "strona nie działa na Edgu - w nazwach są - zamias _ podobno",

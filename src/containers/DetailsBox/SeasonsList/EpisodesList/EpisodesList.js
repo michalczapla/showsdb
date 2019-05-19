@@ -36,11 +36,19 @@ class EpisodesList extends Component{
     };
 
     render() {
+      
+
     
         if (this.state.loading) {
             return <Loader />;
         } else if (this.state.episodes!==null) {
-            return (this.state.episodes.map(el=><Episode key={el.id} episode={el} imageBase={this.props.imageStillBase}/>));
+        return (this.state.episodes.map(el=>{
+            let isWatched = false;
+            if (this.props.favorites) {
+                isWatched = this.props.favorites.isWatched(this.props.showID,el.id);
+            }
+        return(<Episode key={el.id} episode={el} imageBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched}/>)
+        }));
         } else {
             return null;
         }

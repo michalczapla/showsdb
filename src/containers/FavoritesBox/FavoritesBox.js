@@ -1,22 +1,25 @@
 import React from 'react';
 import classes from './FavoritesBox.module.css';
-import Favorite from './../SearchBox/ResultList/ResultItem/ResultItem';
-import GenreMapper from './../../helpers/genre-mapper';
+import Favorite from '../FavoritesBox/FavoriteItem/FavoriteItem';
 
 const favoritesBox = (props) => {
     let favoritesList = null;
     if (props.favorites && props.configuration){
+       
         favoritesList = props.favorites.favorites.map((el, index)=>{
+            const totalWatchedEpisodes = props.favorites.countWatchedForShow(el.id);
             return(<Favorite 
-                key={el.id + index} 
+                key={el.id + "_"+index} 
                 href={el.id} 
-                imgsrc={(el.poster_path) ? props.configuration.imagesBase+el.poster_path : null} 
+                imgsrc={(el.backdrop_path) ? props.configuration.backdropBase+el.backdrop_path : null} 
                 title={el.name} 
-                akatitle={el.original_name} 
-                genres={el.genres.map(el=>el.name).join(', ')} 
-                year={el.first_air_date} 
+                // genres={el.genres.map(el=>el.name).join(', ')} 
+                // year={el.first_air_date} 
                 selectShow={props.selectShow} 
-                id={el.id}/>)});
+                id={el.id}
+                totalEpisodes={el.number_of_episodes}
+                totalWatchedEpisodes={totalWatchedEpisodes}
+                />)});
     }
     
     return(<div className={classes.FavoritesBox}>

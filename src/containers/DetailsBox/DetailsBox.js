@@ -17,6 +17,7 @@ class DetailsBox extends Component {
         currentShow: null,
         loading: false
     }
+    _isMount=false;
 
     // aktuaizacja stanu na podstawie przekazanych własćiwości
     // static getDerivedStateFromProps(nextProps, prevState){
@@ -29,12 +30,12 @@ class DetailsBox extends Component {
     getShowDetails = async (id) => {
         if (id!==null) {
             const details_request_url = `https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}&language=en-US`;
-            this.setState({loading:true});
+            if (this._isMount) this.setState({loading:true});
             try {
                 const response = await axios(details_request_url);
-                this.setState({currentShow: response.data, loading:false, currentShowID: id});
+                if (this._isMount)  this.setState({currentShow: response.data, loading:false, currentShowID: id});
             } catch {
-                this.setState({   
+                if (this._isMount) this.setState({   
                     currentShowID: id, 
                     loading: false
                 })
@@ -42,11 +43,18 @@ class DetailsBox extends Component {
         };
     };
 
-    componentDidUpdate= async () => {
+    componentDidMount() {
+        this._isMount=true;
+    }
+    componentWillUnmount(){ 
+        this._isMount=false;
+    }
+
+    componentDidUpdate= () => {
         // if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { //|| (this.state.currentShow.id!==null && this.props.currentShowID!==this.state.currentShow.id)) 
         // if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
             if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
-                await this.getShowDetails(this.props.currentShowID);
+                this.getShowDetails(this.props.currentShowID);
     
         }
     };
@@ -67,7 +75,7 @@ class DetailsBox extends Component {
         <div className={classes.DetailsBox}>
             <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase} updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} isFavorite={isFavorite}/>
             <DetailsMeta genres={this.props.configuration.genreList} currentShow={this.state.currentShow} />
-            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} imageStillBase={this.props.configuration.stillBase}/>
+            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} imageStillBase={this.props.configuration.stillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites}/>
         </div>);
         } else {
             return (<LandingPage />);

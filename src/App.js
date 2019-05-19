@@ -32,7 +32,12 @@ favorites = new Favorite();     //objekt "ulubionych"
   updateFavorites=(element) => {
     this.favorites.addOrRemoveFavorite(element);
     this.setState({favorites: this.favorites});
-    }
+  }
+
+  updateWatchedEpisode=(showID, episodeID) => {
+    this.favorites.addOrRemoveWatched(showID, episodeID);
+    this.setState({favorites: this.favorites});
+  }
 
   showSearchHandler= (id) => {
     this.setState({currentShowID: id});
@@ -43,8 +48,8 @@ favorites = new Favorite();     //objekt "ulubionych"
     return (
       <div className="App">
         <Layout>
-        <div><SearchBox configuration={this.state.configuration} title="showsDB v0.4.11 r" selectShow={this.showSearchHandler}/></div>
-        <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID} favorites={this.state.favorites} updateFavorites={this.updateFavorites}/></div>
+        <div><SearchBox configuration={this.state.configuration} title="showsDB v0.4.21 r" selectShow={this.showSearchHandler}/></div>
+        <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID} favorites={this.state.favorites} updateFavorites={this.updateFavorites} updateWatched={this.updateWatchedEpisode}/></div>
         <div><FavoritesBox favorites={this.state.favorites} configuration={this.state.configuration} selectShow={this.showSearchHandler}/></div>
          
         </Layout>

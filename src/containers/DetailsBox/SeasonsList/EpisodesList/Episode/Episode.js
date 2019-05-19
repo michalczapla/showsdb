@@ -2,7 +2,9 @@ import React from 'react';
 import classes from './Episode.module.css';
 import properDigitNumber from '../../../../../helpers/proper-digit-number';
 import noPicture from './../../../../../assets/images/no_picture.jpg';
+
 import NoResultsIcon from 'react-ionicons/lib/MdRemove';
+import WatchedIcon from 'react-ionicons/lib/MdCheckbox';
 
 const episode = (props) => {
 
@@ -10,9 +12,13 @@ const episode = (props) => {
     return (
     <div className={classes.Episode}>
         <div className={classes.EpisodeNumber}>S{properDigitNumber(props.episode.season_number)} E{properDigitNumber(props.episode.episode_number)}</div>
-        {/* <div className={classes.EpisodeImageContainer}> */}
-            <img className={classes.EpisodeImage} src={imageSrc} alt={props.episode.name} title={props.episode.name}/> 
-        {/* </div> */}
+        <div className={classes.EpisodeImageContainer}>
+            <img className={classes.EpisodeImage} src={imageSrc} alt={props.episode.name} title={props.episode.name} />
+            <div className={classes.EpisodeFavorite} onClick={()=>props.updateWatched(props.showID,props.episode.id)}>
+            {(props.isWatched) ? <WatchedIcon fontSize='2em' color='#009432'/> : <WatchedIcon fontSize='2em'/>}
+            </div> 
+            
+        </div>
         <div className={classes.EpisodeDetailsContainer}>
             <div className={classes.EpisodeTitle}>{(props.episode.name===null) ? <NoResultsIcon /> : props.episode.name}</div>
             <div className={classes.EpisodeMetaContainer}>

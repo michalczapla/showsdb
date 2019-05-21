@@ -4,6 +4,7 @@ import api_key from '../../../../helpers/APIKey';
 import axios from '../../../../helpers/axios-external';
 import Loader from './../../../Loading/Loading';
 import withErrorHandler from './../../../../components/withErrorHandler/withErrorHandler';
+import classes from './EpisodesList.module.css';
 
 class EpisodesList extends Component{
     state= {
@@ -38,20 +39,36 @@ class EpisodesList extends Component{
     render() {
       
 
-    
+
         if (this.state.loading) {
             return <Loader />;
         } else if (this.state.episodes!==null) {
-        return (this.state.episodes.map(el=>{
-            let isWatched = false;
-            if (this.props.favorites) {
-                isWatched = this.props.favorites.isWatched(this.props.showID,el.id);
-            }
-        return(<Episode key={el.id} episode={el} imageBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched}/>)
-        }));
+            const content = (
+                this.state.episodes.map(el=>{
+                let isWatched = false;
+                if (this.props.favorites) {
+                    isWatched = this.props.favorites.isWatched(this.props.showID,el.id);
+                }
+            return(
+                <Episode key={el.id} episode={el} imageBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched} currentShow={this.props.currentShow}/>
+            )}));
+
+            const ifAllWatched = this.props.favorites.ifAllWatched(this.props.showID,this.state.episodes);
+
+            return (
+                <React.Fragment>
+                    <div className={classes.EpisodeToolbarContainer}>
+                        <button className={classes.EpisodeToolbar} onClick={()=>this.props.updateAllWatchedEpisodes(this.props.currentShow, this.state.episodes, !ifAllWatched)}>
+                        {ifAllWatched ? 'Unmark all watched' : 'Mark all watched'}
+                        </button>  
+                    </div>
+                    {content}
+                </React.Fragment>
+            )
         } else {
             return null;
         }
+//this.props.favorites.ifAllWatched(this.props.showID,this.state.episodes)
     }
 };
 

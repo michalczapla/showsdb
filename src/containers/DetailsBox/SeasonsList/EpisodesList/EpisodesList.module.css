@@ -1,0 +1,19 @@
+.EpisodeToolbarContainer {
+    display: flex;
+    font-size: 0.8em;
+    border-bottom: 1px solid #ffd700;
+    background-color: #053f5e;
+
+}
+
+.EpisodeToolbar {
+    padding:5px 10px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+.EpisodeToolbar:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

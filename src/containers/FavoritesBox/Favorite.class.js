@@ -5,7 +5,7 @@ class Favorite {
 }
 addOrRemoveFavorite = (show)=> {
     if (show) {
-        if (show.watched===null || typeof show.watched === 'undefined')
+        if (typeof show.watched === 'undefined')
             show.watched=[];
 
         if (this.favorites.length===0 || !this.isFavorite(show.id)){     // jeżeli pusta tablica lub jeżeli element nie istnieje 
@@ -14,20 +14,27 @@ addOrRemoveFavorite = (show)=> {
             const index = this.favorites.findIndex(el=> el.id===show.id);
             this.favorites.splice(index,1);
         }               
-
+        this.saveData();
+        return show;
     }
-    this.saveData();
+    
 }
 
-addOrRemoveWatched = (showID, episodeID) => {
-    if (showID && episodeID) {
-        const show = this.favorites.find(el=>el.id===showID);
+addOrRemoveWatched = (showDetails, episodeID) => {
+    if (showDetails && episodeID) {
+        let show = this.favorites.find(el=>el.id===showDetails.id);
 
-        if (this.isWatched(showID, episodeID)){                 // jezeli istnieje to wywalam go z listy
+
+
+        if (typeof show === 'undefined') {              //jezeli serial nie byl w ogole polubiony
+            show = this.addOrRemoveFavorite(showDetails);
+        }
+
+        if (this.isWatched(showDetails.id, episodeID)){                 // jezeli istnieje to wywalam go z listy
             const index = show.watched.findIndex(el=>el===episodeID);
             show.watched.splice(index,1);
         } else {                                                // dodanie do listy obejrzanyh
-            if (show.watched===null || typeof show.watched === 'undefined')         // tworzenie pustej tablicy obejrzanych, jezeli nie istniala
+            if (typeof show.watched === 'undefined')         // tworzenie pustej tablicy obejrzanych, jezeli nie istniala
             show.watched=[];
 
             show.watched.push(episodeID);
@@ -37,7 +44,55 @@ addOrRemoveWatched = (showID, episodeID) => {
     }
 }
 
+markAll=(showDetails,episodeArray,markAllWatched) => {
+    if (showDetails && episodeArray) {
+        let show = this.favorites.find(el=>el.id===showDetails.id);
+            if (typeof show === 'undefined') {              //jezeli serial nie byl w ogole polubiony
+            show = this.addOrRemoveFavorite(showDetails);
+            }
+        
+        
+            episodeArray.forEach((el)=>{
+                if (markAllWatched) {
+                    if (!this.isWatched(show.id,el.id)) this.addOrRemoveWatched(showDetails,el.id);
+                } else {
+                    if (this.isWatched(show.id,el.id)) this.addOrRemoveWatched(showDetails,el.id);
+                }
+            })
+    
+    }
+}
 
+ifAllWatched = (showID, episodeArray) => {      // zwraca 1 kiedy wszystkie sa zaznaczona, a -1 kiedy wszystkie sa odznaczone. 0 kiedy sa pomieszane
+    if (showID && episodeArray) {
+        const show = this.favorites.find(el=>el.id===showID);
+        
+        if (typeof show === 'undefined' || typeof show.watched === 'undefined')
+        return undefined;
+
+        // let checks = 0;
+        // episodeArray.every(el=>{
+        //     if (show.watched.includes(el.id))
+        //         checks++;
+        // })
+
+        // if (checks===0)
+        //     return -1
+        // else if (checks === episodeArray.length)
+        //     return 1
+        // else if (checks>0 && checks < episodeArray.length)
+        //     return 0;
+
+
+        let result = true;
+        episodeArray.forEach(episode => {
+            const check = show.watched.findIndex(el=>el===episode.id);
+            if (check===-1)
+                result = false;
+        });
+        return result;
+    }
+}
 
 getFavorites() {
     return this.favorites;
@@ -45,7 +100,7 @@ getFavorites() {
 
 getWatchedForShow = (showID) => {
     const show = this.favorites.find(el=>el.id===showID);
-    if (show.watched===null || typeof show.watched === 'undefined')
+    if (typeof show.watched === 'undefined')
             return 0;
 
     return show.watched;
@@ -60,7 +115,7 @@ isWatched = (showID, episodeID) =>{
     if (showID && episodeID) {
         const show = this.favorites.find(el=>el.id===showID);
         
-        if (show.watched===null || typeof show.watched === 'undefined')
+        if ((typeof show === 'undefined' || typeof show.watched === 'undefined'))
             return false
         
         const index = show.watched.findIndex(el=>el===episodeID);

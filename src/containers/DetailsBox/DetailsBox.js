@@ -75,7 +75,7 @@ class DetailsBox extends Component {
         <div className={classes.DetailsBox}>
             <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase} updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} isFavorite={isFavorite}/>
             <DetailsMeta genres={this.props.configuration.genreList} currentShow={this.state.currentShow} />
-            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} imageStillBase={this.props.configuration.stillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites}/>
+            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} currentShow={this.state.currentShow} imageStillBase={this.props.configuration.stillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites} updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/>
         </div>);
         } else {
             return (<LandingPage />);

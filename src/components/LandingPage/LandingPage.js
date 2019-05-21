@@ -4,11 +4,11 @@ import VersionHistory from './../../version.info.json';
 
 const landingPage = (props) => (
     <div className={classes.LandingPage}>
-        <ul>{VersionHistory.todo.map(el=>(<li key={el}>{el}</li>))}</ul>
+        <ul>{VersionHistory.todo.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
-        <ul>{VersionHistory.done.map(el=>(<li key={el}>{el}</li>))}</ul>
+        <ul>{VersionHistory.done.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
-        <ul>{VersionHistory.errors.map(el=>(<li key={el}>{el}</li>))}</ul>
+        <ul>{VersionHistory.errors.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
     </div>
     
 );

@@ -15,6 +15,7 @@
     [
         "### DONE",
         "",
+        "21.05.2019 - FIX: W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania",
         "20.05.2019 - ADD: Dodać narzędzia do zanaczania/odznaczania sezonu obejrzanego",
         "20.05.2019 - FIX: Próba dodania obejrzanego odcinka, kiedy nie mmy polubionego serialu kończy się błędem - dodać automatyczne dodawanie serialu jako ulubionego ",
         "19.05.2019 - ADD: Logika i wyglad dla zaznaczania obejrzanych odcinkow",
@@ -30,7 +31,6 @@
     [
         "### ERRORS",
         "",
-        "W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
         "strona nie działa na Edgu - w nazwach są - zamias _ podobno",
         "nie wiem czy brak internetu poprawnie pokazuje błąd ściągania konfiguracji..."

@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './Layout.module.css';
+import Menu from './../UI/MainMenu/MainMenu';
 
 const layout = (props) => (
         <React.Fragment>
-            <div>MENU</div>
+            <Menu />
             <main className={classes.Layout}>
                 {props.children}
             </main>

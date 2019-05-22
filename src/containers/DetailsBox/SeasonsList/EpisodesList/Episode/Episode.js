@@ -20,9 +20,9 @@ const episode = (props) => {
             
         </div>
         <div className={classes.EpisodeDetailsContainer}>
-            <div className={classes.EpisodeTitle}>{(props.episode.name===null) ? <NoResultsIcon /> : props.episode.name}</div>
+            <div className={classes.EpisodeTitle}>{(props.episode.name===null) ? <NoResultsIcon fontSize='0.8em' color='#ffffff'/> : props.episode.name}</div>
             <div className={classes.EpisodeMetaContainer}>
-                <span className={classes.EpisodeLabel}>air date</span> {(props.episode.air_date===null) ? <NoResultsIcon /> : props.episode.air_date}
+                <span className={classes.EpisodeLabel}>air date</span> {(props.episode.air_date===null) ? <NoResultsIcon fontSize='0.8em' color='#ffffff'/> : props.episode.air_date}
             </div>
             <div className={classes.EpisodeDescription}>{props.episode.overview}</div> 
         </div>

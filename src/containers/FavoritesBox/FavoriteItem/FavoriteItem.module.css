@@ -11,11 +11,13 @@
 }
 
 .NotAllWatched {
-    border-right: 3px solid #ffd700;
+    border-right: 6px solid #ffd700;
+    box-shadow:2px 0px 6px #ffd700;
 }
 
 .AllWatched {
-    border-right: 3px solid #009432;
+    border-right: 6px solid #009432;
+    box-shadow:2px 0px 6px #009432;
 }
 
 

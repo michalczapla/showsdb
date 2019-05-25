@@ -55,6 +55,7 @@ class DetailsBox extends Component {
         // if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
             if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
                 this.getShowDetails(this.props.currentShowID);
+                window.scrollTo(0,0);       //scroll na górę okna
     
         }
     };

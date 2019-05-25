@@ -13,7 +13,7 @@ const favoriteItem = (props) => (
             </div>
             <div className={classes.Data}>
                 <div className={classes.DataNumber}>{props.totalWatchedEpisodes}</div>
-                <div className={classes.DataDescription}>Not yet watched</div>
+                <div className={classes.DataDescription}>Total watched</div>
             </div>
         </div>
     </div>

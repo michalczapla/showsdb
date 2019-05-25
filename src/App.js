@@ -5,6 +5,8 @@ import SearchBox from './containers/SearchBox/SearchBox';
 import DetailsBox from './containers/DetailsBox/DetailsBox';
 import FavoritesBox from './containers/FavoritesBox/FavoritesBox';
 
+import {BrowserRouter} from 'react-router-dom';
+
 
 import Favorite from './containers/FavoritesBox/Favorite.class';
 
@@ -54,10 +56,12 @@ favorites = new Favorite();     //objekt "ulubionych"
     return (
       <div className="App">
         <Layout>
-        <div><SearchBox configuration={this.state.configuration} title="showsDB v0.4.33 r" selectShow={this.showSearchHandler}/></div>
-        <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID} favorites={this.state.favorites} updateFavorites={this.updateFavorites} updateWatched={this.updateWatchedEpisode}  updateAllWatchedEpisodes={this.updateAllWatchedEpisodes}/></div>
-        <div><FavoritesBox favorites={this.state.favorites} configuration={this.state.configuration} selectShow={this.showSearchHandler}/></div>
-         
+          <BrowserRouter>
+            
+            <div><SearchBox configuration={this.state.configuration} title="showsDB v0.4.33 r" selectShow={this.showSearchHandler}/></div>
+            <div><DetailsBox configuration={this.state.configuration} currentShowID={this.state.currentShowID} favorites={this.state.favorites} updateFavorites={this.updateFavorites} updateWatched={this.updateWatchedEpisode}  updateAllWatchedEpisodes={this.updateAllWatchedEpisodes}/></div>
+            <div><FavoritesBox favorites={this.state.favorites} configuration={this.state.configuration} selectShow={this.showSearchHandler}/></div>
+          </BrowserRouter>
         </Layout>
       </div>
     );

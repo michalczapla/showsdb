@@ -11,6 +11,9 @@ body {
   background-color: #053f5e;
 }
 
+html {
+  scroll-behavior: smooth;    
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

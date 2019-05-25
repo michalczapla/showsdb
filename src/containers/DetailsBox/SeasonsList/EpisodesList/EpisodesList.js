@@ -7,11 +7,12 @@ import withErrorHandler from './../../../../components/withErrorHandler/withErro
 import classes from './EpisodesList.module.css';
 
 class EpisodesList extends Component{
-    state= {
+state= {
         episodes: null,
         loading: false,
         activeSeasonID: null,
-    }
+    };
+
 
     getEpisodeList = async (showid, seasonid) => {
         if (showid!==null && seasonid !==null) {
@@ -29,13 +30,18 @@ class EpisodesList extends Component{
     componentDidUpdate = () => {
         if (!this.state.loading && this.state.activeSeasonID!==this.props.activeSeasonID) {
             this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
+        
         }
     };
 
     componentDidMount = () => {
             this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
+      
     };
 
+    // scrollToTop = () => {
+    //     window.scrollTo(0,this.episodesRef.current.offsetTop);
+    // }
     render() {
       
 

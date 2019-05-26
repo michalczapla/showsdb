@@ -17,7 +17,7 @@ class SeasonsList extends Component {
 
         return(
             <React.Fragment>
-                <SeasonsPagination seasons={this.props.seasons} activeSeason={this.setActiveSeasonHandler}/>
+                <SeasonsPagination seasons={this.props.seasons} activeSeason={this.setActiveSeasonHandler} activeSeasonID={this.state.activeSeasonID}/>
                 {this.state.activeSeasonID!==null ? <EpisodesList activeSeasonID={this.state.activeSeasonID} showID={this.props.showID} imageStillBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites} currentShow={this.props.currentShow} updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/> : null}
                 
             </React.Fragment>

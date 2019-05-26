@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ResultList.module.css';
 import ResultItem from './ResultItem/ResultItem';
-import GenreMapper from './../../../helpers/genre-mapper';
+import GenreMapper from '../../../../helpers/genre-mapper';
 
 
 const resultList = (props) => {

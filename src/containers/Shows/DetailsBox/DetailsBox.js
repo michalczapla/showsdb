@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
-import LandingPage from './../../components/LandingPage/LandingPage';
+import LandingPage from '../../../components/LandingPage/LandingPage';
 import Loader from '../Loading/Loading';
-import withErrorHandler from '../../components/withErrorHandler/withErrorHandler';
+import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 
 // HELPERY
-import axios from '../../helpers/axios-external';
-import api_key from '../../helpers/APIKey';
+import axios from '../../../helpers/axios-external';
+import api_key from '../../../helpers/APIKey';
 import SeasonsList from './SeasonsList/SeasonsList';
 
 class DetailsBox extends Component {

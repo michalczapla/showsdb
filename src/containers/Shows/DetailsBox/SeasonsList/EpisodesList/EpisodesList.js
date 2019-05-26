@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Episode from './Episode/Episode';
-import api_key from '../../../../helpers/APIKey';
-import axios from '../../../../helpers/axios-external';
-import Loader from './../../../Loading/Loading';
-import withErrorHandler from './../../../../components/withErrorHandler/withErrorHandler';
+import api_key from '../../../../../helpers/APIKey';
+import axios from '../../../../../helpers/axios-external';
+import Loader from '../../../Loading/Loading';
+import withErrorHandler from '../../../../../components/withErrorHandler/withErrorHandler';
 import classes from './EpisodesList.module.css';
 
 class EpisodesList extends Component{

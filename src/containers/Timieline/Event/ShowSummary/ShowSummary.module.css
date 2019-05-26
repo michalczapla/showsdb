@@ -1,0 +1,24 @@
+.Event {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 154px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.HeaderImg {
+    width: 100%;
+}
+
+.Content {
+    padding:5px;
+}
+
+.Title {
+    font-size: 1.1em;
+    color: #ffd700;
+}
+
+.AdditionalInfo {
+    font-size: 0.8em;
+}

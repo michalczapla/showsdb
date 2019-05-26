@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './ResultItem.module.css';
 import ContactIcon from 'react-ionicons/lib/MdContacts';
 import CalendarIcon from 'react-ionicons/lib/MdCalendar';
-import NoPicture from '../../../../assets/images/cancel.png';
+import NoPicture from '../../../../../assets/images/cancel.png';
 
 const resultItem = (props) => (
     <a className={classes.ResultItem} href={'#'+props.href} onClick={()=>props.selectShow(props.id)}>

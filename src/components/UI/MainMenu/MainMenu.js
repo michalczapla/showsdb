@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './MainMenu.module.css';
 import Logo from './../../../assets/images/logo_transparent.png';
+import {Link} from 'react-router-dom';
 
 const mainMenu = (props) => (
     <header className={classes.Menu}>
@@ -9,8 +10,8 @@ const mainMenu = (props) => (
         </div>
         <nav >
             <ul>
-                <li className={classes.NavigationItem}><a href="/home">Home</a></li>
-                <li className={classes.NavigationItem}><a href="/timeline">Timeline</a></li>
+                <li className={classes.NavigationItem}><Link to="/">Home</Link></li>
+                <li className={classes.NavigationItem}><Link to="/timeline">Timeline</Link></li>
             </ul>
         </nav>
     </header>

@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import classes from './SearchBox.module.css';
 import InputBox from './InputBox/InputBox';
 import ResultList from './ResultList/ResultList';
-import axios from './../../helpers/axios-external';
-import api_key from './../../helpers/APIKey';
+import axios from '../../../helpers/axios-external';
+import api_key from '../../../helpers/APIKey';
 import NoResults from './ResultList/ResultItem/ResultItemNoResults';
 import Loading from '../Loading/Loading';
 import Pagination from './Pagination/Pagination';
-import withErrorHandler from './../../components/withErrorHandler/withErrorHandler';
+import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 
 class SearchBox extends Component {
     state = {

@@ -1,0 +1,109 @@
+.TimelineContainer {
+    /* grid-template-columns: 25% auto 25%;
+    display: grid;
+    grid-column-gap: 10px; */
+    margin: 0 10px;
+    margin-top:3.5em;
+    box-sizing: border-box;
+}
+
+/* Pionowa linia - pozycjonowanie */
+.Timeline{          
+    position: relative;
+    max-width: 1000vh;
+    margin: 0 auto;
+}
+
+
+/* Pionowa linia wygląd */
+.Timeline::after{
+    content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+
+/* kontener na wydarzenie */
+.Event {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+/* punkt na linii */
+.Event::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -12px;
+    background-color: white;
+    border: 4px solid #053F5D;
+    top: 9px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* pozycjonowanie kontenera */
+.left {
+    left: 0;
+  }
+.right {
+    left: 50%;
+}
+.right::after {
+    left: -11px;
+}
+
+/* formatiowanie lini przerywanej */
+hr.timeline {
+    border: 1px dashed white;
+}
+
+.hrDescription {
+    font-size: 0.7em;
+}
+
+  /* objekt wydarzenia */
+.Content {
+    padding: 20px 30px;
+  background-color: rgb(22, 78, 105);
+  position: relative;
+  border-radius: 6px;
+  display:flex;
+}
+
+/* media queries i zmiana pozycjonowania na prawe */
+@media screen and (max-width: 800px) {
+    
+      .Timeline::after {
+        left: 31px;
+      }
+    
+    /* Full-width containers */
+      .Event {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      .left::after, .right::after {
+        left: 20px;
+      }
+    
+    /* Make all right containers behave like the left ones */
+      .right {
+        left: 0%;
+      }
+
+      .hrDescription {
+        text-align: right;  
+    }
+
+    }
+    

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Episode.module.css';
-import properDigitNumber from '../../../../../helpers/proper-digit-number';
-import noPicture from './../../../../../assets/images/no_picture.jpg';
+import properDigitNumber from '../../../../../../helpers/proper-digit-number';
+import noPicture from '../../../../../../assets/images/no_picture.jpg';
 
 import NoResultsIcon from 'react-ionicons/lib/MdRemove';
 import WatchedIcon from 'react-ionicons/lib/MdCheckbox';

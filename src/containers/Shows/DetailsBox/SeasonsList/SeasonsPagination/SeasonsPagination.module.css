@@ -20,6 +20,8 @@
     font-size: 1.0em;
 }
 
-.Button:hover {
+.Button:hover,
+.Button:active,
+.Button.active {
     background-color: #01141f;
 }

@@ -15,6 +15,9 @@
     [
         "### DONE",
         "",
+        "26.05.2019 - ADD: Timeline - wygląd",
+        "26.05.2019 - ADD: Routing",
+        "26.05.2019 - FIX: brak zaznaczenia aktualnie wyswitlanego sezonu",
         "21.05.2019 - FIX: W meta danych serialu poprawić obsługę brakujących danych - teraz niec się nie wyświetla. Posłużyć się ikonką (wykorzystaną przy szczegółach odcinka, ale bez formatowania",
         "20.05.2019 - ADD: Dodać narzędzia do zanaczania/odznaczania sezonu obejrzanego",
         "20.05.2019 - FIX: Próba dodania obejrzanego odcinka, kiedy nie mmy polubionego serialu kończy się błędem - dodać automatyczne dodawanie serialu jako ulubionego ",
@@ -31,6 +34,7 @@
     [
         "### ERRORS",
         "",
+        "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
         "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
         "strona nie działa na Edgu - w nazwach są - zamias _ podobno",

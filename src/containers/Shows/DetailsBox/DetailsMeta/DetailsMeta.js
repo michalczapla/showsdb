@@ -4,7 +4,7 @@ import MetaInfoList from './MetaInfoList/MetaInfoList';
 import ReactCountryFlag from 'react-country-flag';
 
 // HELPERS
-import genreMapper from './../../../helpers/genre-mapper';
+import genreMapper from '../../../../helpers/genre-mapper';
 
 const detailsMeta =(props) => {
 

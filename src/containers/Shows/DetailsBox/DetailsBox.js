@@ -3,8 +3,10 @@ import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
 import LandingPage from '../../../components/LandingPage/LandingPage';
-import Loader from '../Loading/Loading';
+import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
+
+import * as Mappers from '../../../helpers/mappers';
 
 // HELPERY
 import axios from '../../../helpers/axios-external';
@@ -33,7 +35,7 @@ class DetailsBox extends Component {
             if (this._isMount) this.setState({loading:true});
             try {
                 const response = await axios(details_request_url);
-                if (this._isMount)  this.setState({currentShow: response.data, loading:false, currentShowID: id});
+                if (this._isMount)  this.setState({currentShow: Mappers.mapShow(response.data), loading:false, currentShowID: id});
             } catch {
                 if (this._isMount) this.setState({   
                     currentShowID: id, 

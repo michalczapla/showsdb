@@ -3,6 +3,7 @@
     [
         "### TODO",
         "",
+        "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
         "Dodać ostzreżenie przy susuwaniu ulubionych",
         "Dodać odsumowanie obejrzanych/nie obejrzanych dla sezonu",
@@ -15,6 +16,7 @@
     [
         "### DONE",
         "",
+        "03.06.2019 - ADD: REDUX initial integration",
         "26.05.2019 - ADD: Timeline - wygląd",
         "26.05.2019 - ADD: Routing",
         "26.05.2019 - FIX: brak zaznaczenia aktualnie wyswitlanego sezonu",

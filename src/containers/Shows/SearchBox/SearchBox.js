@@ -5,7 +5,7 @@ import ResultList from './ResultList/ResultList';
 import axios from '../../../helpers/axios-external';
 import api_key from '../../../helpers/APIKey';
 import NoResults from './ResultList/ResultItem/ResultItemNoResults';
-import Loading from '../Loading/Loading';
+import Loading from '../../../components/UI/Loading/Loading';
 import Pagination from './Pagination/Pagination';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 

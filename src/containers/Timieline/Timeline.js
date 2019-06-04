@@ -7,8 +7,10 @@ import Modal from './../../components/UI/Modal/Modal';
 import axios from '../../helpers/axios-external';
 import api_key from '../../helpers/APIKey';
 import Loader from '../../components/UI/Loading/Loading';
+import * as Mappers from '../../helpers/mappers';
+import * as ActionTypes from '../../store/actions';
 
-function Timeline() {
+const Timeline = (props) => {
 
     const [updateRequired, setUpdateRequired] = useState(true);
     const [actualProgress, setActualProgress] = useState(0);
@@ -16,44 +18,111 @@ function Timeline() {
     const [totalShows, setTotalShows] = useState(-1);
     const [totalEpisodes, setTotalEpisodes] = useState(-1);
     const [loading, setLoading] = useState(false);
+    const [groups, setGroups] = useState();
 
-    //sprawdzenie przy montowaniu komponentu
-    // useEffect(()=>{
-    //     console.log(props.favorites.favorites);
-    //     if (props.favorites.lastUpdate === 0) {
-    //         setUpdateRequired(true);
-    //         setTotalShows(props.favorites.favorites.length);
-    //         setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
-    //     } else {
-    //         setUpdateRequired(false);
-    //     }
+    // sprawdzenie przy montowaniu komponentu - ustawienie zmiennych do wyświetlania postępu
+    useEffect(()=>{
+        console.log(props.favorites.lastUpdate);
+        if (props.favorites.lastUpdate === 0) {
+            setUpdateRequired(true);
+            setTotalShows(props.favorites.favorites.length);
+            setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
+        } else {
+            setUpdateRequired(false);
+            // const gr = mapEpisodesForProperGroups();
+            // // setGroups();
+            // console.log(gr);
+        }
+        
 
+    },[])
 
-    // },[props.favorites.favorites, props.favorites.lastUpdate])
+    const getAxiosData = async (id, season) => {
+        return await axios(`https://api.themoviedb.org/3/tv/${id}/season/${season}?api_key=${api_key}`);
+    } 
 
 
     const updateEpisodesData = async () => {
         setLoading(true);
-        console.log(loading);
-        // console.log('ok!');
-        // const retrievedEpisodes = [];
-        
-        // props.favorites.favorites.forEach(async (show, index)=>{
-        //     for (let i =show.min_season_no; i<=show.max_season_no;i++) {
-        //         const res = await axios(`https://api.themoviedb.org/3/tv/${show.id}/season/${i}?api_key=${api_key}`);
-        //         retrievedEpisodes.push(...res.data.episodes);
-        //     }
 
-        // });
-        // console.log(retrievedEpisodes);
+    
         
-        await   setTimeout( ()=>(console.log('processing')),5000);
+        for (let show of props.favorites.favorites) {
+            const retrievedEpisodes = [];
+            for (let i =show.min_season_no; i<=show.max_season_no;i++) {
+              await getAxiosData(show.id,i).then((res)=>{
+                    retrievedEpisodes.push(...Mappers.mapSeason([...res.data.episodes]));
+                }).catch(error => {
+                    console.log("Fatal error" + error.message);
+                })
+            props.addEpisodes(show.id, retrievedEpisodes);
+            // console.log(props.favorites.lastUpdate);
+            } 
+        }
+        // console.log(props.favorites.favorites);
+        // const mappedEpisodes = Mappers.mapSeason(retrievedEpisodes);
+        // const groups = mapEpisodesForProperGroups(mappedEpisodes); 
 
         setLoading(false);
-        console.log(loading);
+        // setGroups(mapEpisodesForProperGroups());
+        // console.log(mapEpisodesForProperGroups());
         setUpdateRequired(false);
     }
 
+    const mapEpisodesForProperGroups = () => {
+        if (props.favorites.favorites) {
+
+            const filterEpisodesByDays = (direction=1) => {
+                const today = new Date();
+                const group = props.favorites.favorites.map(show=>{
+                    const showGroup = {
+                            id: show.id,
+                            name: show.name,
+                            backdrop_path:show.backdrop_path,
+                            episodes: show.episodes.filter(el=>{
+                                const diffDays = Math.ceil((Math.abs(today.getTime() - el.air_date.getTime()))/(1000*60*60*24));    //zwraca różnicę w dniach
+                                if (diffDays>30 && direction===1) 
+                                    return el;
+                                else if (diffDays<-30 && direction===-1)
+                                    return el;
+                            })
+                        }
+                    if (showGroup.episodes.length!==0)
+                        return showGroup;
+                    else 
+                        return null;
+                })
+                return group.filter(el=> (el!==null));
+            }
+
+            const groups= {
+                olderThan30Days: filterEpisodesByDays(1), 
+                within30days: [],
+                next30days:filterEpisodesByDays(-1)
+            }   
+
+            // //mapowanie w przedziały czasowe
+            // showsArray.map(show=>{
+            //     const diffDays = Math.ceil((Math.abs(today.getTime() - show.air_date.getTime()))/(1000*60*60*24));    //zwraca różnicę w dniach
+            //     show.diffDays = diffDays;
+            //     if (diffDays>30) 
+            //         {groups.olderThan30Days.push(show);}
+            //     else if (diffDays<=30 && diffDays >=-30)
+            //         {groups.within30days.push(show)}
+            //     else if (diffDays<-30)
+            //         {groups.next30days.push(show)}
+            // });
+
+            //mapowanie w grupy 
+            // const mapIntoGroupBySeason = (group) => {
+            //     for (let showFavorite of props.favorites.favorites) {
+            //         for (let showTimeline)
+            //     }
+            // }
+
+            return groups;
+        }
+    };
     
     return (
         <>
@@ -91,7 +160,7 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-
+        addEpisodes: (showID, episodes) => dispatch({type: ActionTypes.ADD_EPISODES_TO_SHOW, show: {showID: showID, episodes: episodes}}),
     }
   }
   

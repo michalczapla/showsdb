@@ -50,14 +50,39 @@ export const mapShow = show => {
     return acceptedShow;
 };
 
-// MAPOWANIE LISTY ODCINKÓW DLA SEZONU
+//MAPOWANIE LISTY ODCINKÓW SEZONU
 export const mapSeason = (season) => {
+    if (season) {
+        const acceptesShowsArray = [];
+        for (let show of season) {
+            acceptesShowsArray.push(mapSeasonShow(show));
+        }
+        return acceptesShowsArray;
+    }
+};
 
-    const acceptedSeason = {
-        
+
+// MAPOWANIE ODCINKA DLA SEZONU
+const mapSeasonShow = (show) => {
+
+    const acceptedShow = {
+        air_date: new Date(show.air_date),
+        crew: show.crew,
+        episode_number: show.episode_number,
+        guest_stars: show.guest_stars,
+        id: show.id,
+        name: show.name,
+        overview: show.overview,
+        production_code: show.production_code,
+        season_number: show.season_number,
+        show_id: show.show_id,
+        still_path: show.still_path,
+        vote_average: show.vote_average,
+        vote_count: show.vote_count
+
     };
 
-    return acceptedSeason;
+    return acceptedShow;
 };
 
 

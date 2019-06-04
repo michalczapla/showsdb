@@ -2,7 +2,6 @@ class Favorite {
     constructor() {
     this.favorites = [];
     this.lastUpdate = 0;
-    this.episodes=[];
     this.getData();
 }
 addOrRemoveFavorite = (show)=> {
@@ -16,11 +15,24 @@ addOrRemoveFavorite = (show)=> {
             const index = this.favorites.findIndex(el=> el.id===show.id);
             this.favorites.splice(index,1);
         }               
+        this.resetUpdateDate();
         this.saveData();
         return show;
     }
     
 }
+
+addEpisodesToShow = (showID, episodes) => {
+    if (showID && episodes) {
+        for (let show of this.favorites) {
+            if (show.id===showID) {
+                show.episodes = episodes;
+            }
+        }
+    this.setUpdateDate();
+    this.saveData();
+    }
+};
 
 addOrRemoveWatched = (showDetails, episodeID) => {
     if (showDetails && episodeID) {
@@ -130,10 +142,18 @@ isFavorite= (id) => {
     return (index === -1) ? false : true;
 }
 
+resetUpdateDate = () => {
+    this.lastUpdate = null;
+}
+
+setUpdateDate = () => {
+    this.lastUpdate = new Date();
+}
+
 getData() {
     const dataFavorites = JSON.parse(localStorage.getItem("favorites"));
     const dataEpisodes = JSON.parse(localStorage.getItem("episodes"));
-    const dataLastUpdate = JSON.parse(localStorage.getItem("lastUpdate"));
+    const dataLastUpdate =JSON.parse(localStorage.getItem("lastUpdate"));
    
     this.favorites = dataFavorites ? dataFavorites : [];
     this.episodes = dataEpisodes ? dataEpisodes : [];

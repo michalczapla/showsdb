@@ -49,6 +49,13 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 favorites: favorites
             }
+        //dodanie odcinków do serialu
+        case ActionTypes.ADD_EPISODES_TO_SHOW:
+            favorites.addEpisodesToShow(action.show.showID, action.show.episodes);
+            return {
+                ...state,
+                favorites: favorites
+            }
         default:
         return state;   
     }  

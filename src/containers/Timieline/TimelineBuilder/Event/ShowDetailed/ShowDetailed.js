@@ -3,7 +3,7 @@ import classes from './ShowSummary.module.css';
 
 import DummyPicture from '../../../../assets/images/big_bang.jpg';
 
-const showSummary = (props) => {
+const showDetailed = (props) => {
     
 
 return (
@@ -17,4 +17,4 @@ return (
 );
 };
 
-export default showSummary;
+export default showDetailed;

@@ -3,6 +3,7 @@ class Favorite {
     this.favorites = [];
     this.lastUpdate = 0;
     this.getData();
+    // console.log('constructor');
 }
 addOrRemoveFavorite = (show)=> {
     if (show) {
@@ -15,7 +16,6 @@ addOrRemoveFavorite = (show)=> {
             const index = this.favorites.findIndex(el=> el.id===show.id);
             this.favorites.splice(index,1);
         }               
-        this.resetUpdateDate();
         this.saveData();
         return show;
     }
@@ -29,7 +29,6 @@ addEpisodesToShow = (showID, episodes) => {
                 show.episodes = episodes;
             }
         }
-    this.setUpdateDate();
     this.saveData();
     }
 };
@@ -142,13 +141,13 @@ isFavorite= (id) => {
     return (index === -1) ? false : true;
 }
 
-resetUpdateDate = () => {
-    this.lastUpdate = null;
-}
+// resetUpdateDate = () => {
+//     this.lastUpdate = null;
+// }
 
-setUpdateDate = () => {
-    this.lastUpdate = new Date();
-}
+// setUpdateDate = () => {
+//     this.lastUpdate = new Date();
+// }
 
 getData() {
     const dataFavorites = JSON.parse(localStorage.getItem("favorites"));
@@ -161,7 +160,7 @@ getData() {
     
 }
 
-saveData() {
+saveData = ()=> {
     localStorage.setItem("favorites",JSON.stringify(this.favorites));
     localStorage.setItem("episodes",JSON.stringify(this.episodes));
     localStorage.setItem("lastUpdate",JSON.stringify(this.lastUpdate));

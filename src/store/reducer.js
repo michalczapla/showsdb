@@ -1,6 +1,7 @@
 import * as ActionTypes from './actions';
 import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 
+
 const initialState = {
     currentShowID: null,
     favorites: new Favorite(),
@@ -16,7 +17,9 @@ const reducer = (state=initialState, action) => {
     switch (action.type) {
         // Dodanie lub usunięcie odcinka jako ulubionego
         case ActionTypes.ADD_OR_REMOVE_FAVORITE:
+            favorites.lastUpdate = 0;    
             favorites.addOrRemoveFavorite(action.newFavorite);
+            // favorites.resetUpdateDate();
             // console.log(action.newFavorite);
             // console.log(state.favorites);
             return {
@@ -51,14 +54,17 @@ const reducer = (state=initialState, action) => {
             }
         //dodanie odcinków do serialu
         case ActionTypes.ADD_EPISODES_TO_SHOW:
+                favorites.lastUpdate = new Date();    
             favorites.addEpisodesToShow(action.show.showID, action.show.episodes);
             return {
                 ...state,
                 favorites: favorites
             }
+      
         default:
         return state;   
     }  
+    
 }
 
 export default reducer;

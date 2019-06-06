@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from '../Timeline.module.css';
+import classes from '../../Timeline.module.css';
 
 const horizontalRule = (props) => {
     

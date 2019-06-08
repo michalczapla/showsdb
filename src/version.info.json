@@ -3,6 +3,8 @@
     [
         "### TODO",
         "",
+        "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
+        "Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
         "Dodać ostzreżenie przy susuwaniu ulubionych",
@@ -16,6 +18,7 @@
     [
         "### DONE",
         "",
+        "08.06.2019 - ADD: Timeline section - logic+css",
         "03.06.2019 - ADD: REDUX initial integration",
         "26.05.2019 - ADD: Timeline - wygląd",
         "26.05.2019 - ADD: Routing",
@@ -36,6 +39,7 @@
     [
         "### ERRORS",
         "",
+        "timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
         "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",

@@ -187,8 +187,9 @@ const Timeline = (props) => {
             //         for (let showTimeline)
             //     }
             // }
-
+            console.log(groups);
             return groups;
+            
         }
     };
     

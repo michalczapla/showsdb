@@ -1,0 +1,58 @@
+/* .Episode {
+    display:block;
+    width:100%;
+}
+
+.Content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+} */
+
+.Episode{
+    height: 90px;
+    background-image: linear-gradient(-225deg, #01141f, #053f5e);
+    margin:0 auto;
+    position: relative;
+    width:100%;
+}
+
+.BackgroungImg {
+    margin:0 auto;
+    width: 100%;
+    height: 90px;
+    position: relative;
+    object-fit: cover;
+    object-position: center; 
+}
+
+.DarkBackground {
+    display: block;
+    padding:5px;
+    height: 90px;
+    align-content: center; 
+    position: absolute;
+    bottom:0px;
+    right:0px;
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.8); 
+    width: 100%; 
+}
+
+.ShowTitle {
+    padding: 5px 0px;
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+.EpisodeTitle{
+    font-size: 0.8em;
+}
+
+.EpisodeSignature {
+    display: inline-block;
+    padding: 4px;
+    margin-top: 5px;
+    background-color: #053f5e;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

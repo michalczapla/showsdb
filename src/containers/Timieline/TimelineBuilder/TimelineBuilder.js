@@ -1,5 +1,6 @@
 import React from 'react';
 import Event from './Event/Event';
+import EventDetailed from './Event/EventDetailed';
 import HorizontalRule from './HorizontalRule/HorizontalRule';
 
 
@@ -29,10 +30,9 @@ const timelineBuilder = (props) => {
 
     const within30days = () => {
         if (props.shows && props.shows.within30days && props.shows.within30days.length!==0) {
-            return props.shows.within30days.map(el=>{
+            return props.shows.within30days.map((el,index)=>{
                 return (
-                    <Event position='left' data={el} type='detailed'/>
-                    
+                    <EventDetailed key={'detailed_'+index} position='left' data={el}/>
                 )
             })
            
@@ -43,6 +43,7 @@ const timelineBuilder = (props) => {
     return(  
         <>
             {olderThan30days()}
+            {within30days()}
             {next30days()}
         </>
     )

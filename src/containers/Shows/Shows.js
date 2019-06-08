@@ -60,7 +60,7 @@ class App extends Component {
     return (
       <section className={classes.Shows}>
             
-            <div><SearchBox configuration={this.props.configuration} title="showsDB v0.4.43 r" selectShow={this.props.showSearchHandler}/></div>
+            <div><SearchBox configuration={this.props.configuration} title="showsDB v0.5.43 r" selectShow={this.props.showSearchHandler}/></div>
             <div><DetailsBox configuration={this.props.configuration} currentShowID={this.props.currentShowID} favorites={this.props.favorites} updateFavorites={this.props.updateFavorites} updateWatched={this.props.updateWatchedEpisode}  updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/></div>
             <div><FavoritesBox favorites={this.props.favorites} configuration={this.props.configuration} selectShow={this.props.showSearchHandler}/></div>
 

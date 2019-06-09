@@ -4,10 +4,10 @@ import ShowSummary from './ShowSummary/ShowSummary';
 
 const event = (props) => {
 
-    const positionClass = props.position==='left'? classes.left : classes.right;
+    // const positionClass = props.position==='left'? classes.left : classes.right;
 
     
-    return (<div className={[classes.Event, positionClass].join(' ')} >
+    return (<div className={classes.Event} >
         <div className={classes.Content} >
             {
                 props.data.map((el,index)=>{

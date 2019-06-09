@@ -4,7 +4,6 @@
         "### TODO",
         "",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
-        "Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
         "Dodać ostzreżenie przy susuwaniu ulubionych",
@@ -14,10 +13,22 @@
         "Landing Page (główna strona) - dokończyć",
         "Stworzyć MENU + nawigację"
     ],
+    "errors":
+    [
+        "### ERRORS",
+        "",
+        "timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
+        "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
+        "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
+        "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
+        "strona nie działa na Edgu - w nazwach są - zamias _ podobno",
+        "nie wiem czy brak internetu poprawnie pokazuje błąd ściągania konfiguracji..."
+    ],
     "done":
     [
         "### DONE",
         "",
+        "09.06.2019 - FIX: Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",
         "08.06.2019 - ADD: Timeline section - logic+css",
         "03.06.2019 - ADD: REDUX initial integration",
         "26.05.2019 - ADD: Timeline - wygląd",
@@ -34,16 +45,5 @@
         "16.05.2019 - ADD: DetailsBox - dodać logikę pobierania z API",
         "16.05.2019 - ADD: DetailsBox - dodać logikę nawigowania z SearchBoxa (przełączanie znalezionych odcinków)",
         "15.05.2019 - ADD: Landing Page initial done"
-    ],
-    "errors":
-    [
-        "### ERRORS",
-        "",
-        "timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
-        "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
-        "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
-        "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
-        "strona nie działa na Edgu - w nazwach są - zamias _ podobno",
-        "nie wiem czy brak internetu poprawnie pokazuje błąd ściągania konfiguracji..."
     ]
 }

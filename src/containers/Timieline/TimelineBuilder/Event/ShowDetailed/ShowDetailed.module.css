@@ -16,6 +16,11 @@
     width:100%;
 }
 
+/* odstępy od kolejnych odcinków */
+.Episode:nth-child(2n) {
+    margin-top:7px;
+}
+
 .BackgroungImg {
     margin:0 auto;
     width: 100%;

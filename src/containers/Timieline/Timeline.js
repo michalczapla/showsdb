@@ -195,7 +195,7 @@ const Timeline = (props) => {
     
     return (
         <>
-        {loading ? <Loader /> : 
+        {loading ? <div style={{marginTop: 60}}><Loader /></div> : 
            <>
            {updateRequired ? <Modal show title='Update required'>
                 <div>Episodes info needs to be updated, proceed? (this make takes couple of time)</div>

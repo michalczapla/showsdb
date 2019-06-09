@@ -6,9 +6,10 @@ const landingPage = (props) => (
     <div className={classes.LandingPage}>
         <ul>{VersionHistory.todo.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
+        <ul>{VersionHistory.errors.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
+        <hr />
         <ul>{VersionHistory.done.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
-        <ul>{VersionHistory.errors.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
     </div>
     
 );

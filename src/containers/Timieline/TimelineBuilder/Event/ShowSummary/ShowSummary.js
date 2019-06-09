@@ -12,8 +12,8 @@ return (
     <div className={classes.Event}>
        {imgSrc}
         <div className={classes.Content}>
-            <p className={classes.Title}>{props.data.name}</p>
-            <p className={classes.AdditionalInfo}>Episodes: {props.data.episodes.length}</p>
+            <div className={classes.Title}>{props.data.name}</div>
+            <div className={classes.AdditionalInfo}>Episodes: {props.data.episodes.length}</div>
         </div>
     </div>
 );

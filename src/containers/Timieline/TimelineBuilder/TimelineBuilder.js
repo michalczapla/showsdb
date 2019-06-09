@@ -30,7 +30,14 @@ const timelineBuilder = (props) => {
 
     const within30days = () => {
         if (props.shows && props.shows.within30days && props.shows.within30days.length!==0) {
-            return props.shows.within30days.map((el,index)=>{
+            const arrayOfEvents = props.shows.within30days;
+            arrayOfEvents.sort((a,b)=>{
+                a=new Date(a.date);
+                b=new Date(b.date);
+                return a<b ? -1 : a>b ? 1 : 0;
+            })
+            
+            return arrayOfEvents.map((el,index)=>{
                 return (
                     <EventDetailed key={'detailed_'+index} position='left' data={el}/>
                 )

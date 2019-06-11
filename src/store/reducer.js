@@ -1,4 +1,4 @@
-import * as ActionTypes from './actions';
+import * as ActionTypes from './actions/actionTypes'
 import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 
 

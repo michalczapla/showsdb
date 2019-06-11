@@ -5,7 +5,7 @@ import DetailsMeta from './DetailsMeta/DetailsMeta';
 import LandingPage from '../../../components/LandingPage/LandingPage';
 import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 // import * as ActionTypes from '../../store/actions';
 
 import * as Mappers from '../../../helpers/mappers';
@@ -78,9 +78,25 @@ class DetailsBox extends Component {
         else if (this.state.currentShow) {
         return (
         <div className={classes.DetailsBox}>
-            <DetailsHeader currentShow={this.state.currentShow} imageBasePath={this.props.configuration.backdropBase} updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} isFavorite={isFavorite}/>
-            <DetailsMeta genres={this.props.configuration.genreList} currentShow={this.state.currentShow} />
-            <SeasonsList seasons={this.state.currentShow.seasons} showID={this.state.currentShowID} currentShow={this.state.currentShow} imageStillBase={this.props.configuration.stillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites} updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/>
+            <DetailsHeader 
+            currentShow={this.state.currentShow} 
+            imageBasePath={this.props.configuration.backdropBase} 
+            updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} 
+            isFavorite={isFavorite}/>
+            
+            <DetailsMeta 
+            genres={this.props.configuration.genreList} 
+            currentShow={this.state.currentShow} />
+
+            <SeasonsList 
+            seasons={this.state.currentShow.seasons} s
+            howID={this.state.currentShowID} 
+            currentShow={this.state.currentShow} 
+            imageStillBase={this.props.configuration.stillBase} 
+            updateWatched={this.props.updateWatched} 
+            favorites={this.props.favorites} 
+            updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/>
+            
         </div>);
         } else {
             return (<LandingPage />);
@@ -88,13 +104,11 @@ class DetailsBox extends Component {
     };
 }
 
-// const mapStateToProps = state => {
-//     return {
-//       currentShowID: state.currentShowID,
-//         currentShow: state.currentShow,
-//       configuration: state.configuration
-//     }
-//   }
+const mapStateToProps = state => {
+    return {
+      configuration: state.configuration
+    }
+  }
   
 //   const mapDispatchToProps = dispatch => {
 //     return {
@@ -103,4 +117,4 @@ class DetailsBox extends Component {
 //     }
 //   }
 
-export default withErrorHandler(DetailsBox,axios);
+export default connect(mapStateToProps)(withErrorHandler(DetailsBox,axios));

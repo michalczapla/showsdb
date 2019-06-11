@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './FavoritesBox.module.css';
 import Favorite from '../FavoritesBox/FavoriteItem/FavoriteItem';
+import {connect} from 'react-redux';
 
 const favoritesBox = (props) => {
     let favoritesList = null;
@@ -28,4 +29,10 @@ const favoritesBox = (props) => {
     </div>)
 };
 
-export default favoritesBox;
+const mapStateToProps = (state) => {
+    return {
+        configuration: state.configuration
+    }
+}
+
+export default connect(mapStateToProps)(favoritesBox);

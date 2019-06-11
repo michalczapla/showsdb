@@ -6,7 +6,7 @@ import axios from '../../helpers/axios-external';
 import api_key from '../../helpers/APIKey';
 import Loader from '../../components/UI/Loading/Loading';
 import * as Mappers from '../../helpers/mappers';
-import * as ActionTypes from '../../store/actions';
+import * as ActionTypes from '../../store/actions/actionTypes';
 import TimelineBuilder from './TimelineBuilder/TimelineBuilder';
 import cloneDeep from 'lodash/cloneDeep';
 

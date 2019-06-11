@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './ResultList.module.css';
 import ResultItem from './ResultItem/ResultItem';
 import GenreMapper from '../../../../helpers/genre-mapper';
+import {connect} from 'react-redux';
 
 
 const resultList = (props) => {
@@ -15,4 +16,10 @@ const resultList = (props) => {
     )
 };
 
-export default resultList;
+const mapStateToProps = (state) => {
+    return {
+        configuration: state.configuration
+    }
+}
+
+export default connect(mapStateToProps)(resultList);

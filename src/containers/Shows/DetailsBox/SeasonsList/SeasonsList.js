@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SeasonsPagination from './SeasonsPagination/SeasonsPagination';
 import EpisodesList from './EpisodesList/EpisodesList';
+import {connect} from 'react-redux';
 
 class SeasonsList extends Component {
     state={
@@ -17,12 +18,29 @@ class SeasonsList extends Component {
 
         return(
             <React.Fragment>
-                <SeasonsPagination seasons={this.props.seasons} activeSeason={this.setActiveSeasonHandler} activeSeasonID={this.state.activeSeasonID}/>
-                {this.state.activeSeasonID!==null ? <EpisodesList activeSeasonID={this.state.activeSeasonID} showID={this.props.showID} imageStillBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} favorites={this.props.favorites} currentShow={this.props.currentShow} updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/> : null}
+                <SeasonsPagination 
+                seasons={this.props.seasons} 
+                activeSeason={this.setActiveSeasonHandler} 
+                activeSeasonID={this.state.activeSeasonID}/>
+                {this.state.activeSeasonID!==null ? 
+                    <EpisodesList 
+                    activeSeasonID={this.state.activeSeasonID} 
+                    showID={this.props.showID} 
+                    imageStillBase={this.props.imageStillBase} 
+                    updateWatched={this.props.updateWatched} 
+                    favorites={this.props.favorites} 
+                    currentShow={this.props.currentShow} 
+                    updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/> : null}
                 
             </React.Fragment>
         );
     }
 };
 
-export default SeasonsList;
+const mapStateToProps = (state) => {
+    return {
+        showID: state.currentShowID
+    }
+}
+
+export default connect(mapStateToProps)(SeasonsList);

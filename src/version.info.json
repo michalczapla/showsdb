@@ -15,7 +15,6 @@
     [
         "### ERRORS",
         "",
-        "timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
         "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
@@ -26,6 +25,7 @@
     [
         "### DONE",
         "",
+        "11.06.2019 - FIX: timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
         "09.06.2019 - FIX: Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",
         "08.06.2019 - ADD: Timeline section - logic+css",
         "03.06.2019 - ADD: REDUX initial integration",

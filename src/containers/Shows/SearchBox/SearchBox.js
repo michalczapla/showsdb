@@ -8,6 +8,7 @@ import NoResults from './ResultList/ResultItem/ResultItemNoResults';
 import Loading from '../../../components/UI/Loading/Loading';
 import Pagination from './Pagination/Pagination';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
+import {connect} from 'react-redux';
 
 class SearchBox extends Component {
     state = {
@@ -114,7 +115,7 @@ class SearchBox extends Component {
         } else if (this.state.searchResults!==null && this.props.configuration!==null) {
             const from = (this.state.actualPage-1)*this.state.resultsPerPage;
             const to = (this.state.actualPage-1)*this.state.resultsPerPage +this.state.resultsPerPage; 
-            resultToRender = (<ResultList results={this.state.searchResults} configuration={this.props.configuration} from={from} to={to} selectShow={this.props.selectShow}/>);
+            resultToRender = (<ResultList results={this.state.searchResults} from={from} to={to} selectShow={this.props.selectShow}/>);
         }  
 
         return (
@@ -127,6 +128,9 @@ class SearchBox extends Component {
     }
 }
 
-export default withErrorHandler(SearchBox, axios);
-
-// {(this.state.searchResults!==null && this.props.configuration!==null) ? <ResultList results={this.state.searchResults} configuration={this.props.configuration}/> : null}
+const mapStateToProps = (state) => {
+    return {
+        configuration: state.configuration
+    }
+}
+export default connect(mapStateToProps)(withErrorHandler(SearchBox, axios));

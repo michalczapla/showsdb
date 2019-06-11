@@ -58,6 +58,8 @@ class SearchBox extends Component {
                     totalResults: response.data.total_results, 
                     totalLoadedResults: response.data.results.length, 
                     loading: false});
+
+                    this.props.selectShow(null);//ustaqwienie aktualnie wyświetlanego serialu na domyślny
                 }
                 catch {
                     this.setState({loading:false})      //w przypadku bledu konczy wyswietlanie loadinga

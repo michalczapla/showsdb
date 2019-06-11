@@ -151,19 +151,20 @@ isFavorite= (id) => {
 
 getData() {
     const dataFavorites = JSON.parse(localStorage.getItem("favorites"));
-    const dataEpisodes = JSON.parse(localStorage.getItem("episodes"));
+    // const dataEpisodes = JSON.parse(localStorage.getItem("episodes"));
     const dataLastUpdate =JSON.parse(localStorage.getItem("lastUpdate"));
    
     this.favorites = dataFavorites ? dataFavorites : [];
-    this.episodes = dataEpisodes ? dataEpisodes : [];
-    this.lastUpdate = dataLastUpdate ? dataLastUpdate : 0;
+    // this.episodes = dataEpisodes ? dataEpisodes : [];
+    this.lastUpdate = dataLastUpdate ? new Date(dataLastUpdate) : 0;
     
 }
 
 saveData = ()=> {
     localStorage.setItem("favorites",JSON.stringify(this.favorites));
-    localStorage.setItem("episodes",JSON.stringify(this.episodes));
+    // localStorage.setItem("episodes",JSON.stringify(this.episodes));
     localStorage.setItem("lastUpdate",JSON.stringify(this.lastUpdate));
+    // console.log(this.lastUpdate);
 }
 
 }

@@ -79,18 +79,25 @@ const Timeline = (props) => {
             const filterShowByDays = (direction=1) => {  
                 const shows = cloneDeep(props.favorites.favorites);  
                 const group = shows.map(show=>{
-                    show.episodes = show.episodes.filter(episode=>{
-                    const diffDays = Math.ceil((Math.abs(today.getTime() - episode.air_date.getTime()))/(1000*60*60*24));
-                    // console.log(diffDays);    //zwraca różnicę w dniach
-                    if (diffDays>30 && direction===1) 
-                        return episode;
-                    else if (diffDays<-30 && direction===-1)
-                        return episode;
-                    else if (diffDays<=30 && diffDays>=-30 && direction===0)
-                        return episode;
-                    });
+                    if (show.episodes)
+                        show.episodes = show.episodes.filter(episode=>{
+                        // jeżeli nie ma daty wyśiwtelenia kategoryzuje datę wyświetlenia na najstarszą.
+                            if (!episode.air_date && direction===1)
+                            return episode;
+                            else if (!episode.air_date)
+                                return false;
+
+                            const diffDays = Math.ceil((Math.abs(today.getTime() - new Date(episode.air_date).getTime()))/(1000*60*60*24));
+                        // console.log(diffDays);    //zwraca różnicę w dniach
+                        if (diffDays>30 && direction===1) 
+                            return episode;
+                        else if (diffDays<-30 && direction===-1)
+                            return episode;
+                        else if (diffDays<=30 && diffDays>=-30 && direction===0)
+                            return episode;
+                        });
                 
-                if (show.episodes.length!==0)
+                if (show.episodes && show.episodes.length!==0)
                     return show;
                 else 
                     return null;
@@ -132,7 +139,7 @@ const Timeline = (props) => {
                 //deklaracja funccji sprawdzajaćej unikalnośc daty w tablicy
                 const isDateInArray = (date, datesArray) => {
                     for (let i = 0; i < datesArray.length; i++) {
-                      if (date.getTime() === datesArray[i].getTime()) {
+                      if (new Date(date).getTime() === new Date(datesArray[i]).getTime()) {
                         return true;
                       }
                     }
@@ -149,7 +156,7 @@ const Timeline = (props) => {
                 datesArray.map(timeStamp=>{
                  const shows=[];
                     episodes.map(episode=>{
-                        if (timeStamp.getTime() === episode.air_date.getTime()){
+                        if (new Date(timeStamp).getTime() === new Date(episode.air_date).getTime()){
                             shows.push(episode);
                         }
                     })

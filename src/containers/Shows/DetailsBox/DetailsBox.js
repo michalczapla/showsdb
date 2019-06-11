@@ -5,6 +5,8 @@ import DetailsMeta from './DetailsMeta/DetailsMeta';
 import LandingPage from '../../../components/LandingPage/LandingPage';
 import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
+// import {connect} from 'react-redux';
+// import * as ActionTypes from '../../store/actions';
 
 import * as Mappers from '../../../helpers/mappers';
 
@@ -15,8 +17,8 @@ import SeasonsList from './SeasonsList/SeasonsList';
 
 class DetailsBox extends Component {
     state= {
-        currentShowID: null,     // odwołanie jako props a nie state
-        currentShow: null,
+        // currentShowID: null,     // odwołanie jako props a nie state
+        // currentShow: null,
         loading: false
     }
     _isMount=false;
@@ -85,5 +87,20 @@ class DetailsBox extends Component {
         }
     };
 }
+
+// const mapStateToProps = state => {
+//     return {
+//       currentShowID: state.currentShowID,
+//         currentShow: state.currentShow,
+//       configuration: state.configuration
+//     }
+//   }
+  
+//   const mapDispatchToProps = dispatch => {
+//     return {
+//       setCurrentShowId: (id) => dispatch({type: ActionTypes.SET_CURRENT_SHOW_ID, currentShowID:id}) 
+//     //   setCurrentShow: (show) => dispatch({type: })
+//     }
+//   }
 
 export default withErrorHandler(DetailsBox,axios);

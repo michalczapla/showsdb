@@ -4,6 +4,7 @@ import classes from './InputBox.module.css';
 const InputBox = (props) => {
     const inputSearchBox = useRef();
     
+    
     // const clear = () =>{
     //     this.input.value = '';
     // }

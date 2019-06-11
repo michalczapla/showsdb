@@ -4,6 +4,7 @@ import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 
 const initialState = {
     currentShowID: null,
+    currentShow: null,
     favorites: new Favorite(),
     configuration: null
 }

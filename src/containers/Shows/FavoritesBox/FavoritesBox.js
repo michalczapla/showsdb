@@ -16,7 +16,7 @@ const favoritesBox = (props) => {
                 title={el.name} 
                 // genres={el.genres.map(el=>el.name).join(', ')} 
                 // year={el.first_air_date} 
-                selectShow={props.selectShow} 
+                // selectShow={props.selectShow} 
                 id={el.id}
                 totalEpisodes={el.number_of_episodes}
                 totalWatchedEpisodes={totalWatchedEpisodes}

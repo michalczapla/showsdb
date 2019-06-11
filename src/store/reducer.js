@@ -4,7 +4,6 @@ import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 
 const initialState = {
     currentShowID: null,
-    currentShow: null,
     favorites: new Favorite(),
     configuration: null
 }
@@ -44,7 +43,7 @@ const reducer = (state=initialState, action) => {
         case ActionTypes.SET_CURRENT_SHOW_ID:
             return {
                 ...state,
-                currentShowID: action.currentShowID
+                currentShowID: action.id
             }
         // zaznaczenie wszystkich odcinków jako obejrzanych
         case ActionTypes.MARK_ALL_EPISODE_WATCHED:

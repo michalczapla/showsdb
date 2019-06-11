@@ -9,6 +9,7 @@ import Loading from '../../../components/UI/Loading/Loading';
 import Pagination from './Pagination/Pagination';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
+import * as ActionCreator from '../../../store/actions/index';
 
 class SearchBox extends Component {
     state = {
@@ -60,7 +61,7 @@ class SearchBox extends Component {
                     totalLoadedResults: response.data.results.length, 
                     loading: false});
 
-                    this.props.selectShow(null);//ustaqwienie aktualnie wyświetlanego serialu na domyślny
+                    // this.props.setCurrentShowID(null);//ustaqwienie aktualnie wyświetlanego serialu na domyślny
                 }
                 catch {
                     this.setState({loading:false})      //w przypadku bledu konczy wyswietlanie loadinga
@@ -115,7 +116,7 @@ class SearchBox extends Component {
         } else if (this.state.searchResults!==null && this.props.configuration!==null) {
             const from = (this.state.actualPage-1)*this.state.resultsPerPage;
             const to = (this.state.actualPage-1)*this.state.resultsPerPage +this.state.resultsPerPage; 
-            resultToRender = (<ResultList results={this.state.searchResults} from={from} to={to} selectShow={this.props.selectShow}/>);
+            resultToRender = (<ResultList results={this.state.searchResults} from={from} to={to}/>);
         }  
 
         return (
@@ -130,7 +131,15 @@ class SearchBox extends Component {
 
 const mapStateToProps = (state) => {
     return {
+
         configuration: state.configuration
     }
 }
-export default connect(mapStateToProps)(withErrorHandler(SearchBox, axios));
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentShowID: (id)=>dispatch(ActionCreator.setCurrentShowID(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(SearchBox, axios));

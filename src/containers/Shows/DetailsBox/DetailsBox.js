@@ -6,7 +6,7 @@ import LandingPage from '../../../components/LandingPage/LandingPage';
 import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
-// import * as ActionTypes from '../../store/actions';
+import * as ActionCreator from '../../../store/actions/index';
 
 import * as Mappers from '../../../helpers/mappers';
 
@@ -17,47 +17,37 @@ import SeasonsList from './SeasonsList/SeasonsList';
 
 class DetailsBox extends Component {
     state= {
-        // currentShowID: null,     // odwołanie jako props a nie state
-        // currentShow: null,
+        currentShow: null,
         loading: false
     }
-    _isMount=false;
 
-    // aktuaizacja stanu na podstawie przekazanych własćiwości
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     if (nextProps.currentShowID!==prevState.currentShowID){
-    //         return {currentShowID: nextProps.currentShowID}
-    //     } else
-    //     return null;
-    // };
 
     getShowDetails = async (id) => {
         if (id!==null) {
             const details_request_url = `https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}&language=en-US`;
-            if (this._isMount) this.setState({loading:true});
+            this.setState({loading:true});
             try {
                 const response = await axios(details_request_url);
-                if (this._isMount)  this.setState({currentShow: Mappers.mapShow(response.data), loading:false, currentShowID: id});
+                this.setState({currentShow: Mappers.mapShow(response.data), loading:false});
             } catch {
-                if (this._isMount) this.setState({   
-                    currentShowID: id, 
-                    loading: false
-                })
+                this.setState({loading: false});
+                this.props.setCurrentShowID(null);
             }
         };
     };
 
-    componentDidMount() {
-        this._isMount=true;
-    }
-    componentWillUnmount(){ 
-        this._isMount=false;
-    }
+    // componentDidMount() {
+    //     this._isMount=true;
+    // }
+    // componentWillUnmount(){ 
+    //     this._isMount=false;
+    // }
 
     componentDidUpdate= () => {
         // if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { //|| (this.state.currentShow.id!==null && this.props.currentShowID!==this.state.currentShow.id)) 
         // if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
-            if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
+            // if (!this.state.loading && this.props.currentShowID!==this.state.currentShow.id) {
+            if (!this.state.loading && (this.state.currentShow===null || this.props.currentShowID!==this.state.currentShow.id)) {
                 this.getShowDetails(this.props.currentShowID);
                 window.scrollTo(0,0);       //scroll na górę okna
     
@@ -69,7 +59,7 @@ class DetailsBox extends Component {
         // console.log(this.props.favorites);
         let isFavorite = false;
         if (this.props.favorites) {
-            isFavorite = this.props.favorites.isFavorite(this.state.currentShowID);
+            isFavorite = this.props.favorites.isFavorite(this.props.currentShowID);
         }
         
         if (this.state.loading) {
@@ -89,8 +79,8 @@ class DetailsBox extends Component {
             currentShow={this.state.currentShow} />
 
             <SeasonsList 
-            seasons={this.state.currentShow.seasons} s
-            howID={this.state.currentShowID} 
+            seasons={this.state.currentShow.seasons}
+            // showID={this.state.currentShowID} 
             currentShow={this.state.currentShow} 
             imageStillBase={this.props.configuration.stillBase} 
             updateWatched={this.props.updateWatched} 
@@ -106,15 +96,16 @@ class DetailsBox extends Component {
 
 const mapStateToProps = state => {
     return {
-      configuration: state.configuration
+      configuration: state.configuration,
+      currentShowID: state.currentShowID
     }
   }
-  
-//   const mapDispatchToProps = dispatch => {
-//     return {
-//       setCurrentShowId: (id) => dispatch({type: ActionTypes.SET_CURRENT_SHOW_ID, currentShowID:id}) 
-//     //   setCurrentShow: (show) => dispatch({type: })
-//     }
-//   }
 
-export default connect(mapStateToProps)(withErrorHandler(DetailsBox,axios));
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id))
+    }
+}
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(DetailsBox,axios));

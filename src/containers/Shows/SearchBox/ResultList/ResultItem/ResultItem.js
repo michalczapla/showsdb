@@ -3,9 +3,11 @@ import classes from './ResultItem.module.css';
 import ContactIcon from 'react-ionicons/lib/MdContacts';
 import CalendarIcon from 'react-ionicons/lib/MdCalendar';
 import NoPicture from '../../../../../assets/images/cancel.png';
+import {connect} from 'react-redux';
+import * as ActionCreator from '../../../../../store/actions/index';
 
 const resultItem = (props) => (
-    <a className={classes.ResultItem} href={'#'+props.href} onClick={()=>props.selectShow(props.id)}>
+    <a className={classes.ResultItem} href={'#'+props.href} onClick={()=>props.setCurrentShowID(props.id)}>
         <div className={classes.ResultPoster}>
             <img className={classes.Logo} src={(props.imgsrc) ? props.imgsrc : NoPicture} alt={props.title}/>
         </div>
@@ -20,4 +22,10 @@ const resultItem = (props) => (
     </a>
 );
 
-export default resultItem;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(resultItem);

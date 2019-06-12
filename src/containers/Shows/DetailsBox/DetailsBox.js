@@ -80,11 +80,9 @@ class DetailsBox extends Component {
 
             <SeasonsList 
             seasons={this.state.currentShow.seasons}
-            // showID={this.state.currentShowID} 
             currentShow={this.state.currentShow} 
             imageStillBase={this.props.configuration.stillBase} 
             updateWatched={this.props.updateWatched} 
-            favorites={this.props.favorites} 
             updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/>
             
         </div>);
@@ -97,13 +95,15 @@ class DetailsBox extends Component {
 const mapStateToProps = state => {
     return {
       configuration: state.configuration,
-      currentShowID: state.currentShowID
+      currentShowID: state.currentShowID,
+      favorites: state.favorites
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id))
+        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id)),
+        updateFavorites: (show) => dispatch(ActionCreator.updateFavorites(show)),
     }
 }
   

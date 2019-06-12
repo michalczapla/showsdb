@@ -19,9 +19,6 @@ const reducer = (state=initialState, action) => {
         case ActionTypes.ADD_OR_REMOVE_FAVORITE:
             favorites.lastUpdate = 0;    
             favorites.addOrRemoveFavorite(action.newFavorite);
-            // favorites.resetUpdateDate();
-            // console.log(action.newFavorite);
-            // console.log(state.favorites);
             return {
                 ...state,
                 favorites: favorites

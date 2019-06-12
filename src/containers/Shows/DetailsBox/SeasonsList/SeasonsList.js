@@ -28,7 +28,6 @@ class SeasonsList extends Component {
                     showID={this.props.showID} 
                     imageStillBase={this.props.imageStillBase} 
                     updateWatched={this.props.updateWatched} 
-                    favorites={this.props.favorites} 
                     currentShow={this.props.currentShow} 
                     updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/> : null}
                 

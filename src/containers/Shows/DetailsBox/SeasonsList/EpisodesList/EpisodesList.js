@@ -5,6 +5,7 @@ import axios from '../../../../../helpers/axios-external';
 import Loader from '../../../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../../../components/withErrorHandler/withErrorHandler';
 import classes from './EpisodesList.module.css';
+import {connect} from 'react-redux';
 
 class EpisodesList extends Component{
 state= {
@@ -74,8 +75,13 @@ state= {
         } else {
             return null;
         }
-//this.props.favorites.ifAllWatched(this.props.showID,this.state.episodes)
     }
 };
 
-export default withErrorHandler(EpisodesList,axios);
+const mapStateToProps = (state)=> {
+    return {
+        favorites: state.favorites
+    }
+}
+
+export default connect(mapStateToProps)(withErrorHandler(EpisodesList,axios));

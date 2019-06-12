@@ -31,7 +31,8 @@ const favoritesBox = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        configuration: state.configuration
+        configuration: state.configuration,
+        favorites: state.favorites
     }
 }
 

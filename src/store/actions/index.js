@@ -5,3 +5,7 @@ export {
 export {
     setCurrentShowID
 } from './currentShow';
+
+export {
+    updateFavorites
+} from './favorites';

@@ -57,7 +57,7 @@ state= {
                     isWatched = this.props.favorites.isWatched(this.props.showID,el.id);
                 }
             return(
-                <Episode key={el.id} episode={el} imageBase={this.props.imageStillBase} updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched} currentShow={this.props.currentShow}/>
+                <Episode key={el.id} episode={el}  updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched} currentShow={this.props.currentShow}/>
             )}));
 
             const ifAllWatched = this.props.favorites.ifAllWatched(this.props.showID,this.state.episodes);
@@ -80,8 +80,18 @@ state= {
 
 const mapStateToProps = (state)=> {
     return {
-        favorites: state.favorites
+        favorites: state.favorites,
+        showID: state.currentShowID,
+        currentShow: state.currentShow
     }
 }
 
-export default connect(mapStateToProps)(withErrorHandler(EpisodesList,axios));
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(EpisodesList,axios));
+
+// imageBase={this.configuration.stillBase}

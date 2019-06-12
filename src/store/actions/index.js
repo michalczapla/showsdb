@@ -3,7 +3,8 @@ export {
 } from './configuration';
 
 export {
-    setCurrentShowID
+    setCurrentShowID,
+    fetchCurrentShow
 } from './currentShow';
 
 export {

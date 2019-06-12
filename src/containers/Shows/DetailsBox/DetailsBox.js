@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
@@ -8,94 +8,58 @@ import withErrorHandler from '../../../components/withErrorHandler/withErrorHand
 import {connect} from 'react-redux';
 import * as ActionCreator from '../../../store/actions/index';
 
-import * as Mappers from '../../../helpers/mappers';
-
 // HELPERY
 import axios from '../../../helpers/axios-external';
-import api_key from '../../../helpers/APIKey';
 import SeasonsList from './SeasonsList/SeasonsList';
 
-class DetailsBox extends Component {
-    state= {
-        currentShow: null,
-        loading: false
+const DetailsBox =(props)=> {
+    const [loading, setLoading] = useState(false);
+
+    useEffect(()=>{
+        getShowDetails();
+    },[props.currentShowID])
+
+
+
+    const getShowDetails = async () => {
+        setLoading(true);
+        await props.fetchCurrentShow(props.currentShowID);
+        setLoading(false);
+    };
+
+
+
+    let isFavorite = false;
+    if (props.favorites) {
+        isFavorite = props.favorites.isFavorite(props.currentShowID);
     }
-
-
-    getShowDetails = async (id) => {
-        if (id!==null) {
-            const details_request_url = `https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}&language=en-US`;
-            this.setState({loading:true});
-            try {
-                const response = await axios(details_request_url);
-                this.setState({currentShow: Mappers.mapShow(response.data), loading:false});
-            } catch {
-                this.setState({loading: false});
-                this.props.setCurrentShowID(null);
-            }
-        };
-    };
-
-    // componentDidMount() {
-    //     this._isMount=true;
-    // }
-    // componentWillUnmount(){ 
-    //     this._isMount=false;
-    // }
-
-    componentDidUpdate= () => {
-        // if ((this.state.currentShow===null && this.props.currentShowID!==null && !this.state.loading)) { //|| (this.state.currentShow.id!==null && this.props.currentShowID!==this.state.currentShow.id)) 
-        // if (!this.state.loading && this.props.currentShowID!==this.state.currentShowID) {
-            // if (!this.state.loading && this.props.currentShowID!==this.state.currentShow.id) {
-            if (!this.state.loading && (this.state.currentShow===null || this.props.currentShowID!==this.state.currentShow.id)) {
-                this.getShowDetails(this.props.currentShowID);
-                window.scrollTo(0,0);       //scroll na górę okna
     
-        }
-    };
-
-
-    render() {
-        // console.log(this.props.favorites);
-        let isFavorite = false;
-        if (this.props.favorites) {
-            isFavorite = this.props.favorites.isFavorite(this.props.currentShowID);
-        }
+    if (loading) {
+        return (<Loader />);
+    }
+    else if (props.currentShow) {
+    return (
+    <div className={classes.DetailsBox}>
+        <DetailsHeader 
+        isFavorite={isFavorite}/>
         
-        if (this.state.loading) {
-            return (<Loader />);
-        }
-        else if (this.state.currentShow) {
-        return (
-        <div className={classes.DetailsBox}>
-            <DetailsHeader 
-            currentShow={this.state.currentShow} 
-            imageBasePath={this.props.configuration.backdropBase} 
-            updateFavorites={() => this.props.updateFavorites(this.state.currentShow)} 
-            isFavorite={isFavorite}/>
-            
-            <DetailsMeta 
-            genres={this.props.configuration.genreList} 
-            currentShow={this.state.currentShow} />
+        <DetailsMeta />
 
-            <SeasonsList 
-            seasons={this.state.currentShow.seasons}
-            currentShow={this.state.currentShow} 
-            imageStillBase={this.props.configuration.stillBase} 
-            updateWatched={this.props.updateWatched} 
-            updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/>
-            
-        </div>);
-        } else {
-            return (<LandingPage />);
-        }
-    };
+        <SeasonsList 
+        updateWatched={props.updateWatched} 
+        updateAllWatchedEpisodes={props.updateAllWatchedEpisodes}/>
+        
+    </div>);
+    } else {
+        return (<LandingPage />);
+    }
 }
 
 const mapStateToProps = state => {
     return {
       configuration: state.configuration,
       currentShowID: state.currentShowID,
+      currentShow: state.currentShow,
       favorites: state.favorites
     }
   }
@@ -103,6 +67,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = (dispatch) => {
     return {
         setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id)),
+        fetchCurrentShow :(show) => (dispatch(ActionCreator.fetchCurrentShow(show))),
         updateFavorites: (show) => dispatch(ActionCreator.updateFavorites(show)),
     }
 }

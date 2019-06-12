@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './DetailsMeta.module.css';
 import MetaInfoList from './MetaInfoList/MetaInfoList';
 import ReactCountryFlag from 'react-country-flag';
+import {connect} from 'react-redux';
 
 // HELPERS
 import genreMapper from '../../../../helpers/genre-mapper';
@@ -44,4 +45,11 @@ const detailsMeta =(props) => {
         );
 };
 
-export default detailsMeta;
+const mapStateToProps = (state) => {
+    return {
+        genres: state.configuration.genreList,
+        currentShow: state.currentShow
+    }
+}
+
+export default connect(mapStateToProps)(detailsMeta);

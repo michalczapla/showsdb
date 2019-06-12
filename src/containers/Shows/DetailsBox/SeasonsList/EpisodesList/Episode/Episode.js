@@ -2,13 +2,14 @@ import React from 'react';
 import classes from './Episode.module.css';
 import properDigitNumber from '../../../../../../helpers/proper-digit-number';
 import noPicture from '../../../../../../assets/images/no_picture.jpg';
+import {connect} from 'react-redux';
 
 import NoResultsIcon from 'react-ionicons/lib/MdRemove';
 import WatchedIcon from 'react-ionicons/lib/MdCheckbox';
 
 const episode = (props) => {
 
-    const imageSrc=(props.episode.still_path!==null) ? props.imageBase+props.episode.still_path : noPicture;
+    const imageSrc=(props.episode.still_path!==null) ? props.configuration.stillBase+props.episode.still_path : noPicture;
     return (
     <div className={classes.Episode}>
         <div className={classes.EpisodeNumber}>S{properDigitNumber(props.episode.season_number)} E{properDigitNumber(props.episode.episode_number)}</div>
@@ -30,4 +31,11 @@ const episode = (props) => {
     );
 };
 
-export default episode;
+
+const mapStateToProps = (state)=> {
+    return {
+        configuration: state.configuration
+    }
+}
+
+export default connect(mapStateToProps)(episode);

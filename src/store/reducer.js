@@ -4,6 +4,7 @@ import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 
 const initialState = {
     currentShowID: null,
+    currentShow: null,
     favorites: new Favorite(),
     configuration: null
 }
@@ -56,6 +57,16 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 favorites: favorites
+            }
+        // zapisanie szczegółów aktualnie przeglądanego serialu
+        // case ActionTypes.SET_CURRENT_SHOW_ID:
+        case ActionTypes.SET_CURRENT_SHOW:
+            // const currentShowID = (action.currentShow===null) ? null : (action.id) ? action.id : state.currentShowID; //jezeli nie zostana pobrane dane serialu, rowniez ID wyswietlanego serialu musi pozostac puste
+            const currentShowID = (action.currentShow===null) ? null : state.currentShowID; //jezeli nie zostana pobrane dane serialu, rowniez ID wyswietlanego serialu musi pozostac puste
+            return {
+                ...state,
+                currentShow: action.show,
+                currentShowID: currentShowID
             }
       
         default:

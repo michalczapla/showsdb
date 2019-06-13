@@ -3,6 +3,7 @@ import classes from './Episode.module.css';
 import properDigitNumber from '../../../../../../helpers/proper-digit-number';
 import noPicture from '../../../../../../assets/images/no_picture.jpg';
 import {connect} from 'react-redux';
+import * as ActionCreator from '../../../../../../store/actions/index';
 
 import NoResultsIcon from 'react-ionicons/lib/MdRemove';
 import WatchedIcon from 'react-ionicons/lib/MdCheckbox';
@@ -34,8 +35,15 @@ const episode = (props) => {
 
 const mapStateToProps = (state)=> {
     return {
-        configuration: state.configuration
+        configuration: state.configuration,
+        currentShow: state.currentShow
     }
 }
 
-export default connect(mapStateToProps)(episode);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateWatched: (show, episodeID) =>dispatch(ActionCreator.updateWatched(show, episodeID))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(episode);

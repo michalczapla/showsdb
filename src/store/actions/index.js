@@ -8,5 +8,8 @@ export {
 } from './currentShow';
 
 export {
-    updateFavorites
+    updateFavorites,
+    fetchEpisodesForSeason,
+    updateAllWatchedEpisodes,
+    updateWatched
 } from './favorites';

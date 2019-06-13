@@ -1,35 +1,32 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import SeasonsPagination from './SeasonsPagination/SeasonsPagination';
 import EpisodesList from './EpisodesList/EpisodesList';
 // import {connect} from 'react-redux';
 
-class SeasonsList extends Component {
-    state={
-        activeSeasonID: null
-    }
+const SeasonsList = (props) => {
+    const [activeSeasonID, setActiveSeasonID] = useState(null);
+    
 
-    setActiveSeasonHandler = (id) => {
+    const setActiveSeasonHandler = (id) => {
         if (id!==null) {
-            this.setState({activeSeasonID: id});
+            setActiveSeasonID(id);
         }
     }
 
-    render() {
+
 
         return(
             <React.Fragment>
                 <SeasonsPagination 
-                setActiveSeason={this.setActiveSeasonHandler} 
-                activeSeasonID={this.state.activeSeasonID}/>
-                {this.state.activeSeasonID!==null ? 
+                    setActiveSeason={setActiveSeasonHandler} 
+                    activeSeasonID={activeSeasonID}/>
+                {activeSeasonID!==null ? 
                     <EpisodesList 
-                    activeSeasonID={this.state.activeSeasonID} 
-                    updateWatched={this.props.updateWatched} 
-                    updateAllWatchedEpisodes={this.props.updateAllWatchedEpisodes}/> : null}
+                    activeSeasonID={activeSeasonID} 
+                    /> : null}
                 
             </React.Fragment>
         );
-    }
 };
 
 // const mapStateToProps = (state) => {

@@ -1,71 +1,56 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import Episode from './Episode/Episode';
-import api_key from '../../../../../helpers/APIKey';
 import axios from '../../../../../helpers/axios-external';
 import Loader from '../../../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../../../components/withErrorHandler/withErrorHandler';
 import classes from './EpisodesList.module.css';
 import {connect} from 'react-redux';
+import * as ActionCreator from '../../../../../store/actions/index';
 
-class EpisodesList extends Component{
-state= {
-        episodes: null,
-        loading: false,
-        activeSeasonID: null,
-    };
+const EpisodesList = (props) => {
+
+    const [loading, setLoading] = useState(false);
 
 
-    getEpisodeList = async (showid, seasonid) => {
-        if (showid!==null && seasonid !==null) {
-            const details_request_url = `https://api.themoviedb.org/3/tv/${showid}/season/${seasonid}?api_key=${api_key}&language=en-US`;
-            this.setState({loading:true});
-            const response = await axios(details_request_url);
-            if (typeof response !== 'undefined') {
-                this.setState({episodes: response.data.episodes, loading:false, activeSeasonID:seasonid});
-            } else {
-                this.setState({loading:false, activeSeasonID:seasonid});
-            }
-        };
-    };
+    const getEpisodesForSeason = async () => {
+        setLoading(true);
+        await props.fetchEpisodesForSeason(props.currentShowID,props.activeSeasonID);
+        setLoading(false);
+    }
 
-    componentDidUpdate = () => {
-        if (!this.state.loading && this.state.activeSeasonID!==this.props.activeSeasonID) {
-            this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
-        
+
+    useEffect(()=>{
+        if (props.activeSeasonID!==null) {
+           getEpisodesForSeason();
         }
-    };
-
-    componentDidMount = () => {
-            this.getEpisodeList(this.props.showID, this.props.activeSeasonID);
-      
-    };
+    },[props.activeSeasonID])
 
     // scrollToTop = () => {
     //     window.scrollTo(0,this.episodesRef.current.offsetTop);
     // }
-    render() {
+    // render() {
       
 
 
-        if (this.state.loading) {
+        if (loading) {
             return <Loader />;
-        } else if (this.state.episodes!==null) {
+        } else if (props.episodes!==null) {
             const content = (
-                this.state.episodes.map(el=>{
+                props.episodes.map(el=>{
                 let isWatched = false;
-                if (this.props.favorites) {
-                    isWatched = this.props.favorites.isWatched(this.props.showID,el.id);
+                if (props.favorites) {
+                    isWatched = props.favorites.isWatched(props.currentShowID,el.id);
                 }
             return(
-                <Episode key={el.id} episode={el}  updateWatched={this.props.updateWatched} showID={this.props.showID} isWatched={isWatched} currentShow={this.props.currentShow}/>
+                <Episode key={el.id} episode={el} isWatched={isWatched} />  
             )}));
 
-            const ifAllWatched = this.props.favorites.ifAllWatched(this.props.showID,this.state.episodes);
+            const ifAllWatched = props.favorites.ifAllWatched(props.currentShowID,props.episodes);
 
             return (
                 <React.Fragment>
                     <div className={classes.EpisodeToolbarContainer}>
-                        <button className={classes.EpisodeToolbar} onClick={()=>this.props.updateAllWatchedEpisodes(this.props.currentShow, this.state.episodes, !ifAllWatched)}>
+                        <button className={classes.EpisodeToolbar} onClick={()=>props.updateAllWatchedEpisodes(props.currentShow, props.episodes, !ifAllWatched)}>
                         {ifAllWatched ? 'Unmark all watched' : 'Mark all watched'}
                         </button>  
                     </div>
@@ -75,23 +60,23 @@ state= {
         } else {
             return null;
         }
-    }
+    // }
 };
 
 const mapStateToProps = (state)=> {
     return {
         favorites: state.favorites,
-        showID: state.currentShowID,
-        currentShow: state.currentShow
+        currentShowID: state.currentShowID,
+        currentShow: state.currentShow,
+        episodes: state.episodesInSeason
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        fetchEpisodesForSeason: (showID, episodeID) => dispatch(ActionCreator.fetchEpisodesForSeason(showID, episodeID)),
+        updateAllWatchedEpisodes: (show, episodesArray, markAllWatched) => dispatch(ActionCreator.updateAllWatchedEpisodes(show,episodesArray,markAllWatched))
     }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(EpisodesList,axios));
-
-// imageBase={this.configuration.stillBase}

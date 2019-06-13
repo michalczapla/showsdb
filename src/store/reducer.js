@@ -5,6 +5,7 @@ import Favorite from '../containers/Shows/FavoritesBox/Favorite.class';
 const initialState = {
     currentShowID: null,
     currentShow: null,
+    episodesInSeason: null,
     favorites: new Favorite(),
     configuration: null
 }
@@ -41,7 +42,8 @@ const reducer = (state=initialState, action) => {
         case ActionTypes.SET_CURRENT_SHOW_ID:
             return {
                 ...state,
-                currentShowID: action.id
+                currentShowID: action.id,
+                episodesInSeason: null      //czyści pobrane odcinki w wyświetlonym sezonie
             }
         // zaznaczenie wszystkich odcinków jako obejrzanych
         case ActionTypes.MARK_ALL_EPISODE_WATCHED:
@@ -50,7 +52,7 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 favorites: favorites
             }
-        //dodanie odcinków do serialu
+        //dodanie wszystkich odcinków do serialu (Timeline)
         case ActionTypes.ADD_EPISODES_TO_SHOW:
                 favorites.lastUpdate = new Date();    
             favorites.addEpisodesToShow(action.show.showID, action.show.episodes);
@@ -69,6 +71,12 @@ const reducer = (state=initialState, action) => {
                 currentShowID: currentShowID
             }
       
+        //zapisanie listy odcinków z przeglądanego sezonu
+        case ActionTypes.SET_EPISODES_IN_SEASON:
+            return {
+                ...state,
+                episodesInSeason: action.episodes
+            }
         default:
         return state;   
     }  

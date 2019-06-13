@@ -8,7 +8,14 @@ import * as ActionCreator from '../../../../store/actions/index';
 // import dumbheader from '../../../assets/images/backdrop.jpg';
 // import dumbnetwork from '../../../assets/images/netflix.png';
 
-const detailsHeader = (props) => (
+const detailsHeader = (props) => {
+
+    let isFavorite = false;
+    if (props.favorites) {
+        isFavorite = props.favorites.isFavorite(props.currentShowID);
+    }
+
+    return (
     <div className={classes.DetailsHeader}>
     {(props.currentShow.backdrop_path) ? 
         <img className={classes.BackgroungImg} src={props.configuration.backdropBase+props.currentShow.backdrop_path} alt={props.currentShow.name} title={props.currentShow.name}/>
@@ -19,15 +26,20 @@ const detailsHeader = (props) => (
        </div>
         <div className={classes.Text}>{props.currentShow.name}</div>
         <div className={classes.Icon} onClick={()=>props.updateFavorites(props.currentShow)}>
-        {props.isFavorite ? <FavoriteFilled color='white' fontSize='2em'/> : <FavoriteEmpty color='white' fontSize='2em'/>}
+        {isFavorite ? <FavoriteFilled color='white' fontSize='2em'/> : <FavoriteEmpty color='white' fontSize='2em'/>}
         </div>
     </div>
     </div>
-);
+    )
+};
+
+
 const mapStateToProps = (state) => {
     return {
         currentShow: state.currentShow,
-        configuration: state.configuration
+        currentShowID: state.currentShowID,
+        configuration: state.configuration,
+        favorites: state.favorites
     }
 }
 

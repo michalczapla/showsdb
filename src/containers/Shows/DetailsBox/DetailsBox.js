@@ -27,27 +27,15 @@ const DetailsBox =(props)=> {
         setLoading(false);
     };
 
-
-
-    let isFavorite = false;
-    if (props.favorites) {
-        isFavorite = props.favorites.isFavorite(props.currentShowID);
-    }
-    
     if (loading) {
         return (<Loader />);
     }
     else if (props.currentShow) {
     return (
     <div className={classes.DetailsBox}>
-        <DetailsHeader 
-        isFavorite={isFavorite}/>
-        
+        <DetailsHeader />  
         <DetailsMeta />
-
-        <SeasonsList 
-        updateWatched={props.updateWatched} 
-        updateAllWatchedEpisodes={props.updateAllWatchedEpisodes}/>
+        <SeasonsList />
         
     </div>);
     } else {
@@ -57,18 +45,14 @@ const DetailsBox =(props)=> {
 
 const mapStateToProps = state => {
     return {
-      configuration: state.configuration,
       currentShowID: state.currentShowID,
-      currentShow: state.currentShow,
-      favorites: state.favorites
+      currentShow: state.currentShow
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id)),
-        fetchCurrentShow :(show) => (dispatch(ActionCreator.fetchCurrentShow(show))),
-        updateFavorites: (show) => dispatch(ActionCreator.updateFavorites(show)),
+        fetchCurrentShow :(show) => (dispatch(ActionCreator.fetchCurrentShow(show)))
     }
 }
   

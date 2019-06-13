@@ -12,7 +12,7 @@ const App = (props) => {
 
    useEffect(()=>{
     props.setConfiguration();
-   },[]);
+   },[props]);
     
     return (
       <div className="App">

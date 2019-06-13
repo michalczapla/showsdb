@@ -79,4 +79,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(EpisodesList,axios));
+// export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(EpisodesList,axios));
+export default connect(mapStateToProps,mapDispatchToProps)(EpisodesList);

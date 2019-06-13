@@ -13,17 +13,15 @@ const SeasonsList = (props) => {
         }
     }
 
-
+        // const activeCopy = {...activeSeasonID};
 
         return(
             <React.Fragment>
                 <SeasonsPagination 
                     setActiveSeason={setActiveSeasonHandler} 
                     activeSeasonID={activeSeasonID}/>
-                {activeSeasonID!==null ? 
                     <EpisodesList 
-                    activeSeasonID={activeSeasonID} 
-                    /> : null}
+                    activeSeasonID={activeSeasonID} />
                 
             </React.Fragment>
         );

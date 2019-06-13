@@ -3,7 +3,6 @@
     [
         "### TODO",
         "",
-        "TO REFACTOR: EpisodeList",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
@@ -18,7 +17,7 @@
         "",
         "kiedy nazwa serialu jest długa, favorite item może się rozjechać",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
-        "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić",
+        "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić - BŁĄD POWODUJE WITHERRORHANDLER",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
         "strona nie działa na Edgu - w nazwach są - zamias _ podobno",
         "nie wiem czy brak internetu poprawnie pokazuje błąd ściągania konfiguracji..."
@@ -27,6 +26,7 @@
     [
         "### DONE",
         "",
+        "13.06.2019 - REFACTOR - REDUX",
         "11.06.2019 - FIX: timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
         "09.06.2019 - FIX: Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",
         "08.06.2019 - ADD: Timeline section - logic+css",

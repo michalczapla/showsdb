@@ -1,7 +1,7 @@
 import * as ActionTypes from './actionTypes';
 import axios from '../../helpers/axios-external';
 import api_key from '../../helpers/APIKey';
-import * as Mapper from '../../helpers/mappers';
+// import * as Mapper from '../../helpers/mappers';
 
 export const updateFavorites = (show) => {
     return {

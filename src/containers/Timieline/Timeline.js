@@ -13,10 +13,10 @@ import cloneDeep from 'lodash/cloneDeep';
 const Timeline = (props) => {
 
     const [updateRequired, setUpdateRequired] = useState(true);
-    const [actualProgress, setActualProgress] = useState(0);
+    // const [actualProgress, setActualProgress] = useState(0);
     const [totalSeasons, setTotalSeasons] = useState(0);
-    const [totalShows, setTotalShows] = useState(-1);
-    const [totalEpisodes, setTotalEpisodes] = useState(-1);
+    // const [totalShows, setTotalShows] = useState(-1);
+    // const [totalEpisodes, setTotalEpisodes] = useState(-1);
     const [loading, setLoading] = useState(false);
     const [groups, setGroups] = useState();
 
@@ -25,7 +25,7 @@ const Timeline = (props) => {
  
         if (props.favorites.lastUpdate === 0) {
             setUpdateRequired(true);
-            setTotalShows(props.favorites.favorites.length);
+            // setTotalShows(props.favorites.favorites.length);
             setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
         } else {
             setUpdateRequired(false);
@@ -206,7 +206,7 @@ const Timeline = (props) => {
            <>
            {updateRequired ? <Modal show title='Update required'>
                 <div>Episodes info needs to be updated, proceed? (this make takes couple of time)</div>
-                <div>{actualProgress} / {totalSeasons}</div>
+                <div>{totalSeasons}</div>
                 <div><button onClick={updateEpisodesData}>Zaktualizuj</button></div>
             </Modal> : null}
             

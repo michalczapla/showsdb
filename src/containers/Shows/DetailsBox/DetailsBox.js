@@ -7,25 +7,22 @@ import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
 import * as ActionCreator from '../../../store/actions/index';
-
-// HELPERY
 import axios from '../../../helpers/axios-external';
 import SeasonsList from './SeasonsList/SeasonsList';
+import RecommendationBox from './RecommendationBox/RecommendationBox';
 
 const DetailsBox =(props)=> {
     const [loading, setLoading] = useState(false);
 
-    useEffect(()=>{
-        getShowDetails();
-    },[props.currentShowID])
-
-
-
-    const getShowDetails = async () => {
+    const getShowDetails = async (id) => {
         setLoading(true);
-        await props.fetchCurrentShow(props.currentShowID);
+        await props.fetchCurrentShow(id);
         setLoading(false);
     };
+
+    useEffect(()=>{
+        getShowDetails(props.currentShowID);
+    },[props.currentShowID]);
 
     if (loading) {
         return (<Loader />);
@@ -36,6 +33,7 @@ const DetailsBox =(props)=> {
         <DetailsHeader />  
         <DetailsMeta />
         <SeasonsList />
+        <RecommendationBox />
         
     </div>);
     } else {

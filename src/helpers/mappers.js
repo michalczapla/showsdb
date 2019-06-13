@@ -85,4 +85,34 @@ const mapSeasonShow = (show) => {
     return acceptedShow;
 };
 
+//MAPOWANIE LISTY REKOMENDACJI
+export const mapRecommendations = (recommendations) => {
+    if (recommendations) {
+        const acceptesRecommArray = [];
+        for (let recomm of recommendations) {
+            acceptesRecommArray.push(mapRecommendation(recomm));
+        }
+        return acceptesRecommArray;
+    }
+};
+// MApowanie pojedynczego wyniku rekomendacji
+const mapRecommendation = (recomm) => {
+    const acceptedRecomm = {
+        backdrop_path: recomm.backdrop_path,
+        first_air_date: recomm.first_air_date,
+        genre_ids: recomm.genre_ids,
+        id: recomm.id,
+        name: recomm.name,
+        origin_country: recomm.origin_country,
+        original_language: recomm.original_language,
+        original_name: recomm.original_name,
+        overview: recomm.overview,
+        poster_path: recomm.poster_path,
+        vote_average: recomm.vote_average,
+        vote_count: recomm.vote_count,
+        networks: recomm.networks,
+        popularity: recomm.popularity
+    };
 
+    return acceptedRecomm;
+}

@@ -11,7 +11,7 @@ const event = (props) => {
         <div className={classes.Content} >
             {
                 props.data.map((el,index)=>{
-                return (<ShowSummary key={el.id+'_'+index} data={el}/>);
+                return (<ShowSummary key={el.id+'_'+index} data={el} info={'Episodes: ' + el.episodes.length}/>);
             })
             }
             

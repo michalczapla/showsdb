@@ -15,6 +15,7 @@
     [
         "### ERRORS",
         "",
+        "dodanie lub usuiecie zaznaczenia obejrzanego odcinka nie zmienia statusu TIMELINE - do odświeżenia",
         "kiedy nazwa serialu jest długa, favorite item może się rozjechać",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
         "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić - BŁĄD POWODUJE WITHERRORHANDLER",
@@ -26,6 +27,7 @@
     [
         "### DONE",
         "",
+        "16.06.2019 - ADD: Recommendation box",
         "13.06.2019 - REFACTOR - REDUX",
         "11.06.2019 - FIX: timeline: wywołany jako pierwszy nie zaciąga konfiguracji",
         "09.06.2019 - FIX: Timeline - sortowanie dat dla odcinków z 30 aktualnych dni",

@@ -1,3 +1,5 @@
+//helper poebira 2 listy: 1) słownik kategorii; 2) listę kategorii serialu
+
 const mapGenre = (list, ids)=>{
 // Object.keys(list).findIndex(id =>)
     const genreNames = [];   

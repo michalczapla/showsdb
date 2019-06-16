@@ -6,14 +6,14 @@ const showSummary = (props) => {
     
     const imgSrc = (props.configuration && props.configuration.imagesBase && props.data && props.data.backdrop_path) ?
     <img className={classes.HeaderImg} src={props.configuration.imagesBase+props.data.poster_path} alt={props.data.name}/>
-    : null;
+    : <div className={classes.HeaderImg}></div>;
 
 return (
-    <div className={classes.Event}>
+    <div className={classes.Event} onMouseOver={(props.mouseover) ? props.mouseover : null} onClick={(props.click) ? props.click : null}>
        {imgSrc}
         <div className={classes.Content}>
             <div className={classes.Title}>{props.data.name}</div>
-            <div className={classes.AdditionalInfo}>Episodes: {props.data.episodes.length}</div>
+            <div className={classes.AdditionalInfo}>{props.info}</div>
         </div>
     </div>
 );

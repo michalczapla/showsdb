@@ -43,7 +43,8 @@
 }
 
 .RecommendationItem:hover,
-.RecommendationPagination:hover {
+.RecommendationPagination:hover,
+.active {
     background-color: rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease;
 }

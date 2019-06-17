@@ -10,11 +10,12 @@ import GenreMapper from '../../../../helpers/genre-mapper';
 import * as ActionCreator from '../../../../store/actions/index';
 import ArrowRight from 'react-ionicons/lib/MdArrowDropright';
 import ArrowLeft from 'react-ionicons/lib/MdArrowDropleft';
+import {Link} from 'react-router-dom';
 
 const RecommendationBox =(props)=> {
     const [loading, setLoading] = useState(false);
     const [recommendations, setRecommendations] = useState(null);
-    const [selectedRecommendation, setSelectedRecommendation] = useState({description: null, vote: null});
+    const [selectedRecommendation, setSelectedRecommendation] = useState({description: null, vote: null, id: -1});
     const [pagination, setPagination] = useState({actualPage:1, from:0, to:5});
 
     const getRecommendations = async (id) => {
@@ -37,10 +38,11 @@ const RecommendationBox =(props)=> {
         getRecommendations(props.currentShowID);
     },[props.currentShowID]);
 
-    const onMouseOverHandler = (description, vote) => {
+    const onMouseOverHandler = (description, vote, id) => {
         const selected = {
             description: description, 
-            vote: vote
+            vote: vote,
+            id: id
         }
         setSelectedRecommendation(selected);
     }
@@ -93,8 +95,8 @@ const RecommendationBox =(props)=> {
                     <div className={classes.RecommendationCarousel}>
                         
                         {recommendations!==null ? recommendations.slice(pagination.from,pagination.to).map((el,index)=>(
-                            <div key={el.id + '_'+index} className={classes.RecommendationItem}><ShowSummary  data={el} info={'rating: '+el.vote_average}
-                            mouseover={()=>onMouseOverHandler(el.overview,el.vote_average)} click={()=>props.setCurrentShowID(el.id)}/></div>
+                            <div key={el.id + '_'+index} className={[classes.RecommendationItem,(el.id===selectedRecommendation.id) ? classes.active : null].join(' ')}><Link to={'/'+el.id}><ShowSummary  data={el} info={'rating: '+el.vote_average}
+                            mouseover={()=>onMouseOverHandler(el.overview,el.vote_average, el.id)} click={()=>props.setCurrentShowID(el.id)}/></Link></div>
                         )) : null}
                     
                     </div>

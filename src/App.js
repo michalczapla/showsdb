@@ -20,6 +20,7 @@ const App = (props) => {
         <Layout>
             <Switch>
               <Route path="/timeline" exact component={Timeline}/> 
+              <Route path="/:id" exact component={Shows}/> 
               <Route path="/" component={Shows}/> 
             </Switch>
         </Layout>

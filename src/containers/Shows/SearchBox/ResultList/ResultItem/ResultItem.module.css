@@ -1,4 +1,5 @@
 .ResultItem {
+    box-sizing: border-box;
     text-decoration: none;
     /* grid-template-columns: 20% 80%; */
     border-bottom: 1px #ffd700 solid;
@@ -27,6 +28,7 @@
 
 .SearchMetaData {
     font-size: 0.85em;
+    
 }
 
 .MetaTitle{

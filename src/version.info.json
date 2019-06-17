@@ -27,6 +27,7 @@
     [
         "### DONE",
         "",
+        "17.06.2019 - FIX: Nawigowanie - wyświetlanie serialu nie ma wpływu na nawigacje strony dalej,wstecz",
         "16.06.2019 - ADD: Recommendation box",
         "13.06.2019 - REFACTOR - REDUX",
         "11.06.2019 - FIX: timeline: wywołany jako pierwszy nie zaciąga konfiguracji",

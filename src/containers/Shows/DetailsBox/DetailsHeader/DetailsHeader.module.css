@@ -19,17 +19,20 @@
 }
 
 .Title {
-    display: grid;
-    grid-template-columns: auto auto 50px;
+    display: flex;
+    /* justify-content: right;
+    justify-items: right; */
+    /* grid-template-columns: auto auto 50px; */
     padding:0px 10px 0px 40px;
     height: 60px;
-    align-content: center; 
+    align-content: right; 
     position: absolute;
     bottom:0px;
     right:0px;
     background: rgb(0, 0, 0); 
     background: rgba(0, 0, 0, 0.8); 
     width: 100%; 
+    
 }
 
 .NetworkLogoContainer {
@@ -58,6 +61,13 @@
     text-transform: uppercase;
     letter-spacing: 5px;
     margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    margin-left:auto;
+    padding-left:20px;
+    
 }
 
 .Icon {

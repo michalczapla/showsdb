@@ -19,3 +19,9 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
 }
+
+@media (max-width: 750px) {
+    .MetaData {
+        grid-template-columns: 50% 50%;
+    }
+}

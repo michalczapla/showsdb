@@ -11,7 +11,7 @@ import * as ActionCreator from '../../store/actions/index';
 const Shows = (props) => {
 
   useEffect(()=>{
-    if (props.configuration  && props.match.params.id && parseInt(props.match.params.id) !== props.currentShowID) {
+    if (props.configuration && props.favorites && props.match.params.id && parseInt(props.match.params.id) !== props.currentShowID) {
       props.setCurrentShowID(props.match.params.id);
       // console.log('different id');
       // console.log(props.match.params.id);
@@ -28,7 +28,7 @@ const Shows = (props) => {
             <div>
               <DetailsBox />
             </div>
-            <div>
+            <div className={classes.FavoritesContainer}>
               <FavoritesBox />
             </div>
 
@@ -39,7 +39,8 @@ const Shows = (props) => {
 const mapStateToProps = (state)=> {
   return {
     currentShowID: state.currentShowID,
-    configuration: state.configuration
+    configuration: state.configuration,
+    favorites: state.favorites
   }
 }
 

@@ -22,9 +22,15 @@
     font-size: 1.0em;
     font-weight: bold;
     color: #ffd700;
+
 }
 
 .AdditionalInfo {
+    display: inline;
     font-size: 0.8em;
-    padding: 3px 0px;
+    padding: 3px 5px;
+    background-color: #115173;
+    border-radius: 5px;
+    color: white;
+    line-height: 25px;
 }

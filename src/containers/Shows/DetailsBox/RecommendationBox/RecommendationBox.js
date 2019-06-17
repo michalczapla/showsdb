@@ -11,11 +11,12 @@ import * as ActionCreator from '../../../../store/actions/index';
 import ArrowRight from 'react-ionicons/lib/MdArrowDropright';
 import ArrowLeft from 'react-ionicons/lib/MdArrowDropleft';
 import {Link} from 'react-router-dom';
+import ReactCountryFlag from 'react-country-flag';
 
 const RecommendationBox =(props)=> {
     const [loading, setLoading] = useState(false);
     const [recommendations, setRecommendations] = useState(null);
-    const [selectedRecommendation, setSelectedRecommendation] = useState({description: null, vote: null, id: -1});
+    const [selectedRecommendation, setSelectedRecommendation] = useState({description: null, vote: null, id: -1, origin_country:null, genre_ids: null});
     const [pagination, setPagination] = useState({actualPage:1, from:0, to:5});
 
     const getRecommendations = async (id) => {
@@ -38,11 +39,13 @@ const RecommendationBox =(props)=> {
         getRecommendations(props.currentShowID);
     },[props.currentShowID]);
 
-    const onMouseOverHandler = (description, vote, id) => {
+    const onMouseOverHandler = (description, vote, id, origin_country, genre_ids) => {
         const selected = {
             description: description, 
             vote: vote,
-            id: id
+            id: id,
+            origin_country: origin_country,
+            genre_ids: genre_ids
         }
         setSelectedRecommendation(selected);
     }
@@ -81,7 +84,11 @@ const RecommendationBox =(props)=> {
         })
     }
 
-
+    const countryFlags = (list) =>{
+        const flags = [];
+        list.map(flag=>(flags.push(<ReactCountryFlag key={flag} code={flag} svg/>)));
+        return flags;
+    }
 
     let response = null;
     if (loading) {
@@ -95,8 +102,8 @@ const RecommendationBox =(props)=> {
                     <div className={classes.RecommendationCarousel}>
                         
                         {recommendations!==null ? recommendations.slice(pagination.from,pagination.to).map((el,index)=>(
-                            <div key={el.id + '_'+index} className={[classes.RecommendationItem,(el.id===selectedRecommendation.id) ? classes.active : null].join(' ')}><Link to={'/'+el.id}><ShowSummary  data={el} info={'rating: '+el.vote_average}
-                            mouseover={()=>onMouseOverHandler(el.overview,el.vote_average, el.id)} click={()=>props.setCurrentShowID(el.id)}/></Link></div>
+                            <div key={el.id + '_'+index} className={[classes.RecommendationItem,(el.id===selectedRecommendation.id) ? classes.active : null].join(' ')} title={el.name}><Link to={'/'+el.id}><ShowSummary  data={el} info={'rating: '+el.vote_average}
+                            mouseover={()=>onMouseOverHandler(el.overview,el.vote_average, el.id, el.origin_country, el.genre_ids)} click={()=>props.setCurrentShowID(el.id)}/></Link></div>
                         )) : null}
                     
                     </div>
@@ -105,7 +112,11 @@ const RecommendationBox =(props)=> {
                 {(selectedRecommendation.description) ?
                 <div className={classes.RecommendationDescription}>
                         <p className={classes.RecommendationDescription}>{selectedRecommendation.description}</p>
-                        <p className={classes.RecommendationVote}>{selectedRecommendation.vote}</p>
+                        <div className={classes.RecommendationFooter}>
+                            <p className={classes.RecommendationVote}>{selectedRecommendation.vote}</p>
+                            <p className={classes.RecommendationFlags}>{countryFlags(selectedRecommendation.origin_country)}</p>
+                            <p className={classes.RecommendationGenres}>{GenreMapper(props.configuration.genreList, selectedRecommendation.genre_ids)}</p>
+                        </div>
                 </div> : null}
             </div>)
     } else {

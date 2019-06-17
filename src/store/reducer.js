@@ -17,7 +17,7 @@ const reducer = (state=initialState, action) => {
      const favorites = {...state.favorites}     //kopiowanie obiektu, na którym będzimy wykonywać operacje
 
     switch (action.type) {
-        // Dodanie lub usunięcie odcinka jako ulubionego
+        // Dodanie lub usunięcie serialu jako ulubionego
         case ActionTypes.ADD_OR_REMOVE_FAVORITE:
             favorites.lastUpdate = 0;    
             favorites.addOrRemoveFavorite(action.newFavorite);

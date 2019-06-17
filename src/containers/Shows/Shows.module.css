@@ -9,13 +9,21 @@
 
 
 @media (max-width: 1200px) {
-        .Layout {
-            grid-template-columns: 300px auto;
+        .Shows {
+            grid-template-columns: auto auto;
+        }
+        .FavoritesContainer {
+            grid-column: 1/3;
+            margin-top:10px;
         }
     }
     
     @media (max-width: 950px) {
-        .Layout {
+        .Shows {
             grid-template-columns: auto;
+        }
+        .FavoritesContainer {
+            grid-column: 1/1;
+            margin-top:10px;
         }
     }

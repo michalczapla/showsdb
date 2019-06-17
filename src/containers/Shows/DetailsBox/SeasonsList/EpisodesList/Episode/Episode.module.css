@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .EpisodeImageContainer{
@@ -51,6 +52,11 @@
 
 .EpisodeTitle{
     color: #ffd700;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:100%;
+    white-space: nowrap;
     
 }
 
@@ -75,3 +81,5 @@
     max-height: 45px;
     padding-right: 5px;
 }
+
+/* @media (max-width: ) */

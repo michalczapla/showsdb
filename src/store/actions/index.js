@@ -13,3 +13,7 @@ export {
     updateAllWatchedEpisodes,
     updateWatched
 } from './favorites';
+
+export {
+    auth
+} from './auth';

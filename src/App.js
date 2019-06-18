@@ -5,6 +5,7 @@ import Timeline from './containers/Timieline/Timeline';
 import Layout from './components/Layout/Layout';
 import {connect} from 'react-redux';
 import * as ActionCreator from './store/actions/index';
+// import Login from './containers/Login/Login';
 
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
@@ -20,6 +21,7 @@ const App = (props) => {
         <Layout>
             <Switch>
               <Route path="/timeline" exact component={Timeline}/> 
+              {/* <Route path="/login" exact component={Login}/> */}
               <Route path="/:id" exact component={Shows}/> 
               <Route path="/" component={Shows}/> 
             </Switch>

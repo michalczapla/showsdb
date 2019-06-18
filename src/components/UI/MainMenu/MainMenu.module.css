@@ -10,13 +10,15 @@
     /* border-bottom: 1px solid black; */
     box-shadow: 1px 1px 3px #141414;
     /* box-sizing: border-box; */
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
 }
 
 .Logo {
+    float: left;
     height: 100%;
+    margin: 0 30px;
 }
 
 .Logo img{
@@ -28,7 +30,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     height: 100%;
     box-sizing: border-box;
@@ -37,6 +39,7 @@
 .NavigationItem {
 /* box-sizing: border-box; */
 display: flex;
+float:left;
 height: 100%;
 align-items: center;
 margin: 0;
@@ -56,3 +59,55 @@ margin: 0;
     border-bottom: 2px solid #ffd700;
     background-color: #023857;
     }
+
+.LoginPanel {
+    float:right;
+    display: flex;
+    height: 3em;
+}
+
+.InputContainer {
+    margin: auto 0;
+    display: block;
+}
+
+.Input {
+   
+    padding: 3px;
+    border: none;
+    background-color: #053f5e;
+    text-align: center;
+    margin-right: 5px;
+    width: 130px;
+    transition: all 0.3s ease;
+
+}
+
+.SigninButton,
+.LoginButton{
+    margin: auto 0;
+    display: block;
+
+    background-color: #06741e;
+    color: white;
+    font-size: 0.8em;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    height: 21px;
+    border-right: 4px solid #012438;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.SigninButton {
+margin-left:5px;
+background-color: #012438;
+
+}
+
+.SigninButton:hover,
+.LoginButton:hover{
+    border-right: 4px solid #ffd700;
+}

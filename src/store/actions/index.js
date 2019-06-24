@@ -15,5 +15,5 @@ export {
 } from './favorites';
 
 export {
-    authNewUser
+    auth
 } from './auth';

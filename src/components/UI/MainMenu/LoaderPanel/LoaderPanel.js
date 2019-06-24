@@ -18,6 +18,12 @@ const LoaderPanel = (props) => {
         props.authNewUser(user,pass);
     }
 
+    const loginButtonHandler = () => {
+        console.log('user ' + user);
+        console.log('pass ' + pass);
+        props.authUser(user,pass);
+    }
+
     const userInputHandler = (event) => {
         setUser(event.target.value);
         console.log(event.target.value);
@@ -38,7 +44,7 @@ const LoaderPanel = (props) => {
             <>
                 <div className={classes.InputContainer}><input className={classes.Input} type="text" placeholder="Username" onChange={userInputHandler}/></div> 
                 <div className={classes.InputContainer}><input className={classes.Input}type="password" placeholder="Password" onChange={passInputHandler}/></div> 
-                <button className={classes.LoginButton}>Log IN</button>
+                <button className={classes.LoginButton} onClick={loginButtonHandler}>Log IN</button>
                 <button className={classes.SigninButton} onClick={signinButtonHandler}>Sign IN</button>
             </>
         )
@@ -60,7 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authNewUser: (username, pass) => dispatch(ActionCreator.authNewUser(username, pass))
+        authNewUser: (username, pass) => dispatch(ActionCreator.auth(username, pass)),
+        authUser: (username, pass) => dispatch(ActionCreator.auth(username, pass, false))
     }
 }
 

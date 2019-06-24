@@ -3,7 +3,7 @@ import axios from '../../helpers/axios-firebase';
 import api_key from './../../helpers/APIKey_firebase';
 
 //asynchorniczne zapytanie - tworzenie nowego użytkownika
-export const authNewUser = (email, pass) => {
+export const auth = (email, pass, newUser=true) => {
     return dispatch => {
         dispatch(authStart());
         const payloadAuth = {
@@ -11,7 +11,14 @@ export const authNewUser = (email, pass) => {
             password: pass,
             returnSecureToken: true
         }
-        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key='+api_key,payloadAuth)
+        let url = null;
+        if (newUser) {
+            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key='+api_key;
+        } else {
+            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key='+api_key;
+        }
+
+        axios.post(url,payloadAuth)
         .then(response=> {
             console.log(response);
             dispatch(authSuccess(response.data));

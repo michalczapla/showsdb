@@ -20,7 +20,7 @@ const seasonsPagination = (props) => {
 
 const mapStateToProps = state => {
     return {
-        seasons: state.currentShow.seasons
+        seasons: state.main.currentShow.seasons
     }
   }
 

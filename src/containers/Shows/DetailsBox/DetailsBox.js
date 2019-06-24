@@ -43,8 +43,8 @@ const DetailsBox =(props)=> {
 
 const mapStateToProps = state => {
     return {
-      currentShowID: state.currentShowID,
-      currentShow: state.currentShow
+      currentShowID: state.main.currentShowID,
+      currentShow: state.main.currentShow
     }
   }
 

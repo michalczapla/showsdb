@@ -38,9 +38,9 @@ const Shows = (props) => {
 
 const mapStateToProps = (state)=> {
   return {
-    currentShowID: state.currentShowID,
-    configuration: state.configuration,
-    favorites: state.favorites
+    currentShowID: state.main.currentShowID,
+    configuration: state.main.configuration,
+    favorites: state.main.favorites
   }
 }
 

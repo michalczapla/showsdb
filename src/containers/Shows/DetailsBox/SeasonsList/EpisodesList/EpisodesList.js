@@ -65,10 +65,10 @@ const EpisodesList = (props) => {
 
 const mapStateToProps = (state)=> {
     return {
-        favorites: state.favorites,
-        currentShowID: state.currentShowID,
-        currentShow: state.currentShow,
-        episodes: state.episodesInSeason
+        favorites: state.main.favorites,
+        currentShowID: state.main.currentShowID,
+        currentShow: state.main.currentShow,
+        episodes: state.main.episodesInSeason
     }
 }
 

@@ -36,10 +36,10 @@ const detailsHeader = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        currentShow: state.currentShow,
-        currentShowID: state.currentShowID,
-        configuration: state.configuration,
-        favorites: state.favorites
+        currentShow: state.main.currentShow,
+        currentShowID: state.main.currentShowID,
+        configuration: state.main.configuration,
+        favorites: state.main.favorites
     }
 }
 

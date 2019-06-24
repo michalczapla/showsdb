@@ -35,8 +35,8 @@ const episode = (props) => {
 
 const mapStateToProps = (state)=> {
     return {
-        configuration: state.configuration,
-        currentShow: state.currentShow
+        configuration: state.main.configuration,
+        currentShow: state.main.currentShow
     }
 }
 

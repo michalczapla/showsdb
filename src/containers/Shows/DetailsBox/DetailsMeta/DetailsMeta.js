@@ -47,8 +47,8 @@ const detailsMeta =(props) => {
 
 const mapStateToProps = (state) => {
     return {
-        genres: state.configuration.genreList,
-        currentShow: state.currentShow
+        genres: state.main.configuration.genreList,
+        currentShow: state.main.currentShow
     }
 }
 

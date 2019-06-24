@@ -1,9 +1,26 @@
 import * as ActionType from './actionTypes';
+import axios from '../../helpers/axios-firebase';
+import api_key from './../../helpers/APIKey_firebase';
 
-//asynchorniczne zapytanie
-export const auth = (email, pass) => {
+//asynchorniczne zapytanie - tworzenie nowego użytkownika
+export const authNewUser = (email, pass) => {
     return dispatch => {
         dispatch(authStart());
+        const payloadAuth = {
+            email: email,
+            password: pass,
+            returnSecureToken: true
+        }
+        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key='+api_key,payloadAuth)
+        .then(response=> {
+            console.log(response);
+            dispatch(authSuccess(response.data));
+        })
+        .catch(err=>{
+            console.log(err);
+            dispatch(authFail(err));
+        })
+        
     }
 }
 
@@ -17,7 +34,8 @@ const authStart = () => {
 const authSuccess = (authData) => {
     return {
         type: ActionType.AUTH_SUCCESS,
-        authData: authData
+        token: authData.idToken,
+        userId: authData.email
     }
 }
 

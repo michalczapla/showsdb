@@ -129,8 +129,8 @@ const RecommendationBox =(props)=> {
 
 const mapStateToProps = (state) => {
     return {
-        currentShowID: state.currentShowID,
-        configuration: state.configuration
+        currentShowID: state.main.currentShowID,
+        configuration: state.main.configuration
     }
 }
 

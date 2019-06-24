@@ -225,8 +225,8 @@ const Timeline = (props) => {
 
 const mapStateToProps = state => {
     return {
-      favorites: state.favorites,
-      configuration: state.configuration
+      favorites: state.main.favorites,
+      configuration: state.main.configuration
     }
   }
   

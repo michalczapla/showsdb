@@ -18,7 +18,7 @@ const resultList = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        configuration: state.configuration
+        configuration: state.main.configuration
     }
 }
 

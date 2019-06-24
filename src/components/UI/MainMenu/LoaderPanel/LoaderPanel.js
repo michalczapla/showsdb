@@ -1,6 +1,7 @@
 import React , {useState} from 'react';
 import classes from './../MainMenu.module.css';
 import * as ActionCreator from '../../../../store/actions/index';
+import Loader from '../../Loading/Loading';
 import { connect } from 'react-redux';
 
 
@@ -27,16 +28,35 @@ const LoaderPanel = (props) => {
         console.log(event.target.value);
     }
 
+    let pageContent = <Loader small/>;
+    if(!props.loading && props.userId) {
+
+        pageContent = <div>{props.userId}</div>;
+
+    } else if (!props.loading) {
+        pageContent = (
+            <>
+                <div className={classes.InputContainer}><input className={classes.Input} type="text" placeholder="Username" onChange={userInputHandler}/></div> 
+                <div className={classes.InputContainer}><input className={classes.Input}type="password" placeholder="Password" onChange={passInputHandler}/></div> 
+                <button className={classes.LoginButton}>Log IN</button>
+                <button className={classes.SigninButton} onClick={signinButtonHandler}>Sign IN</button>
+            </>
+        )
+    }
 
     return (
-    <div className={classes.LoginPanel}>
-        <div className={classes.InputContainer}><input className={classes.Input} type="text" placeholder="Username" onChange={userInputHandler}/></div> 
-        <div className={classes.InputContainer}><input className={classes.Input}type="password" placeholder="Password" onChange={passInputHandler}/></div> 
-        <button className={classes.LoginButton}>Log IN</button>
-        <button className={classes.SigninButton} onClick={signinButtonHandler}>Sign IN</button>
-    </div>
+        <div className={classes.LoginPanel}>
+            {pageContent}
+        </div>
     )
 };
+
+const mapStateToProps = (state) => {
+    return {
+        loading: state.auth.loading,
+        userId: state.auth.userId
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -44,5 +64,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(LoaderPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(LoaderPanel);
 

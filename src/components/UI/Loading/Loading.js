@@ -3,7 +3,7 @@ import classes from './Loading.module.css';
 
 
 const loading = (props) => (
-    <div className={classes.LoaderContainer}>
+    <div className={props.small ? classes.LoaderContainerSmall : classes.LoaderContainer}>
         <div className={classes.Loading}></div>
     </div>
       

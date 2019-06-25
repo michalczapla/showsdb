@@ -15,5 +15,7 @@ export {
 } from './favorites';
 
 export {
-    auth
+    auth,
+    getLoginDataFromLocalStorage,
+    authLogout
 } from './auth';

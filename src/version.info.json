@@ -3,6 +3,10 @@
     [
         "### TODO",
         "",
+        "AUTORYZACJA - timout dla tokena",
+        "AUTORYZACJA - walidacja po stronie klienta",
+        "AUTORYZACJA - obsługa zwróconych błędów",
+        "AUTORYZACJA - zapis/odczyt ulubionych",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
@@ -27,6 +31,7 @@
     [
         "### DONE",
         "",
+        "24.06.2019 - ADD: Logika do logowania uzytkownika - Initial",
         "17.06.2019 - FIX: Nawigowanie - wyświetlanie serialu nie ma wpływu na nawigacje strony dalej,wstecz",
         "16.06.2019 - ADD: Recommendation box",
         "13.06.2019 - REFACTOR - REDUX",

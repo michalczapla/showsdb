@@ -13,6 +13,7 @@ const App = (props) => {
 
    useEffect(()=>{
     props.setConfiguration();
+    props.getLoginDataFromLocalStorage();
    },[props]);
     
     return (
@@ -33,7 +34,8 @@ const App = (props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setConfiguration: () => dispatch(ActionCreator.fetchConfiguration())
+    setConfiguration: () => dispatch(ActionCreator.fetchConfiguration()),
+    getLoginDataFromLocalStorage: () => dispatch(ActionCreator.getLoginDataFromLocalStorage())
   }
 }
 

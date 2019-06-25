@@ -2,7 +2,7 @@ import * as ActionType from './actionTypes';
 import axios from '../../helpers/axios-firebase';
 import api_key from './../../helpers/APIKey_firebase';
 
-//asynchorniczne zapytanie - tworzenie nowego użytkownika
+//asynchorniczne zapytanie - tworzenie nowego użytkownika lub logowanie na istniejacego
 export const auth = (email, pass, newUser=true) => {
     return dispatch => {
         dispatch(authStart());
@@ -31,6 +31,27 @@ export const auth = (email, pass, newUser=true) => {
     }
 }
 
+//pobranie danych z local storage - w przypadku wcześniejszego zalogowania
+export const getLoginDataFromLocalStorage = () => {
+   return dispatch => {
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('userId');
+        console.log(token);
+        console.log(user);
+        if (token && user) {
+            dispatch(authSuccess({idToken:token, email: user}));
+        }
+    }
+}
+
+export const authLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+
+    return {
+        type: ActionType.AUTH_LOGOUT
+    }
+}
 
 const authStart = () => {
     return {
@@ -39,6 +60,10 @@ const authStart = () => {
 }
 
 const authSuccess = (authData) => {
+    
+    localStorage.setItem('token',authData.idToken);
+    localStorage.setItem('userId',authData.email);
+    
     return {
         type: ActionType.AUTH_SUCCESS,
         token: authData.idToken,

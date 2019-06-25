@@ -23,7 +23,7 @@ const Shows = (props) => {
       <section className={classes.Shows}>
             
             <div>
-              <SearchBox title="showsDB v0.5.61 r" />
+              <SearchBox title="showsDB v0.5.81 r" />
             </div>
             <div>
               <DetailsBox />

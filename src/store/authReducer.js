@@ -4,14 +4,16 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    loading: false
+    loading: false,
+    justCreated: false
 }
 
 const authStart = (state, action) => {
     return {
         ...state,
         error: null,
-        loading: true
+        loading: true,
+        justCreated: false
     };
 }
 
@@ -21,7 +23,8 @@ const authSuccess = (state, action) => {
         token: action.token,
         userId: action.userId,
         error: null,
-        loading: false
+        loading: false,
+        justCreated: action.justCreated
     }
 }
 

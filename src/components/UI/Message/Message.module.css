@@ -1,0 +1,39 @@
+.MessageContainer {
+    display: block;
+    position: fixed;
+    z-index: 500;
+    bottom: 45px;
+    left:50%;
+    /* transform: translateX(-50%); */
+
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+
+    padding: 15px 30px;
+    border-radius: 5px;
+
+}
+
+.Show {
+    transform: translateY(0);
+    transform: translateX(-50%);
+    opacity: 1;
+    /* bottom: 30px; */
+}
+
+.Hide {
+    transform: translateY(10vh);
+    transform: translateX(-50%);
+    opacity: 0;
+    /* bottom: -1000px; */
+}
+
+.error {
+    background-color: rgba(161, 19, 19, 0.9);
+    border: 3px solid red;
+}
+
+.info {
+    background-color: rgba(15, 126, 25, 0.9);
+    border: 3px solid rgb(11, 153, 11);
+}

@@ -4,6 +4,8 @@ import * as ActionCreator from '../../../../store/actions/index';
 import Loader from '../../Loading/Loading';
 import { connect } from 'react-redux';
 import ContactIcon from 'react-ionicons/lib/MdContact';
+import Message from '../../Message/Message';
+import {getMessages} from '../../../../helpers/authMessages';
 
 
 const LoaderPanel = (props) => {
@@ -55,7 +57,7 @@ const LoaderPanel = (props) => {
             isValid = false;
             // console.log('Required: true');
         }
-        console.log(event.target.value.length);
+        // console.log(event.target.value.length);
         if (event.target.value!=='' && event.target.value.length < 6) {  
             isValid= false;
             // console.log('Email: true');
@@ -88,6 +90,8 @@ const LoaderPanel = (props) => {
     return (
         <div className={classes.LoginPanel}>
             {pageContent}
+            {props.error ? <Message message={getMessages(props.error.message)} type='error'/> : null}
+            {props.justCreated ? <Message message='User successfully created' type='info'/> : null}
         </div>
     )
 };
@@ -95,7 +99,9 @@ const LoaderPanel = (props) => {
 const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        error: state.auth.error,
+        justCreated: state.auth.justCreated
     }
 }
 

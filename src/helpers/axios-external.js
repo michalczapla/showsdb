@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-axios.interceptors.response.use(reponse => {
+const instance = axios.create();
+instance.interceptors.response.use(reponse => {
     // console.log(reponse);
     return reponse;
 });
-const axiosExternal = axios;
+const axiosExternal = instance;
 
 export default axiosExternal;

@@ -77,6 +77,7 @@ class SearchBox extends Component {
             this.setState({loading:true})
            
                 const response = await this.getAxiosSearchResults(this.state.searchString,this.state.actualDownloadedPage+1);
+                
                 if (typeof response !== 'undefined') {
                 this.setState((prevState) => ({
                     searchResults: [...prevState.searchResults, ...response.data.results],  

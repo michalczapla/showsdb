@@ -1,5 +1,6 @@
 import * as ActionType from './actionTypes';
 import axios from '../../helpers/axios-firebase';
+// import axios from 'axios';
 import api_key from './../../helpers/APIKey_firebase';
 
 //asynchorniczne zapytanie - tworzenie nowego użytkownika lub logowanie na istniejacego
@@ -20,12 +21,13 @@ export const auth = (email, pass, newUser=true) => {
 
         axios.post(url,payloadAuth)
         .then(response=> {
-            console.log(response);
-            dispatch(authSuccess(response.data));
+            // console.log('[response] :' + response);
+            dispatch(authSuccess({...response.data, justCreated: newUser}));   //, ...{justCreated: newUser})
+            // console.log({...response.data, justCreated: newUser});
         })
         .catch(err=>{
-            console.log(err);
-            dispatch(authFail(err));
+            // console.log('[error] :' + err);
+            dispatch(authFail(err.response.data.error));
         })
         
     }
@@ -67,7 +69,8 @@ const authSuccess = (authData) => {
     return {
         type: ActionType.AUTH_SUCCESS,
         token: authData.idToken,
-        userId: authData.email
+        userId: authData.email,
+        justCreated: authData.justCreated
     }
 }
 

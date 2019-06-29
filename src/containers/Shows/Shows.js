@@ -15,7 +15,8 @@ const Shows = (props) => {
       props.setCurrentShowID(props.match.params.id);
       // console.log('different id');
       // console.log(props.match.params.id);
-
+    } else if (!props.match.params.id) {
+      props.setCurrentShow(null);
     }
   },[props]);
 
@@ -46,7 +47,8 @@ const mapStateToProps = (state)=> {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCurrentShowID: (showID) => dispatch(ActionCreator.setCurrentShowID(showID))
+    setCurrentShowID: (showID) => dispatch(ActionCreator.setCurrentShowID(showID)),
+    setCurrentShow: (show) => dispatch(ActionCreator.fetchCurrentShow(show))
     // updateWatchedEpisode: (show, episodeID) =>dispatch({type: ActionTypes.ADD_OR_REMOVE_WATCHED_EPISODE, show: {show: show, episodeID: episodeID}}),
     // updateAllWatchedEpisodes: (show, episodesArray, markAllWatched) => dispatch({type:ActionTypes.MARK_ALL_EPISODE_WATCHED, show: {show:show, episodesArray: episodesArray, markAllWatched: markAllWatched}}),
   }

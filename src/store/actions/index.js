@@ -11,7 +11,9 @@ export {
     updateFavorites,
     fetchEpisodesForSeason,
     updateAllWatchedEpisodes,
-    updateWatched
+    updateWatched,
+    getFavoritesFromCloud,
+    saveFavoritesToCloud
 } from './favorites';
 
 export {

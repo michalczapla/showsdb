@@ -48,3 +48,11 @@ export const updateWatched = (show, episodeID) => {
         show: {show: show, episodeID: episodeID}
     }
 }
+
+export const getFavoritesFromCloud = () => {
+
+}
+
+export const saveFavoritesToCloud = () => {
+    
+}

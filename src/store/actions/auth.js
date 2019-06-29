@@ -23,7 +23,9 @@ export const auth = (email, pass, newUser=true) => {
         .then(response=> {
             // console.log('[response] :' + response);
             dispatch(authSuccess({...response.data, justCreated: newUser}));   //, ...{justCreated: newUser})
+            
             // console.log({...response.data, justCreated: newUser});
+
         })
         .catch(err=>{
             // console.log('[error] :' + err);
@@ -33,22 +35,44 @@ export const auth = (email, pass, newUser=true) => {
     }
 }
 
+const getDataFromCloud = (localId, token) =>{
+    return dispatch => {
+        axios.get('https://showsdb-787d1.firebaseio.com/'+localId+'.json?auth='+token)
+        .then(response=>{
+            console.log(response.data);
+            dispatch(saveData(response.data))
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
+}
+
 //pobranie danych z local storage - w przypadku wcześniejszego zalogowania
 export const getLoginDataFromLocalStorage = () => {
    return dispatch => {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('userId');
-        console.log(token);
-        console.log(user);
-        if (token && user) {
-            dispatch(authSuccess({idToken:token, email: user}));
+        const localId = localStorage.getItem('localId');
+        // console.log(token);
+        // console.log(user);
+        if (token && user && localId) {
+            dispatch(authSuccess({idToken:token, email: user, localId: localId}));
         }
+    }
+}
+
+export const saveData = (favorites) => {
+    return {
+        type: ActionType.REPLACE_FAVORITES,
+        favorites: favorites
     }
 }
 
 export const authLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('localId');
 
     return {
         type: ActionType.AUTH_LOGOUT
@@ -62,14 +86,23 @@ const authStart = () => {
 }
 
 const authSuccess = (authData) => {
-    
+    return dispatch => {
     localStorage.setItem('token',authData.idToken);
     localStorage.setItem('userId',authData.email);
+    localStorage.setItem('localId',authData.localId);
+
+    dispatch(getDataFromCloud(authData.localId, authData.idToken));
     
+    dispatch(authSuccessCreator(authData));
+    }
+}
+
+const authSuccessCreator = (authData) => {
     return {
         type: ActionType.AUTH_SUCCESS,
         token: authData.idToken,
         userId: authData.email,
+        localId: authData.localId,
         justCreated: authData.justCreated
     }
 }

@@ -25,6 +25,18 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 favorites: favorites
             }
+        //zamiana ulubioych pobranymi z RESTapi
+        case ActionTypes.REPLACE_FAVORITES:
+        favorites.replaceFavorites(action.favorites);    
+        // favorites.favorites=action.favorites.favorites;
+        // favorites.lastUpdate=action.favorites.lastUpdate;
+        console.log('reducer');
+        console.log(action.favorites);
+        console.log(favorites.favorites);
+        return {
+                ...state,
+                favorites: favorites
+            }
         // ustawienie konfiguracji (TMDB - ścięzki do plików obrazków) 
         case ActionTypes.SET_CONFIGURATION:
                 return {
@@ -77,6 +89,7 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 episodesInSeason: action.episodes
             }
+        
         default:
         return state;   
     }  

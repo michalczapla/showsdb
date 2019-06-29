@@ -29,6 +29,8 @@ export const fetchCurrentShow = (id) => {
                 currentShow=null;
             }
             dispatch(saveCurrentShow(currentShow));
+        } else {
+            dispatch(saveCurrentShow(null));
         };
     }
 }

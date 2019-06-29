@@ -22,6 +22,34 @@ addOrRemoveFavorite = (show)=> {
     
 }
 
+clearFavorites = () => {
+    this.favorites.splice(0,this.favorites.length);
+}
+
+replaceFavorites = (favorites)=> {
+    this.clearFavorites();
+    if (favorites.favorites) {
+        console.log('replaceFav: ');
+        console.log(favorites);
+        favorites.favorites = favorites.favorites.map((el)=>{
+            if (!el.watched)
+            el.watched=[];
+            return el;
+        })
+        
+        // this.favorites = favorites.favorites;
+
+        favorites.favorites.forEach(el=>{
+            this.favorites.push(el);
+        })
+
+
+        this.lastUpdate = favorites.lastUpdate;
+        console.log(favorites.favorites);
+        return favorites;
+    }
+}
+
 addEpisodesToShow = (showID, episodes) => {
     if (showID && episodes) {
         for (let show of this.favorites) {
@@ -78,6 +106,7 @@ markAll=(showDetails,episodeArray,markAllWatched) => {
 
 ifAllWatched = (showID, episodeArray) => {      // zwraca 1 kiedy wszystkie sa zaznaczona, a -1 kiedy wszystkie sa odznaczone. 0 kiedy sa pomieszane
     if (showID && episodeArray) {
+        
         const show = this.favorites.find(el=>el.id===showID);
         
         if (typeof show === 'undefined' || typeof show.watched === 'undefined')
@@ -113,7 +142,7 @@ getFavorites() {
 
 getWatchedForShow = (showID) => {
     const show = this.favorites.find(el=>el.id===showID);
-    if (typeof show.watched === 'undefined')
+    if (!show || typeof show.watched === 'undefined')
             return 0;
 
     return show.watched;

@@ -24,11 +24,12 @@ addOrRemoveFavorite = (show)=> {
 
 clearFavorites = () => {
     this.favorites.splice(0,this.favorites.length);
+    this.saveData();
 }
 
 replaceFavorites = (favorites)=> {
     this.clearFavorites();
-    if (favorites.favorites) {
+    if (favorites && favorites.favorites) {
         console.log('replaceFav: ');
         console.log(favorites);
         favorites.favorites = favorites.favorites.map((el)=>{

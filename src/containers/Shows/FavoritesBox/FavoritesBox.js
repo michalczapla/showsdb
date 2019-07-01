@@ -9,33 +9,16 @@ const FavoritesBox = (props) => {
     
     const [saving, setSaving] = useState(false);
 
-    const saveFavoritesToCloud = (favorites, localId, token) => {
-        console.log('Saving favorites to cloud');
-        // console.log(favorites);
-        axios.put('https://showsdb-787d1.firebaseio.com/'+localId+'.json?auth='+token, favorites)
-        .then(response=>{
-            // console.log(response.data);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    }
-
-    const getFavoritesFromCloud = () => {
-        // console.log('Getting favorites from cloud');
-    }
-
-
     useEffect(()=>{
-        
-       if (props.localId && props.favorites) {
-            setSaving(true);
-
-           saveFavoritesToCloud(props.favorites, props.localId, props.token);
-
-            setSaving(false)
-        } 
+    if (props.localId && props.favorites.favorites) {
+        setSaving(true);
+ 
+        props.saveFavoritesToCloud(props.favorites, props.localId, props.token);
+ 
+        setSaving(false)
+     } 
     },[props.favorites, props.localId]);
+
     
     let favoritesList = null;
     if (props.favorites.favorites && props.configuration){
@@ -71,9 +54,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         saveFavoritesToCloud: dispatch()
-//     }
-// }
-export default connect(mapStateToProps)(FavoritesBox);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveFavoritesToCloud: (favorites, localId, token) => dispatch(ActionCreator.saveFavoritesToCloud(favorites, localId, token))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesBox);

@@ -12,7 +12,7 @@ export {
     fetchEpisodesForSeason,
     updateAllWatchedEpisodes,
     updateWatched,
-    getFavoritesFromCloud,
+    clearFavorites,
     saveFavoritesToCloud
 } from './favorites';
 

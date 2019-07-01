@@ -9,6 +9,9 @@ import * as Mappers from '../../helpers/mappers';
 import * as ActionTypes from '../../store/actions/actionTypes';
 import TimelineBuilder from './TimelineBuilder/TimelineBuilder';
 import cloneDeep from 'lodash/cloneDeep';
+import * as ActionCreator from '../../store/actions/index';
+
+import TimelineEmptyPng from '../../assets/images/timeline_empty.png';
 
 const Timeline = (props) => {
 
@@ -22,12 +25,13 @@ const Timeline = (props) => {
 
     // sprawdzenie przy montowaniu komponentu - ustawienie zmiennych do wyświetlania postępu
     useEffect(()=>{
- 
-        if (props.favorites.lastUpdate === 0) {
+        
+        if (props.favorites.lastUpdate === 0 && props.favorites.favorites.length!==0) {
             setUpdateRequired(true);
             // setTotalShows(props.favorites.favorites.length);
             setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
         } else {
+            // console.log('refreshed');
             setUpdateRequired(false);
             // const gr = mapEpisodesForProperGroups();
             setGroups(mapShowsForProperGroups());
@@ -36,7 +40,7 @@ const Timeline = (props) => {
         
        
 
-    },[])
+    },[props.favorites])
 
     const getAxiosData = async (id, season) => {
         return await axios(`https://api.themoviedb.org/3/tv/${id}/season/${season}?api_key=${api_key}`);
@@ -68,10 +72,11 @@ const Timeline = (props) => {
         // console.log(mapEpisodesForProperGroups());
         setUpdateRequired(false);
         setGroups(mapShowsForProperGroups());
-        
+        props.saveFavoritesToCloud(props.favorites,props.localId,props.token);  //zapisanie w chmurze
     }
 
     const mapShowsForProperGroups = () => {
+
         if (props.favorites.favorites) {
             const today = new Date();
             
@@ -194,12 +199,32 @@ const Timeline = (props) => {
             //         for (let showTimeline)
             //     }
             // }
-            console.log(groups);
+            // console.log('groups:');
+            // console.log(groups);
             return groups;
             
         }
     };
     
+    const content = ()=> {
+        if (props.favorites.favorites.length!==0) {
+            return (
+                <section className={classes.TimelineContainer}>
+                    <div className={classes.Timeline}>
+                         <TimelineBuilder shows={groups} />
+                    </div>
+                </section>
+            )
+        } else {
+            return (
+                <section className={classes.TimelineEmptyContainer}>
+                    <img className={classes.TimelineEmpty} src={TimelineEmptyPng} alt='Please add favorites to see timeline!' />
+                </section>
+            )
+        }
+    }
+
+
     return (
         <>
         {loading ? <div style={{marginTop: 60}}><Loader /></div> : 
@@ -210,11 +235,7 @@ const Timeline = (props) => {
                 <div><button onClick={updateEpisodesData}>Zaktualizuj</button></div>
             </Modal> : null}
             
-            <section className={classes.TimelineContainer}>
-            <div className={classes.Timeline}>
-               <TimelineBuilder shows={groups} />
-            </div>
-            </section>
+           {content()}
             </>
         }
         </>
@@ -226,13 +247,17 @@ const Timeline = (props) => {
 const mapStateToProps = state => {
     return {
       favorites: state.main.favorites,
-      configuration: state.main.configuration
+      configuration: state.main.configuration,
+      localId: state.auth.localId,
+      token: state.auth.token
     }
   }
   
   const mapDispatchToProps = dispatch => {
     return {
-        addEpisodes: (showID, episodes) => dispatch({type: ActionTypes.ADD_EPISODES_TO_SHOW, show: {showID: showID, episodes: episodes}})
+        addEpisodes: (showID, episodes) => dispatch({type: ActionTypes.ADD_EPISODES_TO_SHOW, show: {showID: showID, episodes: episodes}}),
+        saveFavoritesToCloud: (favorites, localId, token) => dispatch(ActionCreator.saveFavoritesToCloud(favorites, localId, token))
+        
     }
   }
   

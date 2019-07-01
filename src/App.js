@@ -32,6 +32,14 @@ const App = (props) => {
     );
 }
 
+// const mapStateToProps = (state)=> {
+//   return {
+//     favorites: state.main.favorites,
+//     localId: state.auth.localId,
+//     token: state.auth.token
+//   }
+// }
+
 const mapDispatchToProps = dispatch => {
   return {
     setConfiguration: () => dispatch(ActionCreator.fetchConfiguration()),

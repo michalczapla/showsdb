@@ -19,6 +19,7 @@
 .env.production.local
 APIKey.js
 APIKey_firebase.js
+/graphic_workings
 
 npm-debug.log*
 yarn-debug.log*

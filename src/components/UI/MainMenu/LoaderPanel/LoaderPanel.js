@@ -66,6 +66,10 @@ const LoaderPanel = (props) => {
         setPass({...pass, value: event.target.value, touched:true, valid:isValid});
         // console.log(event.target.value);
     }
+    const logoutHandler = () => {
+        props.authLogout();
+        props.authClear();
+    }
 
     let pageContent = <Loader small/>;
     if(!props.loading && props.userId) {
@@ -73,7 +77,7 @@ const LoaderPanel = (props) => {
         pageContent = (<div className={classes.LoginInfo}>
             <ContactIcon color='white' fontSize='1.8em'/>
             {props.userId}
-            <button className={classes.LogoutButton} onClick={props.authLogout}>Logout</button>
+            <button className={classes.LogoutButton} onClick={logoutHandler}>Logout</button>
             </div>);
 
     } else if (!props.loading) {
@@ -109,7 +113,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // authNewUser: (username, pass) => dispatch(ActionCreator.auth(username, pass)),
         authUser: (username, pass, newUser) => dispatch(ActionCreator.auth(username, pass, newUser)),
-        authLogout: () => dispatch(ActionCreator.authLogout())
+        authLogout: () => dispatch(ActionCreator.authLogout()),
+        authClear: () => dispatch(ActionCreator.clearFavorites())
     }
 }
 

@@ -1,5 +1,6 @@
 import * as ActionTypes from './actionTypes';
 import axios from '../../helpers/axios-external';
+import axiosFirebase from '../../helpers/axios-firebase';
 import api_key from '../../helpers/APIKey';
 // import * as Mapper from '../../helpers/mappers';
 
@@ -49,10 +50,31 @@ export const updateWatched = (show, episodeID) => {
     }
 }
 
-export const getFavoritesFromCloud = () => {
-
+export const clearFavorites = () => {
+    return {
+        type: ActionTypes.CLEAR_FAVORITES
+    }
 }
 
-export const saveFavoritesToCloud = () => {
-    
+export const saveFavoritesToCloud = (favorites, localId, token) => {
+        return dispatch => {
+            if (favorites && localId && token) {
+            console.log('Saving favorites to cloud');
+            // console.log(favorites);
+            axiosFirebase.put('https://showsdb-787d1.firebaseio.com/'+localId+'.json?auth='+token, favorites)
+            .then(response=>{
+                // console.log(response.data);
+                dispatch(saveFavorites());
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+            }
+        }
+}
+
+const saveFavorites = () => {
+    return {
+        type: ActionTypes.SAVE_FAVORITES_TO_CLOUD
+    }
 }

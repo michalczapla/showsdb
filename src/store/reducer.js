@@ -28,12 +28,17 @@ const reducer = (state=initialState, action) => {
         //zamiana ulubioych pobranymi z RESTapi
         case ActionTypes.REPLACE_FAVORITES:
         favorites.replaceFavorites(action.favorites);    
-        // favorites.favorites=action.favorites.favorites;
-        // favorites.lastUpdate=action.favorites.lastUpdate;
         console.log('reducer');
         console.log(action.favorites);
         console.log(favorites.favorites);
         return {
+                ...state,
+                favorites: favorites
+            }
+        //wyczyszczenie listy uubionych
+        case ActionTypes.CLEAR_FAVORITES:
+            favorites.clearFavorites();
+            return {
                 ...state,
                 favorites: favorites
             }
@@ -89,7 +94,10 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 episodesInSeason: action.episodes
             }
-        
+        case ActionTypes.SAVE_FAVORITES_TO_CLOUD:
+            return {
+                ...state
+            }
         default:
         return state;   
     }  

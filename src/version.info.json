@@ -3,7 +3,6 @@
     [
         "### TODO",
         "",
-        "AUTORYZACJA - timout dla tokena",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
@@ -28,6 +27,7 @@
     [
         "### DONE",
         "",
+        "06.07.2019 - AUTORYZACJA - timout dla tokena",
         "29.06.2019 - AUTORYZACJA - obsługa timieline",
         "29.06.2019 - AUTORYZACJA - walidacja po stronie klienta",
         "29.06.2019 - AUTORYZACJA - obsługa zwróconych błędów",

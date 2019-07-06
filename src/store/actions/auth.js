@@ -23,7 +23,7 @@ export const auth = (email, pass, newUser=true) => {
         .then(response=> {
             // console.log('[response] :' + response);
             dispatch(authSuccess({...response.data, justCreated: newUser}));   //, ...{justCreated: newUser})
-            
+            dispatch(checkTokenExpiration(response.data.expiresIn));
             // console.log({...response.data, justCreated: newUser});
 
         })
@@ -32,6 +32,15 @@ export const auth = (email, pass, newUser=true) => {
             dispatch(authFail(err.response.data.error));
         })
         
+    }
+}
+
+const checkTokenExpiration = (expirationPeriod) => {
+    return dispatch => {
+        setTimeout(()=>{
+            console.log('User logged out due to time out');
+            dispatch(authLogout());
+        },expirationPeriod*1000);
     }
 }
 

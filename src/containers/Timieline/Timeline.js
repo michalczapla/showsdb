@@ -92,7 +92,9 @@ const Timeline = (props) => {
                             else if (!episode.air_date)
                                 return false;
 
-                            const diffDays = Math.ceil((Math.abs(today.getTime() - new Date(episode.air_date).getTime()))/(1000*60*60*24));
+                            // const diffDays = Math.ceil((Math.abs(today.getTime() - new Date(episode.air_date).getTime()))/(1000*60*60*24));
+                            const diffDays = Math.ceil((today.getTime() - new Date(episode.air_date).getTime())/(1000*60*60*24));
+                        // console.log('E' + episode.episode_number + ' S'+episode.season_number);
                         // console.log(diffDays);    //zwraca różnicę w dniach
                         if (diffDays>30 && direction===1) 
                             return episode;
@@ -200,7 +202,7 @@ const Timeline = (props) => {
             //     }
             // }
             // console.log('groups:');
-            // console.log(groups);
+            console.log(groups);
             return groups;
             
         }

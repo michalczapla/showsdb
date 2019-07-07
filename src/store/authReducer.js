@@ -24,6 +24,8 @@ const authSuccess = (state, action) => {
         token: action.token,
         userId: action.userId,
         localId: action.localId,
+        expiresIn: action.expiresIn,
+        timestamp: action.timestamp,
         error: null,
         loading: false,
         justCreated: action.justCreated

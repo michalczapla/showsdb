@@ -22,8 +22,9 @@ export const auth = (email, pass, newUser=true) => {
         axios.post(url,payloadAuth)
         .then(response=> {
             // console.log('[response] :' + response);
-            dispatch(authSuccess({...response.data, justCreated: newUser}));   //, ...{justCreated: newUser})
-            dispatch(checkTokenExpiration(response.data.expiresIn));
+            const timestamp = new Date(Date.now());
+            dispatch(authSuccess({...response.data, justCreated: newUser, timestamp: timestamp}));   //, ...{justCreated: newUser})
+            dispatch(checkTokenExpiration(response.data.expiresIn, timestamp));
             // console.log({...response.data, justCreated: newUser});
 
         })
@@ -35,12 +36,16 @@ export const auth = (email, pass, newUser=true) => {
     }
 }
 
-const checkTokenExpiration = (expirationPeriod) => {
+const checkTokenExpiration = (expirationPeriod, timestamp) => {
     return dispatch => {
         setTimeout(()=>{
-            console.log('User logged out due to time out');
-            dispatch(authLogout());
-        },expirationPeriod*1000);
+            const valid = (new Date(Date.parse(timestamp)+parseInt(expirationPeriod)*1000)>new Date()) ? true : false;
+            if (valid) {
+                dispatch(authLogout());
+                console.log('User logged out due to time out');
+            }
+
+        },expirationPeriod*1000+100);
     }
 }
 
@@ -57,17 +62,22 @@ const getDataFromCloud = (localId, token) =>{
     }
 }
 
-//pobranie danych z local storage - w przypadku wcześniejszego zalogowania
+//pobranie danych z local storage - w przypadku wcześniejszego zalogowania i sprawdzenie wygasnięcia tokena
 export const getLoginDataFromLocalStorage = () => {
    return dispatch => {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('userId');
         const localId = localStorage.getItem('localId');
-        // console.log(token);
-        // console.log(user);
-        if (token && user && localId) {
-            dispatch(authSuccess({idToken:token, email: user, localId: localId}));
+        const expiresIn = localStorage.getItem('expiresIn');
+        const timestamp = localStorage.getItem('timestamp');
+        const valid = (new Date(Date.parse(timestamp)+parseInt(expiresIn)*1000)>new Date()) ? true : false;
+        // console.log(timestamp);
+        // console.log(new Date(Date.parse(timestamp)+parseInt(expiresIn)*1000));
+        // console.log(valid);
+        if (token && user && localId && valid) {
+            dispatch(authSuccess({idToken:token, email: user, localId: localId, expiresIn: expiresIn, timestamp: timestamp}));
         }
+
     }
 }
 
@@ -82,6 +92,8 @@ export const authLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('localId');
+    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('timestamp');
 
     return {
         type: ActionType.AUTH_LOGOUT
@@ -99,6 +111,9 @@ const authSuccess = (authData) => {
     localStorage.setItem('token',authData.idToken);
     localStorage.setItem('userId',authData.email);
     localStorage.setItem('localId',authData.localId);
+    localStorage.setItem('expiresIn',authData.expiresIn);
+    localStorage.setItem('timestamp',authData.timestamp);
+
 
     dispatch(getDataFromCloud(authData.localId, authData.idToken));
     
@@ -112,6 +127,8 @@ const authSuccessCreator = (authData) => {
         token: authData.idToken,
         userId: authData.email,
         localId: authData.localId,
+        expiresIn: authData.expiresIn,
+        timestamp: authData.timestamp,
         justCreated: authData.justCreated
     }
 }

@@ -226,6 +226,9 @@ const Timeline = (props) => {
         }
     }
 
+    const cancelButtonHandler = () => {
+        props.history.push({pathname: '/'});
+    }
 
     return (
         <>
@@ -233,8 +236,10 @@ const Timeline = (props) => {
            <>
            {updateRequired ? <Modal show title='Update required'>
                 <div>Episodes info needs to be updated, proceed? (this make takes couple of time)</div>
-                <div>{totalSeasons}</div>
-                <div><button onClick={updateEpisodesData}>Zaktualizuj</button></div>
+                <div>
+                    <button className={[classes.Button, classes.Proceed].join(' ')} onClick={updateEpisodesData}>Proceed</button>
+                    <button className={[classes.Button, classes.Cancel].join(' ')} onClick={cancelButtonHandler}>Cancel</button>
+                </div>
             </Modal> : null}
             
            {content()}

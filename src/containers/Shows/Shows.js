@@ -11,28 +11,32 @@ import * as ActionCreator from '../../store/actions/index';
 const Shows = (props) => {
 
   useEffect(()=>{
-    if (props.configuration && props.favorites && props.match.params.id && parseInt(props.match.params.id) !== props.currentShowID) {
+    if (props.configuration && props.favorites && props.match.params.id && (parseInt(props.match.params.id) !== props.currentShowID)) {
+      console.log('different id');
+      console.log(props.match.params.id);
       props.setCurrentShowID(props.match.params.id);
-      // console.log('different id');
-      // console.log(props.match.params.id);
     } else if (!props.match.params.id) {
+      console.log('clearing');
       props.setCurrentShow(null);
+      props.setCurrentShowID(null);
     }
   },[props]);
 
     return (
-      <section className={classes.Shows}>
+      <section className={[classes.Shows, props.favorites.favorites.length===0 ? classes.Shows2columns : null].join(' ')}>
             
             <div>
-              <SearchBox title="showsDB v0.6.93 r" />
+              <SearchBox title="showsDB v0.6.94 r" />
             </div>
             <div>
               <DetailsBox />
             </div>
+            
+            {props.favorites.favorites.length===0 ? null : 
             <div className={classes.FavoritesContainer}>
               <FavoritesBox />
             </div>
-
+            }
       </section>
     );
 }

@@ -39,10 +39,12 @@ const FavoritesBox = (props) => {
                 />)});
     }
     
-    return(<div className={classes.FavoritesBox}>
+    return(
+    <div className={classes.FavoritesBox}>
         <div className={classes.Title}>Favorites</div>
         {favoritesList}
-    </div>)
+    </div>
+    )
 };
 
 const mapStateToProps = (state) => {

@@ -6,7 +6,9 @@
         margin-top:3.5em;
         box-sizing: border-box;
 }
-
+.Shows2columns {
+    grid-template-columns: 25% auto;
+}
 
 @media (max-width: 1200px) {
         .Shows {

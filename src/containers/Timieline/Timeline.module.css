@@ -134,6 +134,28 @@ grid-template-columns: auto;
     overflow: hidden;
 }
 
+.Button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  color: white;
+  border: none;
+  border-right: 4px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Button.Proceed {
+  background-color: rgb(5, 93, 31);
+}
+
+.Button.Cancel {
+  background-color: rgb(93, 5, 20);
+}
+
+.Button:hover {
+  border-right: 4px solid #ffd700;
+}
+
 
 /* media queries i zmiana pozycjonowania na prawe */
 @media screen and (max-width: 1030px) {

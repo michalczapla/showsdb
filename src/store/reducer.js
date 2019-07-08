@@ -37,6 +37,7 @@ const reducer = (state=initialState, action) => {
             }
         //wyczyszczenie listy uubionych
         case ActionTypes.CLEAR_FAVORITES:
+            favorites.lastUpdate = 0;  
             favorites.clearFavorites();
             return {
                 ...state,

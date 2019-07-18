@@ -1,0 +1,70 @@
+.TrendBox {
+    min-height: 180px;
+    background-color: #022c43;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.TrendBoxHeader {
+    height: 120px;
+    width: 100%;
+    min-width: 300px;
+    background-image: linear-gradient(-225deg, #01141f, #053f5e);
+    margin:0 auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+}
+
+.TrendBoxHeaderImage {
+    margin:0 auto;
+    width: 100%;
+    height: 120px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    object-fit: cover;
+    object-position: top; 
+}
+
+.TrendBoxHeaderTitleShadow{
+    display: flex;
+    padding:0px 20px;
+    height: 30px;
+    align-content: right; 
+    position: absolute;
+    bottom:0px;
+    right:0px;
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.8); 
+    width: 100%; 
+}
+
+.TrendBoxHeaderTitleText {
+
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.TrendBoxFooter {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+.TrendBoxDescription {
+    font-size: 0.8em;
+    padding: 5px 10px;
+}
+
+.TrendBoxMetaData {
+    font-size: 0.8em;
+    background: rgba(0, 0, 0, 0.2); 
+    padding:3px 8px;
+    border-bottom-right-radius: 5px;
+}

@@ -3,6 +3,7 @@
     [
         "### TODO",
         "",
+        "Media Queries dla menu",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",

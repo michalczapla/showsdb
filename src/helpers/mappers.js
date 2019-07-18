@@ -116,3 +116,33 @@ const mapRecommendation = (recomm) => {
 
     return acceptedRecomm;
 }
+
+//Mapowanie lisy polecanych z tygodnia (landing page)
+export const mapTrendings = (trending) => {
+    if (trending) {
+        const acceptedTrendingArray = [];
+        for (let trend of trending) {
+            acceptedTrendingArray.push(mapTrend(trend));
+        }
+        return acceptedTrendingArray;
+    }
+}
+
+const mapTrend = (trend) => {
+    const acceptedTrend ={
+        original_name: trend.original_name,
+        id: trend.id,
+        name: trend.name,
+        vote_count: trend.vote_count,
+        vote_average: trend.vote_average,
+        first_air_date: trend.first_air_date,
+        poster_path: trend.poster_path,
+        genre_ids: trend.genre_ids,
+        original_language: trend.original_language,
+        backdrop_path: trend.backdrop_path,
+        overview: trend.overview,
+        origin_country: trend.origin_country,
+        popularity: trend.popularity
+    }
+    return acceptedTrend;
+}

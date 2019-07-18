@@ -12,7 +12,7 @@
 
 @media (max-width: 1200px) {
         .Shows {
-            grid-template-columns: auto auto;
+            grid-template-columns: 30% auto;
         }
         .FavoritesContainer {
             grid-column: 1/3;

@@ -19,7 +19,7 @@ const RecommendationBox =(props)=> {
     const [selectedRecommendation, setSelectedRecommendation] = useState({description: null, vote: null, id: -1, origin_country:null, genre_ids: null});
     const [pagination, setPagination] = useState({actualPage:1, from:0, to:5});
 
-    const getRecommendations = async (id) => {
+    let getRecommendations = async (id) => {
         setLoading(true);
         
         if (id!==null) {
@@ -36,7 +36,9 @@ const RecommendationBox =(props)=> {
     }
 
     useEffect(()=>{
+        if (props.currentShowID!==null) {
         getRecommendations(props.currentShowID);
+        } 
     },[props.currentShowID]);
 
     const onMouseOverHandler = (description, vote, id, origin_country, genre_ids) => {

@@ -14,9 +14,6 @@
     [
         "### ERRORS",
         "",
-        "przejscie z timeline z powrotem do home, kiedy wczesniej byl wyswietlony serial nie pozwala na zmiane wyswietlanego sezonu i nie pokazuje proponowanych",
-        "dodanie lub usuiecie zaznaczenia obejrzanego odcinka nie zmienia statusu TIMELINE - do odświeżenia",
-        "kiedy nazwa serialu jest długa, favorite item może się rozjechać",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
         "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić - BŁĄD POWODUJE WITHERRORHANDLER",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
@@ -27,6 +24,10 @@
     [
         "### DONE",
         "",
+        "20.07.2019 - FIX: Bardzo duża ilośc usprawnień, funckjonowania, logiki i optymalizacji",
+        "20.07.2019 - FIX:dodanie lub usuiecie zaznaczenia obejrzanego odcinka nie zmienia statusu TIMELINE - do odświeżenia",
+        "20.07.2019 - FIX: kiedy nazwa serialu jest długa, favorite item może się rozjechać",
+        "20.07.2019 - FIX: przejscie z timeline z powrotem do home, kiedy wczesniej byl wyswietlony serial nie pozwala na zmiane wyswietlanego sezonu i nie pokazuje proponowanych",
         "20.07.2019 - Media Queries dla menu",
         "20.07.2019 - Landing Page (główna strona) - dokończyć",
         "06.07.2019 - AUTORYZACJA - timout dla tokena",

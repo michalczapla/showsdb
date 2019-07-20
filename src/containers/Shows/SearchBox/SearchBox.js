@@ -143,4 +143,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(SearchBox, axios));
+// export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(SearchBox, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

@@ -51,6 +51,7 @@ const reducer = (state=initialState, action) => {
                 }
         // Dodanie lub usunięcie odcinka z obejrzanych
         case ActionTypes.ADD_OR_REMOVE_WATCHED_EPISODE:
+                favorites.lastUpdate = 0; //powoduje iz za kazdym nacisnieciem opcji wymusi odswiezenie TIMELINE  
             favorites.addOrRemoveWatched(action.show.show, action.show.episodeID);
             return {
                 ...state,
@@ -58,13 +59,15 @@ const reducer = (state=initialState, action) => {
             }
         // usatwienie aktualnego odcinka (główny odcinek wyświetlany w szczegółach)
         case ActionTypes.SET_CURRENT_SHOW_ID:
-            return {
-                ...state,
-                currentShowID: action.id,
-                episodesInSeason: null      //czyści pobrane odcinki w wyświetlonym sezonie
-            }
+                return {
+                    ...state,
+                    currentShowID: action.id,
+                    episodesInSeason: null      //czyści pobrane odcinki w wyświetlonym sezonie
+                }
+            
         // zaznaczenie wszystkich odcinków jako obejrzanych
         case ActionTypes.MARK_ALL_EPISODE_WATCHED:
+                favorites.lastUpdate = 0;   //powoduje iz za kazdym nacisnieciem opcji wymusi odswiezenie TIMELINE 
             favorites.markAll(action.show.show, action.show.episodesArray, action.show.markAllWatched);
             return {
                 ...state,
@@ -83,11 +86,18 @@ const reducer = (state=initialState, action) => {
         case ActionTypes.SET_CURRENT_SHOW:
             // const currentShowID = (action.currentShow===null) ? null : (action.id) ? action.id : state.currentShowID; //jezeli nie zostana pobrane dane serialu, rowniez ID wyswietlanego serialu musi pozostac puste
             const currentShowID = (action.currentShow===null) ? null : state.currentShowID; //jezeli nie zostana pobrane dane serialu, rowniez ID wyswietlanego serialu musi pozostac puste
-            return {
-                ...state,
-                currentShow: action.show,
-                currentShowID: currentShowID
-            }
+            // if (state.currentShowID!==null) {
+                return {
+                    ...state,
+                    currentShow: action.show,
+                    currentShowID: currentShowID
+                }
+            // } 
+            // else {
+            //     return {
+            //         ...state
+            //     }
+            // }
       
         //zapisanie listy odcinków z przeglądanego sezonu
         case ActionTypes.SET_EPISODES_IN_SEASON:

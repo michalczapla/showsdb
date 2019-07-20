@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import SearchBox from './SearchBox/SearchBox';
 import DetailsBox from './DetailsBox/DetailsBox';
 import FavoritesBox from './FavoritesBox/FavoritesBox';
@@ -7,33 +7,71 @@ import {connect} from 'react-redux';
 // import * as ActionTypes from '../../store/actions/actionTypes';
 import * as ActionCreator from '../../store/actions/index';
 import LandingPage from '../../components/LandingPage/LandingPage';
+import Loader from '../../components/UI/Loading/Loading';
 
 
 const Shows = (props) => {
 
-  useEffect(()=>{
-    if (props.configuration && props.favorites && props.match.params.id && (parseInt(props.match.params.id) !== props.currentShowID)) {
-      console.log('different id');
-      console.log(props.match.params.id);
-      props.setCurrentShowID(props.match.params.id);
-    } else if (!props.match.params.id) {
-      console.log('clearing');
-      // props.setCurrentShow(null);
-      // props.setCurrentShowID(null);
-      props.clearCurrentShowData();
+  // useEffect(()=>{
+  //   if (props.configuration && props.favorites && props.match.params.id && (parseInt(props.match.params.id) !== props.currentShowID)) {
+  //     console.log('different id');
+  //     console.log(props.match.params.id);
+  //     props.setCurrentShowID(props.match.params.id);
+  //   } else if (!props.match.params.id) {
+  //     console.log('clearing');
+  //     // props.setCurrentShow(null);
+  //     // props.setCurrentShowID(null);
+  //     props.clearCurrentShowData();
        
+  //   }
+  // },[props]);
+
+    //ponizsza metoda ma obsluzyc 3 sciezki:
+      // 1) uzytkownik wchodzi na strone od razu z paramatrem w adresie
+      // 2) uzytkownik otwiera strone z samym adresem - wtedy nie powinno się nic dziać
+      // 3) uzytkownik nawiguje i zostaje wybrany konkretny serial (moze nawigowac na to samo ID) 
+    useEffect(()=>{
+    
+      //sciezka 1 - ustawienie poranwgo ID
+      if ( props.currentShowID===null && (parseInt(props.match.params.id) !== props.currentShowID) && !isNaN(parseInt(props.match.params.id))){      //wywolanie kiedy uzytkownik wejdzie na stronie od razu podajc parametr
+        // props.setCurrentShowID(parseInt(props.match.params.id));
+        props.setCurrentShowID(parseInt(props.match.params.id));
+      }
+
+      //sciezka 3 - sprawdza czy nalezy sciagnac dane serialu
+      if ((props.currentShowID!==null && props.currentShow ===null) || (props.currentShow!==null && props.currentShowID!==props.currentShow.id)) {
+            getShowDetails(props.currentShowID);
+            }
+    },[props]);
+
+    const [loading, setLoading] = useState(false);
+
+    const getShowDetails = async (id) => {
+        setLoading(true);
+        await props.setCurrentShow(id);
+        setLoading(false);
+    };
+
+    const MainPage = () => {
+      if (loading || !props.configuration) {
+        return <div><Loader /></div>;
+      } else if (props.match.params.id) {
+        return <div><DetailsBox /></div>;
+      } else {
+        return <div><LandingPage /></div>;
+      }
     }
-  },[props]);
 
     return (
       <section className={[classes.Shows, props.favorites.favorites.length===0 ? classes.Shows2columns : null].join(' ')}>
             
             <div>
-              <SearchBox title="showsDB v0.7.00 r" />
+              <SearchBox title="showsDB v0.7.01 r" />
             </div>
             
-            {props.currentShowID ? <div><DetailsBox /></div> : <div><LandingPage /></div> }
-            
+            {/* {props.currentShowID ? <div><DetailsBox /></div> : <div><LandingPage /></div> } */}
+            {/* {props.match.params.id ? <div><DetailsBox /></div> : <div><LandingPage /></div> } */}
+            {MainPage()}
             {props.favorites.favorites.length===0 ? null : 
             <div className={classes.FavoritesContainer}>
               <FavoritesBox />
@@ -46,6 +84,7 @@ const Shows = (props) => {
 const mapStateToProps = (state)=> {
   return {
     currentShowID: state.main.currentShowID,
+    currentShow: state.main.currentShow,
     configuration: state.main.configuration,
     favorites: state.main.favorites
   }

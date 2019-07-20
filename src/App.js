@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Shows from './containers/Shows/Shows';
 import Timeline from './containers/Timieline/Timeline';
@@ -6,17 +6,23 @@ import Layout from './components/Layout/Layout';
 import {connect} from 'react-redux';
 import * as ActionCreator from './store/actions/index';
 // import Login from './containers/Login/Login';
+import Loader from './/components/UI/Loading/Loading';
 
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
 
 const App = (props) => {
+  const [loading, setLoading] = useState(true);
+
 
    useEffect(()=>{
-    props.setConfiguration();
-    props.getLoginDataFromLocalStorage();
-   },[props]);
+    setLoading(true);
+      props.setConfiguration();
+      props.getLoginDataFromLocalStorage();
+    setLoading(false);
+  },[props]);
     
     return (
+      (loading) ? <Loader /> :
       <div className="App">
         <BrowserRouter>
         <Layout>
@@ -34,9 +40,9 @@ const App = (props) => {
 
 // const mapStateToProps = (state)=> {
 //   return {
-//     favorites: state.main.favorites,
-//     localId: state.auth.localId,
-//     token: state.auth.token
+//     configuration: state.main.configuration
+//     // localId: state.auth.localId,
+//     // token: state.auth.token
 //   }
 // }
 

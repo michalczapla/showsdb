@@ -69,6 +69,7 @@ addOrRemoveWatched = (showDetails, episodeID) => {
 
 
         if (typeof show === 'undefined') {              //jezeli serial nie byl w ogole polubiony
+            this.lastUpdate = 0;
             show = this.addOrRemoveFavorite(showDetails);
         }
 
@@ -90,7 +91,8 @@ markAll=(showDetails,episodeArray,markAllWatched) => {
     if (showDetails && episodeArray) {
         let show = this.favorites.find(el=>el.id===showDetails.id);
             if (typeof show === 'undefined') {              //jezeli serial nie byl w ogole polubiony
-            show = this.addOrRemoveFavorite(showDetails);
+                this.lastUpdate = 0;
+                show = this.addOrRemoveFavorite(showDetails);
             }
         
         
@@ -103,6 +105,7 @@ markAll=(showDetails,episodeArray,markAllWatched) => {
             })
     
     }
+    
 }
 
 ifAllWatched = (showID, episodeArray) => {      // zwraca 1 kiedy wszystkie sa zaznaczona, a -1 kiedy wszystkie sa odznaczone. 0 kiedy sa pomieszane

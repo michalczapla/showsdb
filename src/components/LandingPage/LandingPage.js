@@ -7,6 +7,8 @@ import axios from '../../helpers/axios-external';
 import * as Mapper from '../../helpers/mappers';
 import Loader from '../UI/Loading/Loading';
 import {connect} from 'react-redux';
+import * as ActionCreator from '../../store/actions/index';
+import {Link} from 'react-router-dom';
 
 
 const LandingPage = (props) => {
@@ -16,6 +18,7 @@ const LandingPage = (props) => {
     useEffect(()=>{
         if (trending===null && props.configuration!==null) {
             getData();
+            console.log('refrsh');
         }
     },[props.configuration, trending]);
 
@@ -26,7 +29,7 @@ const LandingPage = (props) => {
         const response = await axios(details_request_url);
         if (typeof response !== 'undefined') {
             setTrending(Mapper.mapTrendings(response.data.results));
-            console.log(response.data.results);
+            // console.log(response.data.results);
         } else {
             setTrending(null);
         }
@@ -34,12 +37,19 @@ const LandingPage = (props) => {
         setLoading(false);
     };
 
+    const selectTradingHandler = (id) => {
+        console.log(id);
+        props.setCurrentShowID(id);
+    }
+
     const renderTrendings = () => {
         let trendingsComponents=null;
 
         if (!loading && trending) {
             trendingsComponents = trending.map(el=>(
-                <TrendBox key={el.id} show={el} configuration={props.configuration}/>
+               <div key={el.id}>
+                <Link to={'/'+el.id}><TrendBox show={el} configuration={props.configuration} clicked={(id)=>selectTradingHandler(id)}/>   </Link>
+               </div>
             ));
         } else if (loading) {
             trendingsComponents=<Loader />;
@@ -75,5 +85,11 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setCurrentShowID: (id) => dispatch(ActionCreator.setCurrentShowID(id))
+    }
+}
 
-export default connect(mapStateToProps)(LandingPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

@@ -19,6 +19,7 @@ const Shows = (props) => {
       console.log('clearing');
       props.setCurrentShow(null);
       props.setCurrentShowID(null);
+       
     }
   },[props]);
 
@@ -26,7 +27,7 @@ const Shows = (props) => {
       <section className={[classes.Shows, props.favorites.favorites.length===0 ? classes.Shows2columns : null].join(' ')}>
             
             <div>
-              <SearchBox title="showsDB v0.6.94 r" />
+              <SearchBox title="showsDB v0.6.99 r" />
             </div>
             <div>
               <DetailsBox />

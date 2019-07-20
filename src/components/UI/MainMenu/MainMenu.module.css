@@ -133,3 +133,9 @@ border-right: 4px solid #ffd700;
     border-right: 4px solid #012438;
     background-color: #2F4F4F;
 }
+
+@media (max-width:900px) {
+    .Logo {
+        display: none;
+    }
+}

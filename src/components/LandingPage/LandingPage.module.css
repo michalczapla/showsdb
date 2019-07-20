@@ -1,5 +1,13 @@
 .TrendingsContainer {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-column-gap: 5px;
+    grid-column-gap: 7px;
+    grid-row-gap: 7px;
+}
+
+@media (max-width:1000px) {
+    .TrendingsContainer {
+        grid-template-columns: 100%;
+        grid-row-gap: 7px;
+    }
 }

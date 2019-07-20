@@ -21,7 +21,7 @@ const MainMenu = (props) => {
                 <li>
                     <LoaderPanel />
                 </li>
-                <li className={classes.NavigationItemIcon}><a onClick={()=>setReactive(!reactive)}><MenuIcon color='white'/></a> </li>
+                <li><button className={classes.ButtonIcon} onClick={()=>setReactive(!reactive)}><MenuIcon color='white'/></button> </li>
             </ul>
         </nav>
     </header>

@@ -10,6 +10,12 @@ export const setCurrentShowID = (id) => {
     }
 }
 
+export const clearCurrentShowData = () => {
+    return {
+        type: ActionTypes.CLEAR_CURRENT_SHOW_DATA
+    }
+}
+
 const saveCurrentShow = (show) => {
     return {
         type: ActionTypes.SET_CURRENT_SHOW,

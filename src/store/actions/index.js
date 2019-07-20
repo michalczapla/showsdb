@@ -4,7 +4,8 @@ export {
 
 export {
     setCurrentShowID,
-    fetchCurrentShow
+    fetchCurrentShow,
+    clearCurrentShowData
 } from './currentShow';
 
 export {

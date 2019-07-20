@@ -43,6 +43,20 @@
     display: none;
 }
 
+
+.ButtonIcon {
+    background: none;
+    border: none;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    display: block;
+    cursor: pointer;
+    padding: 13px 20px 9px 20px;
+    transition: all 0.3s ease;
+}
+
+
 .NavigationItemIcon,
 .NavigationItem {
 /* box-sizing: border-box; */
@@ -53,9 +67,10 @@ align-items: center;
 margin: 0;
 }
 
+
 .NavigationItemIcon a {
-    padding: 13px 20px 9px 20px;
-    transition: all 0.3s ease;
+    /* padding: 13px 20px 9px 20px;
+    transition: all 0.3s ease; */
 }
 
 .NavigationItem a{
@@ -67,9 +82,9 @@ margin: 0;
     /* display:block; */
 }
 
-.NavigationItemIcon a:hover,
-.NavigationItemIcon a:active,
-.NavigationItemIcon a.active,
+.ButtonIcon:hover,
+.ButtonIcon:active,
+.ButtonIcon.active,
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active{
@@ -182,7 +197,7 @@ border-right: 4px solid #ffd700;
      float: none;
      width: 100%;
     }
-    .MenuReactive nav ul li.NavigationItemIcon:last-child {
+    .MenuReactive nav ul li .ButtonIcon {
         background-color: #02385773;
        }
     .MenuReactive .Logo {

@@ -17,7 +17,7 @@ const Timeline = (props) => {
 
     const [updateRequired, setUpdateRequired] = useState(true);
     // const [actualProgress, setActualProgress] = useState(0);
-    const [totalSeasons, setTotalSeasons] = useState(0);
+    // const [totalSeasons, setTotalSeasons] = useState(0);
     // const [totalShows, setTotalShows] = useState(-1);
     // const [totalEpisodes, setTotalEpisodes] = useState(-1);
     const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const Timeline = (props) => {
         if (props.favorites.lastUpdate === 0 && props.favorites.favorites.length!==0) {
             setUpdateRequired(true);
             // setTotalShows(props.favorites.favorites.length);
-            setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
+            // setTotalSeasons(props.favorites.favorites.reduce((acc, cur)=> {return acc + cur.number_of_seasons},0));
         } else {
             // console.log('refreshed');
             setUpdateRequired(false);

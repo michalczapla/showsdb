@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
-import LandingPage from '../../../components/LandingPage/LandingPage';
+// import LandingPage from '../../../components/LandingPage/LandingPage';
 import Loader from '../../../components/UI/Loading/Loading';
 import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
 import {connect} from 'react-redux';
@@ -21,7 +21,9 @@ const DetailsBox =(props)=> {
     };
 
     useEffect(()=>{
-        getShowDetails(props.currentShowID);
+        if (props.currentShowID!==null) {
+            getShowDetails(props.currentShowID);
+        }
     },[props.currentShowID]);
 
     if (loading) {
@@ -36,8 +38,10 @@ const DetailsBox =(props)=> {
         <RecommendationBox />
         
     </div>);
-    } else {
-        return (<LandingPage />);
+    } 
+    else {
+        // return (<LandingPage />);
+        return (null);
     }
 }
 
@@ -55,4 +59,5 @@ const mapStateToProps = state => {
 }
   
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(DetailsBox,axios));
+// export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(DetailsBox,axios));
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsBox);

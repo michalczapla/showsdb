@@ -99,6 +99,12 @@ const reducer = (state=initialState, action) => {
             return {
                 ...state
             }
+        case ActionTypes.CLEAR_CURRENT_SHOW_DATA:
+            return {
+                ...state,
+                currentShow: null,
+                currentShowID: null
+            }
         default:
         return state;   
     }  

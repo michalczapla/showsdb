@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
     auth: authReducer
 });
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const composeEnhacers = composeWithDevTools({trace:true, traceLimit:25});
+const store = createStore(rootReducer, composeEnhacers(applyMiddleware(thunk)));
 
 const app =(
     <Provider store={store}>

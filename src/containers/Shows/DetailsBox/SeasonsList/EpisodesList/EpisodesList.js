@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Episode from './Episode/Episode';
-import axios from '../../../../../helpers/axios-external';
+// import axios from '../../../../../helpers/axios-external';
 import Loader from '../../../../../components/UI/Loading/Loading';
-import withErrorHandler from '../../../../../components/withErrorHandler/withErrorHandler';
+// import withErrorHandler from '../../../../../components/withErrorHandler/withErrorHandler';
 import classes from './EpisodesList.module.css';
 import {connect} from 'react-redux';
 import * as ActionCreator from '../../../../../store/actions/index';
@@ -23,7 +23,8 @@ const EpisodesList = (props) => {
         if (props.activeSeasonID!==null) {
            getEpisodesForSeason();
         }
-    },[props.activeSeasonID])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[props.activeSeasonID]);
 
     // scrollToTop = () => {
     //     window.scrollTo(0,this.episodesRef.current.offsetTop);

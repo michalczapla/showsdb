@@ -1,23 +1,26 @@
-import React , {useEffect, useState} from 'react';
+import React , {useEffect} from 'react';
 import classes from './FavoritesBox.module.css';
 import Favorite from '../FavoritesBox/FavoriteItem/FavoriteItem';
 import {connect} from 'react-redux';
 import * as ActionCreator from '../../../store/actions/index';
-import axios from '../../../helpers/axios-firebase';
+// import axios from '../../../helpers/axios-firebase';
 
 const FavoritesBox = (props) => {
     
-    const [saving, setSaving] = useState(false);
+    // const [saving, setSaving] = useState(false);
 
     useEffect(()=>{
     if (props.localId && props.favorites.favorites) {
-        setSaving(true);
- 
+        
+        // setSaving(true);
+        // console.log(saving);
+
         props.saveFavoritesToCloud(props.favorites, props.localId, props.token);
  
-        setSaving(false)
+        // setSaving(false);
+        // console.log(saving);    
      } 
-    },[props.favorites, props.localId]);
+    },[props, props.favorites, props.localId]);
 
     
     let favoritesList = null;

@@ -1,7 +1,7 @@
 .Menu {
     background-color: #012438;
     width: 100%;
-    height: 3em;
+    /* height: 3em; */
     position: fixed;
     padding:0 50px;
     z-index: 90;
@@ -13,11 +13,14 @@
     /* display: flex; */
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
+
 
 .Logo {
     float: left;
-    height: 100%;
+    height: 3em;
     margin: 0 30px;
 }
 
@@ -36,33 +39,50 @@
     box-sizing: border-box;
 }
 
+.Menu nav ul li:last-child {
+    display: none;
+}
+
+.NavigationItemIcon,
 .NavigationItem {
 /* box-sizing: border-box; */
 display: flex;
 float:left;
-height: 100%;
+/* height: 100%; */
 align-items: center;
 margin: 0;
 }
 
+.NavigationItemIcon a {
+    padding: 13px 20px 9px 20px;
+    transition: all 0.3s ease;
+}
+
 .NavigationItem a{
     text-decoration: none;
-    height: 100%;
+    /* height: 100%; */
     padding: 16px 20px;
-    border-bottom: 2px solid transparent;
+    /* border-bottom: 2px solid transparent; */
     transition: all 0.3s ease;
     /* display:block; */
 }
+
+.NavigationItemIcon a:hover,
+.NavigationItemIcon a:active,
+.NavigationItemIcon a.active,
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active{
-    border-bottom: 2px solid #ffd700;
+    /* border-bottom: 2px solid #ffd700; */
     background-color: #023857;
     }
 
 .LoginPanel {
     float:right;
     display: flex;
+    /* display: grid;  
+    grid-template-columns: auto auto auto auto;
+    align-items: flex-end; */
     height: 3em;
 }
 
@@ -136,6 +156,47 @@ border-right: 4px solid #ffd700;
 
 @media (max-width:900px) {
     .Logo {
+        /* display: none; */
+    }
+    .Menu nav ul li:last-child {
+        display: flex;
+        position: absolute;
+        top:0;
+        right:0;
+    }
+    .Menu nav ul li:not(:last-child) {
         display: none;
+    }
+
+    .MenuReactive {
+        /* position: relative; */
+        /* display: block; */
+        overflow: initial;
+        height: auto;
+        padding: 0 0 10px 0;
+
+    }
+
+    .MenuReactive nav ul li:not(:last-child) {
+     display: flex;
+     float: none;
+     width: 100%;
+    }
+    .MenuReactive nav ul li.NavigationItemIcon:last-child {
+        background-color: #02385773;
+       }
+    .MenuReactive .Logo {
+        float: none;
+    }
+    .LoginPanel {
+    padding: 0 0 0 10px;
+    }
+}
+
+@media (max-width:500px) {
+    .LoginPanel {
+        display: grid;  
+        grid-template-columns: auto auto;
+        align-items: flex-end;
     }
 }

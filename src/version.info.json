@@ -3,19 +3,18 @@
     [
         "### TODO",
         "",
-        "Media Queries dla menu",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
         "Dodać ostzreżenie przy susuwaniu ulubionych",
         "Dodać odsumowanie obejrzanych/nie obejrzanych dla sezonu",
-        "Dopracować ikonkę dodwania obejrzanego odcinka",
-        "Landing Page (główna strona) - dokończyć"
+        "Dopracować ikonkę dodwania obejrzanego odcinka"
     ],
     "errors":
     [
         "### ERRORS",
         "",
+        "przejscie z timeline z powrotem do home, kiedy wczesniej byl wyswietlony serial nie pozwala na zmiane wyswietlanego sezonu i nie pokazuje proponowanych",
         "dodanie lub usuiecie zaznaczenia obejrzanego odcinka nie zmienia statusu TIMELINE - do odświeżenia",
         "kiedy nazwa serialu jest długa, favorite item może się rozjechać",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
@@ -28,6 +27,8 @@
     [
         "### DONE",
         "",
+        "20.07.2019 - Media Queries dla menu",
+        "20.07.2019 - Landing Page (główna strona) - dokończyć",
         "06.07.2019 - AUTORYZACJA - timout dla tokena",
         "29.06.2019 - AUTORYZACJA - obsługa timieline",
         "29.06.2019 - AUTORYZACJA - walidacja po stronie klienta",

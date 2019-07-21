@@ -42,6 +42,10 @@ const Shows = (props) => {
       if ((props.currentShowID!==null && props.currentShow ===null) || (props.currentShow!==null && props.currentShowID!==props.currentShow.id)) {
             getShowDetails(props.currentShowID);
             }
+
+      if (props.currentShowID!==null && isNaN(parseInt(props.match.params.id))){  //jeżeli wracamy z z innej zakladki (w state jest current show, a w adresie nic nie ma)
+        props.clearCurrentShowData();
+      }
     },[props]);
 
     const [loading, setLoading] = useState(false);

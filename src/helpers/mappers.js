@@ -146,3 +146,30 @@ const mapTrend = (trend) => {
     }
     return acceptedTrend;
 }
+
+//Mapowanie listy sciaganych mediaow dla serialu - obsluga tylko YOUTUBE
+export const mapMediaMovies = (movies) => {
+    if (movies) {
+        const acceptedMoviesArray = [];
+        for (let movie of movies) {
+            if (movie.site==="YouTube") {
+                acceptedMoviesArray.push(mapMediaMovie(movie));
+            }
+        }
+        return acceptedMoviesArray;
+    }
+}
+
+const mapMediaMovie = (movie) => {
+    const acceptedMovie ={
+        id: movie.id,
+        iso_639_1: movie.iso_639_1,
+        iso_3166_1: movie.iso_3166_1,
+        key: movie.key,
+        name: movie.name,
+        site: movie.site,
+        size: movie.size,
+        type: movie.type
+    }
+    return acceptedMovie;
+}

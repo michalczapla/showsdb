@@ -1,0 +1,84 @@
+.MediaBox {
+    /* border-top: 1px solid #ffd700;   */
+    border-bottom: 1px solid #ffd700;   
+    box-sizing: border-box;
+   }
+   
+   .MediaBoxHeader {
+       padding: 5px 0px;
+       margin: 0px auto;
+       display: block;
+       text-align: center;
+       border-bottom: 1px solid #ffd700;
+       font-size: 0.8em;
+   }
+   
+   .MediaBoxCarouselContainer {
+       display: grid;
+       grid-template-columns: 20px auto 20px;
+   }
+   
+   .MediaBoxCarousel {
+       display: grid;
+       grid-template-columns: auto auto auto auto auto;
+   }
+   
+   .MediaBoxItem {
+       cursor: pointer;
+   }
+   
+   .MediaBoxItem:hover,
+   .MediaBoxPagination:hover 
+   {
+       background-color: rgba(0, 0, 0, 0.7);
+       transition: all 0.3s ease;
+   }
+   
+   .MediaBoxPagination{
+       display: block;
+       position: relative;
+       cursor: pointer;
+       height: 100%;
+       width:20px;
+   }
+   
+   .arrow {
+       position: absolute;
+       top:50%;
+       transform: translateY(-50%);
+   }
+
+.MediaBoxMovieItem {
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    width: 105px;
+    /* height: 230px; */
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.MediaBoxMovieImage {
+    max-width: 100px;
+
+}
+
+.MediaBoxMovieHeaderImg {
+
+}
+
+.MediaBoxMovieContent{
+    padding: 5px 0px 7px 0px;
+}
+
+.MediaBoxMovieTitle {
+    font-size: 0.7em;
+}
+
+
+
+   
+   @media (max-width:800px) {
+       .MediaBoxCarousel {
+           grid-template-columns: auto auto auto;
+       }
+   }

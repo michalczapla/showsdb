@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';
+import MediaBoxMovies from './MediaBox/MediaBoxMovies';
 // import LandingPage from '../../../components/LandingPage/LandingPage';
 // import Loader from '../../../components/UI/Loading/Loading';
 // import withErrorHandler from '../../../components/withErrorHandler/withErrorHandler';
@@ -35,6 +36,7 @@ const DetailsBox =(props)=> {
     <div className={classes.DetailsBox}>
         <DetailsHeader />  
         <DetailsMeta />
+        <MediaBoxMovies />
         <SeasonsList />
         <RecommendationBox />
         

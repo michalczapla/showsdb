@@ -3,6 +3,7 @@
     [
         "### TODO",
         "",
+        "Sprawdzic czy mozna dodac error handlery",
         "Timeline - dodać panel sterowanie - filtrowanie/sortowanie?",
         "Dokończyć mappery - pomost pomiedzy API, a moja alpikacja",
         "Dodać logikę bathcowego odświeżania statusu ulubionych o nowe odcinki (przy otwieraniu aplikacji)",
@@ -15,7 +16,6 @@
         "### ERRORS",
         "",
         "kiedy serial ma season specjalny, to moze sie okazac ze ilosc bejrzanych odcinkow jest wieksza niz ilosc wszystkich odcinkow",
-        "pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić - BŁĄD POWODUJE WITHERRORHANDLER",
         "przy skalowaniu strony obrazek 'No Episode' nie wyświetla napisu - trzeba zmienić obrazek",
         "strona nie działa na Edgu - w nazwach są - zamias _ podobno",
         "nie wiem czy brak internetu poprawnie pokazuje błąd ściągania konfiguracji..."
@@ -24,6 +24,8 @@
     [
         "### DONE",
         "",
+        "22.07.2019 - ADD: Dodana obsługa fimlów dla serialu",
+        "21.07.2019 - FIX: Pozbycie się wszystkich błędów wycieków pamięci (pojawia się warning kiedy zmieniamy serial, przy otwartej karcie z listą odcinków - zbadać i naprawić - BŁĄD POWODUJE WITHERRORHANDLER)",
         "20.07.2019 - FIX: Bardzo duża ilośc usprawnień, funckjonowania, logiki i optymalizacji",
         "20.07.2019 - FIX:dodanie lub usuiecie zaznaczenia obejrzanego odcinka nie zmienia statusu TIMELINE - do odświeżenia",
         "20.07.2019 - FIX: kiedy nazwa serialu jest długa, favorite item może się rozjechać",

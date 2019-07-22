@@ -70,7 +70,7 @@ const Shows = (props) => {
       <section className={[classes.Shows, props.favorites.favorites.length===0 ? classes.Shows2columns : null].join(' ')}>
             
             <div>
-              <SearchBox title="showsDB v0.7.01 r" />
+              <SearchBox title="showsDB v0.8.00 r" />
             </div>
             
             {/* {props.currentShowID ? <div><DetailsBox /></div> : <div><LandingPage /></div> } */}

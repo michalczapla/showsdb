@@ -10,7 +10,7 @@ const MoviePlayer = (props) => {
     <React.Fragment>
         <Backdrop show={props.show} clicked={()=>props.toggleMoviePlayer(null)}></Backdrop>
         <div className={classes.MoviePlayer} style={{
-             transform: props.show ? 'translate(-50%,-50%)' : 'translate(-100vh, -100vw)',        //zmiana pozycji, aby modal nie zasłaniał komponentów na stronie, nawet jeżeli nie jest wyświetklany
+             transform: props.show ? 'translate(-50%,-50%)' : 'translate(-300vh, -300vw)',        //zmiana pozycji, aby modal nie zasłaniał komponentów na stronie, nawet jeżeli nie jest wyświetklany
             opacity: props.show ? '1' : '0'}}> 
             {(props.selectedMovie) ? 
             <div className={classes.PlayerContainer}>

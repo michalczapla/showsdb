@@ -30,7 +30,11 @@ export const auth = (email, pass, newUser=true) => {
         })
         .catch(err=>{
             // console.log('[error] :' + err);
-            dispatch(authFail(err.response.data.error));
+            if (typeof err.response === 'undefined'  || !err.response.data) {
+                dispatch(authFail({message: 'NETWORK_ERROR'}));
+            } else {
+                dispatch(authFail(err.response.data.error));
+            }
         })
         
     }

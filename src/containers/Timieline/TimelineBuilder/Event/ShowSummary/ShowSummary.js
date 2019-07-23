@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 
 const showSummary = (props) => {
     
-    const imgSrc = (props.configuration && props.configuration.imagesBase && props.data && props.data.backdrop_path) ?
+    const imgSrc = (props.configuration && props.configuration.imagesBase && props.data &&props.data.poster_path) ?
     <img className={classes.HeaderImg} src={props.configuration.imagesBase+props.data.poster_path} alt={props.data.name}/>
     : <div className={classes.HeaderImg}></div>;
-
+    console.log(props.configuration.imagesBase);
+    console.log(props.data.poster_path);
 return (
     <div className={classes.Event} onMouseOver={(props.mouseover) ? props.mouseover : null} onClick={(props.click) ? props.click : null}>
        {imgSrc}

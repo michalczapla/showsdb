@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ContactIcon from 'react-ionicons/lib/MdContact';
 import Message from '../../Message/Message';
 import {getMessages} from '../../../../helpers/authMessages';
+import {NavLink} from 'react-router-dom';
 
 
 const LoaderPanel = (props) => {
@@ -77,7 +78,7 @@ const LoaderPanel = (props) => {
 
         pageContent = (<div className={classes.LoginInfo}>
             <ContactIcon color='white' fontSize='1.8em'/>
-            {props.userId}
+            <NavLink className={classes.UserLink} to="/user">{props.userId}</NavLink> 
             <button className={classes.LogoutButton} onClick={logoutHandler}>Logout</button>
             </div>);
 

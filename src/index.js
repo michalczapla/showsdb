@@ -20,6 +20,7 @@ const store = createStore(rootReducer, composeEnhacers(applyMiddleware(thunk)));
 
 const app =(
     <Provider store={store}>
+       
         <App />
     </Provider>
 );

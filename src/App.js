@@ -5,7 +5,7 @@ import Timeline from './containers/Timieline/Timeline';
 import Layout from './components/Layout/Layout';
 import {connect} from 'react-redux';
 import * as ActionCreator from './store/actions/index';
-// import Login from './containers/Login/Login';
+import UserAdministration from './containers/UserAdministration/UserAdministration';
 import Loader from './/components/UI/Loading/Loading';
 
 import {Switch, BrowserRouter, Route} from 'react-router-dom';
@@ -20,15 +20,20 @@ const App = (props) => {
       props.getLoginDataFromLocalStorage();
     setLoading(false);
   },[props]);
-    
+  
+  const loggedInRoutes = (props.token) ? (
+          <Route path="/user" component={UserAdministration}/> 
+   ) : null;
+
     return (
       (loading) ? <Loader /> :
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter basename="showsdb-react">
         <Layout>
             <Switch>
               <Route path="/timeline" exact component={Timeline}/> 
               {/* <Route path="/login" exact component={Login}/> */}
+              {loggedInRoutes}
               <Route path="/:id" exact component={Shows}/> 
               <Route path="/" component={Shows}/> 
             </Switch>
@@ -38,13 +43,13 @@ const App = (props) => {
     );
 }
 
-// const mapStateToProps = (state)=> {
-//   return {
-//     configuration: state.main.configuration
-//     // localId: state.auth.localId,
-//     // token: state.auth.token
-//   }
-// }
+const mapStateToProps = (state)=> {
+  return {
+    // configuration: state.main.configuration
+    // localId: state.auth.localId,
+    token: state.auth.token
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -53,4 +58,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

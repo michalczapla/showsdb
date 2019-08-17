@@ -26,13 +26,14 @@ const Shows = (props) => {
   //   }
   // },[props]);
 
-    //ponizsza metoda ma obsluzyc 3 sciezki:
+    //ponizsza metoda ma obsluzyc nastepujace sciezki:
       // 1) uzytkownik wchodzi na strone od razu z paramatrem w adresie
       // 2) uzytkownik otwiera strone z samym adresem - wtedy nie powinno się nic dziać
       // 3) uzytkownik nawiguje i zostaje wybrany konkretny serial (moze nawigowac na to samo ID) 
+      // 4) użytkownik wchodzi na stronę z parametrami niezgodnymi (ktore nie sa int)
     useEffect(()=>{
     
-      //sciezka 1 - ustawienie poranwgo ID
+      //sciezka 1 - ustawienie poprawnego ID
       if ( props.currentShowID===null && (parseInt(props.match.params.id) !== props.currentShowID) && !isNaN(parseInt(props.match.params.id))){      //wywolanie kiedy uzytkownik wejdzie na stronie od razu podajc parametr
         // props.setCurrentShowID(parseInt(props.match.params.id));
         props.setCurrentShowID(parseInt(props.match.params.id));
@@ -59,7 +60,7 @@ const Shows = (props) => {
     const MainPage = () => {
       if (loading || !props.configuration) {
         return <div><Loader /></div>;
-      } else if (props.match.params.id) {
+      } else if (props.match.params.id && !isNaN(parseInt(props.match.params.id))) {
         return <div><DetailsBox /></div>;
       } else {
         return <div><LandingPage /></div>;
@@ -70,7 +71,7 @@ const Shows = (props) => {
       <section className={[classes.Shows, props.favorites.favorites.length===0 ? classes.Shows2columns : null].join(' ')}>
             
             <div>
-              <SearchBox title="showsDB v0.8.00 r" />
+              <SearchBox title="showsDB v0.8.01 r" />
             </div>
             
             {/* {props.currentShowID ? <div><DetailsBox /></div> : <div><LandingPage /></div> } */}

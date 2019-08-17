@@ -56,6 +56,10 @@
     transition: all 0.3s ease;
 }
 
+.UserLink:hover{
+text-decoration: underline;
+}
+
 
 .NavigationItemIcon,
 .NavigationItem {

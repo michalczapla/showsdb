@@ -40,6 +40,40 @@ export const auth = (email, pass, newUser=true) => {
     }
 }
 
+export const changePassword = (email, oldPass, newPass) => {
+    return dispatch => {
+        dispatch(changePasswordStartCreator());
+        const payloadConfirm = {
+            email: email,
+            password: oldPass,
+            returnSecureToken: false
+        };
+
+        const urlConfirm = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+api_key;
+
+
+        axios.post(urlConfirm,payloadConfirm)
+        .then(response=> {
+            console.log('[response] :' + response);
+            dispatch(changePasswordSuccessCreator());
+            // const timestamp = new Date(Date.now());
+            // dispatch(authSuccess({...response.data, justCreated: newUser, timestamp: timestamp}));   //, ...{justCreated: newUser})
+            // dispatch(checkTokenExpiration(response.data.expiresIn, timestamp));
+            // // console.log({...response.data, justCreated: newUser});
+
+        })
+        .catch(err=>{
+            console.log('[error] :' + err);
+            if (typeof err.response === 'undefined'  || !err.response.data) {
+                dispatch(changePasswordFailCreator({message: 'NETWORK_ERROR'}));
+            } else {
+                dispatch(changePasswordFailCreator(err.response.data.error));
+            }
+        });
+
+    }
+}
+
 const checkTokenExpiration = (expirationPeriod, timestamp) => {
     return dispatch => {
         setTimeout(()=>{
@@ -140,6 +174,25 @@ const authSuccessCreator = (authData) => {
 const authFail = (error) => {
     return {
         type: ActionType.AUTH_FAIL,
+        error: error
+    }
+}
+
+const changePasswordStartCreator = () => {
+    return {
+        type: ActionType.AUTH_CHANGE_PASS_START
+    }
+}
+
+const changePasswordSuccessCreator = () => {
+    return {
+        type: ActionType.AUTH_CHANGE_PASS_SUCCESS
+    }
+}
+
+const changePasswordFailCreator = (error) => {
+    return {
+        type: ActionType.AUTH_CHANGE_PASS_FAIL,
         error: error
     }
 }

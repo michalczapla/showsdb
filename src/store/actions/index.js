@@ -20,5 +20,6 @@ export {
 export {
     auth,
     getLoginDataFromLocalStorage,
-    authLogout
+    authLogout,
+    changePassword
 } from './auth';

@@ -6,7 +6,8 @@ const initialState = {
     localId: null,
     error: null,
     loading: false,
-    justCreated: false
+    justCreated: false,
+    changePass: {loading: false, error: null, successfullyChanged: false}
 }
 
 const authStart = (state, action) => {
@@ -51,12 +52,34 @@ const authLogout = (state, action) => {
     }
 }
 
+const changePassStart = (state, action) => {
+    return {
+        ...state,
+        changePass: {loading: true, error: null, successfullyChanged: false}
+    }
+}
+const changePassSuccess = (state, action) => {
+    return {
+        ...state,
+        changePass: {loading: false, error: null, successfullyChanged: true}
+    }
+}
+const changePassFail = (state, action) => {
+    return {
+        ...state,
+        changePass: {loading: false, error: action.error, successfullyChanged: false}
+    }
+}
+
 const reducer = (state=initialState, action) => {
     switch (action.type) {
         case ActionTypes.AUTH_START: return authStart(state, action);
         case ActionTypes.AUTH_SUCCESS: return authSuccess(state, action);
         case ActionTypes.AUTH_FAIL: return authFail(state, action);
         case ActionTypes.AUTH_LOGOUT: return authLogout(state, action);
+        case ActionTypes.AUTH_CHANGE_PASS_START: return changePassStart(state, action);
+        case ActionTypes.AUTH_CHANGE_PASS_SUCCESS: return changePassSuccess(state, action);
+        case ActionTypes.AUTH_CHANGE_PASS_FAIL: return changePassFail(state, action);
         default:
             return state;
     }

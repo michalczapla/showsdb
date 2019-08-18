@@ -17,6 +17,53 @@
     margin-bottom: 5px;
 }
 
+.InputContainer {
+    margin: auto 0;
+    display: block;
+    margin-bottom: 10px;
+}
+.Input {
+   
+    padding: 3px;
+    border: none;
+    background-color: #053f5e;
+    text-align: center;
+    margin-right: 5px;
+    width: 200px;
+    transition: all 0.3s ease;
+
+}
+
+.Invalid {
+    background-color: #B22222;
+}
+
+.ChangePassButton {
+    margin: auto 0;
+    display: block;
+
+    background-color: #06741e;
+    color: white;
+    font-size: 0.8em;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    height: 21px;
+    border-right: 4px solid #012438;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.ChangePassButton:hover {
+    border-right: 4px solid #ffd700;
+}
+
+.ButtonInvalid,
+.ButtonInvalid:hover {
+    border-right: 4px solid #012438;
+    background-color: #2F4F4F;
+}
+
 @media (max-width: 900px) {
     .Modal {
 

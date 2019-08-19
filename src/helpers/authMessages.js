@@ -5,6 +5,7 @@ export const getMessages = (message) => {
         case 'USER_DISABLED': return 'User disabled';
         case 'EMAIL_EXISTS': return 'Such user already exists';
         case 'NETWORK_ERROR': return 'Network error - check your connection';
+        case 'PASS_CHANGED': return 'Password successfully changed';
 
         default:
             return 'Fatal error occured';

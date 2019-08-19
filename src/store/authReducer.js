@@ -7,7 +7,7 @@ const initialState = {
     error: null,
     loading: false,
     justCreated: false,
-    changePass: {loading: false, error: null, successfullyChanged: false}
+    changePass: {loading: false, message: null, messageType:null, successfullyChanged: false, initial: true}
 }
 
 const authStart = (state, action) => {
@@ -55,19 +55,26 @@ const authLogout = (state, action) => {
 const changePassStart = (state, action) => {
     return {
         ...state,
-        changePass: {loading: true, error: null, successfullyChanged: false}
+        changePass: {loading: true,  message: null, messageType:null, successfullyChanged: false, initial: false}
     }
 }
 const changePassSuccess = (state, action) => {
     return {
         ...state,
-        changePass: {loading: false, error: null, successfullyChanged: true}
+        changePass: {loading: false,  message: action.message, messageType:action.messageType, successfullyChanged: true, initial: false}
     }
 }
 const changePassFail = (state, action) => {
     return {
         ...state,
-        changePass: {loading: false, error: action.error, successfullyChanged: false}
+        changePass: {loading: false, message: action.message, messageType:action.messageType, successfullyChanged: false, initial: false}
+    }
+}
+
+const clearChangePass = (state, action) => {
+    return {
+        ...state,
+        changePass: {loading: false, message: null, messageType:null, successfullyChanged: false, initial: true}
     }
 }
 
@@ -80,6 +87,7 @@ const reducer = (state=initialState, action) => {
         case ActionTypes.AUTH_CHANGE_PASS_START: return changePassStart(state, action);
         case ActionTypes.AUTH_CHANGE_PASS_SUCCESS: return changePassSuccess(state, action);
         case ActionTypes.AUTH_CHANGE_PASS_FAIL: return changePassFail(state, action);
+        case ActionTypes.AUTH_CHANGE_PASS_CLEAR: return clearChangePass(state, action);
         default:
             return state;
     }

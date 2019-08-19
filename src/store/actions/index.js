@@ -21,5 +21,6 @@ export {
     auth,
     getLoginDataFromLocalStorage,
     authLogout,
-    changePassword
+    changePassword,
+    clearChangePass
 } from './auth';

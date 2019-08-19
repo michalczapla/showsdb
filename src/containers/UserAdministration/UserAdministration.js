@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import classes from './UserAdministration.module.css';
 import {connect} from 'react-redux';
 import * as ActionCreator from '../../store/actions/index';
-import Message from '../../components/UI/Message/Message';
 import {getMessages} from '../../helpers/authMessages';
 import Loader from '../../components/UI/Loading/Loading';
 
 const UserAdministration = (props) => {
    
+    useEffect(()=>{
+        return (()=>{
+            if (!props.changePassState.initial) {    
+                props.clearChangePass();
+            }
+        });           //metoda wywoływana przy odmontowaniu komponentu
+    },[props.changePassState.initial])
+
     const [pass,setPass] = useState({
         oldPass: {value: '',required: true, touched:false, valid:false},
         newPass: {value: '',required: true, touched:false, valid:false},
@@ -65,10 +72,13 @@ const UserAdministration = (props) => {
                 {(pass.confirmPass.touched && pass.newPass.touched && pass.confirmPass.valid && pass.newPass.valid && pass.confirmPass.value!==pass.newPass.value)? (<i><small>Does not match</small></i>) : null}
             </div> 
 
+            
+            {props.changePassState.message ? <div className={[classes.Message, classes[props.changePassState.messageType]].join(' ')}>{getMessages(props.changePassState.message.message)}</div>  : null}
+
+
             {(props.changePassState.loading) ? <Loader /> : <button className={[classes.ChangePassButton, (!(pass.newPass.valid  && pass.oldPass.valid && pass.confirmPass.valid && pass.confirmPass.value===pass.newPass.value)) ? classes.ButtonInvalid : null].join(' ')} onClick={()=>changePasswordHandler()}>Change password</button>}
         </div>
-        {props.changePassState.error ? <Message message={getMessages(props.changePassState.error.message)} type='error'/> : null}
-
+       
     </div>
 
     )
@@ -83,7 +93,8 @@ const mapStateToProps = (state)=> {
 
 const mapDispatchToProps = (dispatch)=> {
     return {
-        changePass: (email, oldPass,newPass) => dispatch(ActionCreator.changePassword(email,oldPass,newPass))
+        changePass: (email, oldPass,newPass, idToken) => dispatch(ActionCreator.changePassword(email,oldPass,newPass, idToken)),
+        clearChangePass: ()=>{dispatch(ActionCreator.clearChangePass())}
     }
 }
 

@@ -49,13 +49,34 @@ export const changePassword = (email, oldPass, newPass) => {
             returnSecureToken: false
         };
 
-        const urlConfirm = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+api_key;
+    
 
+        const urlConfirm = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+api_key;
+        const urlChange = 'https://identitytoolkit.googleapis.com/v1/accounts:update?key='+api_key;
 
         axios.post(urlConfirm,payloadConfirm)
         .then(response=> {
             console.log('[response] :' + response);
-            dispatch(changePasswordSuccessCreator());
+            
+            const payloadChange = {
+                idToken: response.data.idToken,
+                password: newPass,
+                returnSecureToken: false
+            };
+
+            axios.post(urlChange,payloadChange)
+            .then(response=> {
+                dispatch(changePasswordSuccessCreator({message: 'PASS_CHANGED'}));
+            }).catch(err=>{
+                console.log('[error] :' + err);
+                if (typeof err.response === 'undefined'  || !err.response.data) {
+                    dispatch(changePasswordFailCreator({message: 'NETWORK_ERROR'}));
+                } else {
+                    dispatch(changePasswordFailCreator(err.response.data.error));
+                }
+            });
+
+
             // const timestamp = new Date(Date.now());
             // dispatch(authSuccess({...response.data, justCreated: newUser, timestamp: timestamp}));   //, ...{justCreated: newUser})
             // dispatch(checkTokenExpiration(response.data.expiresIn, timestamp));
@@ -71,6 +92,12 @@ export const changePassword = (email, oldPass, newPass) => {
             }
         });
 
+    }
+}
+
+export const clearChangePass = () => {
+    return {
+        type: ActionType.AUTH_CHANGE_PASS_CLEAR
     }
 }
 
@@ -184,15 +211,18 @@ const changePasswordStartCreator = () => {
     }
 }
 
-const changePasswordSuccessCreator = () => {
+const changePasswordSuccessCreator = (message) => {
     return {
-        type: ActionType.AUTH_CHANGE_PASS_SUCCESS
+        type: ActionType.AUTH_CHANGE_PASS_SUCCESS,
+        message: message,
+        messageType: 'success'
     }
 }
 
 const changePasswordFailCreator = (error) => {
     return {
         type: ActionType.AUTH_CHANGE_PASS_FAIL,
-        error: error
+        message: error,
+        messageType: 'error'
     }
 }

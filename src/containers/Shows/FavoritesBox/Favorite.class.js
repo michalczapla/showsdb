@@ -30,8 +30,8 @@ clearFavorites = () => {
 replaceFavorites = (favorites)=> {
     this.clearFavorites();
     if (favorites && favorites.favorites) {
-        console.log('replaceFav: ');
-        console.log(favorites);
+        // console.log('replaceFav: ');
+        // console.log(favorites);
         favorites.favorites = favorites.favorites.map((el)=>{
             if (!el.watched)
             el.watched=[];
@@ -46,7 +46,7 @@ replaceFavorites = (favorites)=> {
 
 
         this.lastUpdate = favorites.lastUpdate;
-        console.log(favorites.favorites);
+        // console.log(favorites.favorites);
         return favorites;
     }
 }

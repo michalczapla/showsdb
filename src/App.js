@@ -28,7 +28,8 @@ const App = (props) => {
     return (
       (loading) ? <Loader /> :
       <div className="App">
-        <BrowserRouter basename="showsdb-react">
+        <BrowserRouter> 
+        {/* basename="showsdb-react" */}
         <Layout>
             <Switch>
               <Route path="/timeline" exact component={Timeline}/> 

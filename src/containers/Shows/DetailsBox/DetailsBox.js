@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import classes from './DetailsBox.module.css';
 import DetailsHeader from './DetailsHeader/DetailsHeader';
 import DetailsMeta from './DetailsMeta/DetailsMeta';

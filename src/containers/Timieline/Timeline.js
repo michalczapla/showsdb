@@ -39,7 +39,7 @@ const Timeline = (props) => {
         }
         
        
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.favorites])
 
     const getAxiosData = async (id, season) => {
@@ -85,6 +85,7 @@ const Timeline = (props) => {
                 const shows = cloneDeep(props.favorites.favorites);  
                 const group = shows.map(show=>{
                     if (show.episodes)
+                     // eslint-disable-next-line
                         show.episodes = show.episodes.filter(episode=>{
                         // jeżeli nie ma daty wyśiwtelenia kategoryzuje datę wyświetlenia na najstarszą.
                             if (!episode.air_date && direction===1)
@@ -123,7 +124,9 @@ const Timeline = (props) => {
             const mapEpisodes =(shows)=>{
                 if (shows) {
                     const episodesArray=[];
+                    // eslint-disable-next-line
                     shows.map(show=>{
+                        // eslint-disable-next-line
                         show.episodes.map(episode=>{
                             const showInfo = {
                                 id: show.id,
@@ -154,14 +157,17 @@ const Timeline = (props) => {
                 }
                 
                 //wypełenienie nowej tablicy unikalnymi datami
+                // eslint-disable-next-line
                 episodes.map(el=>{
                     if (!isDateInArray(el.air_date, datesArray))
                  datesArray.push(el.air_date);
                 });
 
                 //dla każdej daty dopisanie opdowiadających odcinków
+                // eslint-disable-next-line
                 datesArray.map(timeStamp=>{
                  const shows=[];
+                 // eslint-disable-next-line
                     episodes.map(episode=>{
                         if (new Date(timeStamp).getTime() === new Date(episode.air_date).getTime()){
                             shows.push(episode);
@@ -202,7 +208,7 @@ const Timeline = (props) => {
             //     }
             // }
             // console.log('groups:');
-            console.log(groups);
+            // console.log(groups);
             return groups;
             
         }

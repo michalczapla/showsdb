@@ -47,6 +47,7 @@ const Shows = (props) => {
       if (props.currentShowID!==null && isNaN(parseInt(props.match.params.id))){  //jeżeli wracamy z z innej zakladki (w state jest current show, a w adresie nic nie ma)
         props.clearCurrentShowData();
       }
+       // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props]);
 
     const [loading, setLoading] = useState(false);

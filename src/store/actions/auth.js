@@ -1,5 +1,5 @@
 import * as ActionType from './actionTypes';
-import axios from '../../helpers/axios-firebase';
+import axios, {database} from '../../helpers/axios-firebase';
 // import axios from 'axios';
 import api_key from './../../helpers/APIKey_firebase';
 
@@ -116,9 +116,9 @@ const checkTokenExpiration = (expirationPeriod, timestamp) => {
 
 const getDataFromCloud = (localId, token) =>{
     return dispatch => {
-        axios.get('https://showsdb-787d1.firebaseio.com/'+localId+'.json?auth='+token)
+        axios.get(database+localId+'.json?auth='+token)
         .then(response=>{
-            console.log(response.data);
+            // console.log(response.data);
             dispatch(saveData(response.data))
         })
         .catch(err=>{

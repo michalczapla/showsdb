@@ -5,6 +5,8 @@ import axios from 'axios';
 //     return reponse;
 // });
 
+export const database = 'https://showsdb-787d1.firebaseio.com/';
+
 const axiosFirebase = axios;
 
 export default axiosFirebase;

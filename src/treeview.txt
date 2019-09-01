@@ -1,0 +1,220 @@
+Folder PATH listing
+Volume serial number is 0000003A 5200:C7A9
+D:.
+|   App.css
+|   App.js
+|   index.css
+|   index.js
+|   serviceWorker.js
+|   treeview.txt
+|   version.info.json
+|   
++---assets
+|   \---images
+|       |   backdrop.jpg
+|       |   big_bang.jpg
+|       |   cancel.png
+|       |   episode_image.jpg
+|       |   HatchfulExport-All.zip
+|       |   logo_transparent.png
+|       |   netflix.png
+|       |   no_picture.jpg
+|       |   timeline_empty.png
+|       |   
+|       \---HatchfulExport-All
+|               facebook_cover_photo_1.png
+|               facebook_cover_photo_2.png
+|               facebook_profile_image.png
+|               favicon.png
+|               instagram_profile_image.png
+|               linkedin_banner_image_1.png
+|               linkedin_banner_image_2.png
+|               linkedin_profile_image.png
+|               logo.png
+|               logo_transparent.png
+|               pinterest_board_photo.png
+|               pinterest_profile_image.png
+|               twitter_header_photo_1.png
+|               twitter_header_photo_2.png
+|               twitter_profile_image.png
+|               youtube_profile_image.png
+|               
++---components
+|   +---LandingPage
+|   |   |   LandingPage.js
+|   |   |   LandingPage.module.css
+|   |   |   
+|   |   \---TrendBox
+|   |           TrendBox.js
+|   |           TrendBox.module.css
+|   |           
+|   +---Layout
+|   |       Layout.js
+|   |       Layout.module.css
+|   |       
+|   +---UI
+|   |   +---Backdrop
+|   |   |       Backdrop.js
+|   |   |       Backdrop.module.css
+|   |   |       
+|   |   +---Loading
+|   |   |       Loading.js
+|   |   |       Loading.module.css
+|   |   |       
+|   |   +---MainMenu
+|   |   |   |   MainMenu.js
+|   |   |   |   MainMenu.module.css
+|   |   |   |   
+|   |   |   \---LoaderPanel
+|   |   |           LoaderPanel.js
+|   |   |           
+|   |   +---Message
+|   |   |       Message.js
+|   |   |       Message.module.css
+|   |   |       
+|   |   \---Modal
+|   |           Modal.js
+|   |           Modal.module.css
+|   |           
+|   \---withErrorHandler
+|           withErrorHandler.js
+|           
++---containers
+|   +---Shows
+|   |   |   Shows.js
+|   |   |   Shows.module.css
+|   |   |   
+|   |   +---DetailsBox
+|   |   |   |   DetailsBox.js
+|   |   |   |   DetailsBox.module.css
+|   |   |   |   
+|   |   |   +---DetailsHeader
+|   |   |   |       DetailsHeader.js
+|   |   |   |       DetailsHeader.module.css
+|   |   |   |       
+|   |   |   +---DetailsMeta
+|   |   |   |   |   DetailsMeta.js
+|   |   |   |   |   DetailsMeta.module.css
+|   |   |   |   |   
+|   |   |   |   \---MetaInfoList
+|   |   |   |       |   MetaInfoList.js
+|   |   |   |       |   MetaInfoList.module.css
+|   |   |   |       |   
+|   |   |   |       \---MetaInfo
+|   |   |   |               MetaInfo.js
+|   |   |   |               MetaInfo.module.css
+|   |   |   |               
+|   |   |   +---MediaBox
+|   |   |   |   |   MediaBox.module.css
+|   |   |   |   |   MediaBoxMovies.js
+|   |   |   |   |   
+|   |   |   |   +---MediaPlayer
+|   |   |   |   |       MoviePlayer.js
+|   |   |   |   |       MoviePlayer.module.css
+|   |   |   |   |       
+|   |   |   |   \---MediaSummaryMovie
+|   |   |   |           MediaSummaryMovie.js
+|   |   |   |           
+|   |   |   +---RecommendationBox
+|   |   |   |       RecommendationBox.js
+|   |   |   |       RecommendationBox.module.css
+|   |   |   |       
+|   |   |   \---SeasonsList
+|   |   |       |   SeasonsList.js
+|   |   |       |   SeasonsList.module.css
+|   |   |       |   
+|   |   |       +---EpisodesList
+|   |   |       |   |   EpisodesList.js
+|   |   |       |   |   EpisodesList.module.css
+|   |   |       |   |   
+|   |   |       |   \---Episode
+|   |   |       |           Episode.js
+|   |   |       |           Episode.module.css
+|   |   |       |           
+|   |   |       \---SeasonsPagination
+|   |   |               SeasonsPagination.js
+|   |   |               SeasonsPagination.module.css
+|   |   |               
+|   |   +---FavoritesBox
+|   |   |   |   Favorite.class.js
+|   |   |   |   FavoritesBox.js
+|   |   |   |   FavoritesBox.module.css
+|   |   |   |   
+|   |   |   \---FavoriteItem
+|   |   |           FavoriteItem.js
+|   |   |           FavoriteItem.module.css
+|   |   |           
+|   |   \---SearchBox
+|   |       |   SearchBox.js
+|   |       |   SearchBox.module.css
+|   |       |   
+|   |       +---InputBox
+|   |       |       InputBox.js
+|   |       |       InputBox.module.css
+|   |       |       
+|   |       +---Pagination
+|   |       |       Pagination.js
+|   |       |       Pagination.module.css
+|   |       |       
+|   |       \---ResultList
+|   |           |   ResultList.js
+|   |           |   ResultList.module.css
+|   |           |   
+|   |           \---ResultItem
+|   |                   ResultItem.js
+|   |                   ResultItem.module.css
+|   |                   ResultItemNoResults.js
+|   |                   
+|   +---Timieline
+|   |   |   Timeline.class.component.js
+|   |   |   Timeline.class.js
+|   |   |   Timeline.js
+|   |   |   Timeline.module.css
+|   |   |   Timeline.test.js
+|   |   |   
+|   |   \---TimelineBuilder
+|   |       |   TimelineBuilder.js
+|   |       |   
+|   |       +---Event
+|   |       |   |   Event.js
+|   |       |   |   EventDetailed.js
+|   |       |   |   
+|   |       |   +---ShowDetailed
+|   |       |   |       ShowDetailed.js
+|   |       |   |       ShowDetailed.module.css
+|   |       |   |       
+|   |       |   \---ShowSummary
+|   |       |           ShowSummary.js
+|   |       |           ShowSummary.module.css
+|   |       |           
+|   |       \---HorizontalRule
+|   |               HorizontalRule.js
+|   |               
+|   \---UserAdministration
+|           UserAdministration.js
+|           UserAdministration.module.css
+|           
++---helpers
+|       APIKey.js
+|       APIKey_firebase.js
+|       authMessages.js
+|       axios-external.js
+|       axios-firebase.js
+|       format-date.js
+|       genre-mapper.js
+|       limitWords.js
+|       mappers.js
+|       proper-digit-number.js
+|       
+\---store
+    |   authReducer.js
+    |   reducer.js
+    |   
+    \---actions
+            actionTypes.js
+            auth.js
+            configuration.js
+            currentShow.js
+            favorites.js
+            index.js
+            

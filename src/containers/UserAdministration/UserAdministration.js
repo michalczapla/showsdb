@@ -7,12 +7,14 @@ import Loader from '../../components/UI/Loading/Loading';
 
 const UserAdministration = (props) => {
    
+
     useEffect(()=>{
         return (()=>{
             if (!props.changePassState.initial) {    
                 props.clearChangePass();
             }
         });           //metoda wywoływana przy odmontowaniu komponentu
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.changePassState.initial])
 
     const [pass,setPass] = useState({

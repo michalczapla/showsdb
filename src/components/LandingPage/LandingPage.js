@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import classes from './LandingPage.module.css';
-import VersionHistory from './../../version.info.json';
+// import VersionHistory from './../../version.info.json';
 import TrendBox from './TrendBox/TrendBox';
 import api_key from '../../helpers/APIKey';
 import axios from '../../helpers/axios-external';
@@ -18,7 +18,7 @@ const LandingPage = (props) => {
     useEffect(()=>{
         if (trending===null && props.configuration!==null) {
             getData();
-            console.log('refrsh');
+            // console.log('refrsh');
         }
     },[props.configuration, trending]);
 
@@ -38,7 +38,7 @@ const LandingPage = (props) => {
     };
 
     const selectTradingHandler = (id) => {
-        console.log(id);
+        // console.log(id);
         props.setCurrentShowID(id);
     }
 
@@ -66,14 +66,14 @@ const LandingPage = (props) => {
         <div className={classes.TrendingsContainer}>
             {renderTrendings()}
         </div>
-        
+{/*         
         <hr/>
         <ul>{VersionHistory.todo.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
         <ul>{VersionHistory.errors.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
         <hr />
         <ul>{VersionHistory.done.map((el,index)=>(<li key={el+'_'+index}>{el}</li>))}</ul>
-        <hr />
+        <hr /> */}
     </div>
     )
     

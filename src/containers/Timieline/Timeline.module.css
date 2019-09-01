@@ -194,4 +194,8 @@ grid-template-columns: auto;
 .Content {
   grid-template-columns: auto auto;
 }
+.Detailed {
+  /* flex-direction: column; */
+  grid-template-columns: auto;
+  }
 }

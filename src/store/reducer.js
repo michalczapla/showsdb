@@ -28,9 +28,9 @@ const reducer = (state=initialState, action) => {
         //zamiana ulubioych pobranymi z RESTapi
         case ActionTypes.REPLACE_FAVORITES:
         favorites.replaceFavorites(action.favorites);    
-        console.log('reducer');
-        console.log(action.favorites);
-        console.log(favorites.favorites);
+        // console.log('reducer');
+        // console.log(action.favorites);
+        // console.log(favorites.favorites);
         return {
                 ...state,
                 favorites: favorites

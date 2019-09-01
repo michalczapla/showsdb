@@ -1,6 +1,6 @@
 import * as ActionTypes from './actionTypes';
 import axios from '../../helpers/axios-external';
-import axiosFirebase from '../../helpers/axios-firebase';
+import axiosFirebase, {database} from '../../helpers/axios-firebase';
 import api_key from '../../helpers/APIKey';
 // import * as Mapper from '../../helpers/mappers';
 
@@ -59,9 +59,10 @@ export const clearFavorites = () => {
 export const saveFavoritesToCloud = (favorites, localId, token) => {
         return dispatch => {
             if (favorites && localId && token) {
-            console.log('Saving favorites to cloud');
+            // console.log('Saving favorites to cloud');
             // console.log(favorites);
-            axiosFirebase.put('https://showsdb-787d1.firebaseio.com/'+localId+'.json?auth='+token, favorites)
+            // console.log(favorites);
+            axiosFirebase.put(database+localId+'.json?auth='+token, favorites)
             .then(response=>{
                 // console.log(response.data);
                 dispatch(saveFavorites());

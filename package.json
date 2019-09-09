@@ -7,6 +7,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
     "react": "^16.9.0",
     "react-country-flag": "^1.0.2",
     "react-dom": "^16.9.0",

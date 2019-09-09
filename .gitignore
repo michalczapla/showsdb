@@ -20,6 +20,7 @@
 APIKey.js
 APIKey_firebase.js
 /graphic_workings
+/docs/~*.docx
 
 npm-debug.log*
 yarn-debug.log*

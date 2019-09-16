@@ -5,6 +5,7 @@
         margin: 0 10px;
         margin-top:3.5em;
         box-sizing: border-box;
+        min-width: 370px;
 }
 .Shows2columns {
     grid-template-columns: 25% auto;
@@ -23,6 +24,9 @@
     @media (max-width: 950px) {
         .Shows {
             grid-template-columns: auto;
+            margin:0;
+            margin-top:3.5em;
+            
         }
         .FavoritesContainer {
             grid-column: 1/1;

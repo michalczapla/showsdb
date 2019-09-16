@@ -20,6 +20,13 @@ const detailsMeta =(props) => {
             list.map(flag=>(flags.push(<ReactCountryFlag key={flag} code={flag} svg/>)));
             return flags;
         }
+        const avgRunTime = (list) => {
+            let sum=0;
+            list.forEach(el => {
+                sum+=el;
+            });
+            return (list.length!==0) ? Math.floor(sum/list.length) : '-';
+        }
         const meta = [
             {title: 'genres', information: limitWords(genreMapper(props.genres, genreList()), 2)},   //genreMapper(props.genres,props.currentShow.genres)
             {title: 'country', information: countryFlags(props.currentShow.origin_country)},
@@ -29,7 +36,7 @@ const detailsMeta =(props) => {
             {title: 'in production', information: (props.currentShow.in_production) ? 'yes' : 'no'},
             {title: 'episodes', information: props.currentShow.number_of_episodes},
             {title: 'seasons', information: props.currentShow.number_of_seasons},
-            {title: 'espisode run time', information: props.currentShow.episode_run_time.join(', ')+' min'},
+            {title: 'espisode run time', information: avgRunTime(props.currentShow.episode_run_time) +' min'},
         ]
 
         return (

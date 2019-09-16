@@ -32,7 +32,8 @@
     height: inherit;
     width: 100%;
     object-fit: cover;
-    object-position: top; 
+    object-position: center; 
+    border-bottom:1px solid #01141f;
 }
 
 .EpisodeFavorite {

@@ -50,16 +50,30 @@ const Timeline = (props) => {
     const updateEpisodesData = async () => {
         setLoading(true);
 
-    
+        // połączenie uwzględnia offset 5 sek przy zbyt duzej liczbie zapytan
         
         for (let show of props.favorites.favorites) {
             const retrievedEpisodes = [];
+            let freeze=false;
+            const sleep = m => new Promise(r => setTimeout(r, m));
             for (let i =show.min_season_no; i<=show.max_season_no;i++) {
-              await getAxiosData(show.id,i).then((res)=>{
+                // eslint-disable-next-line no-loop-func
+                await getAxiosData(show.id,i).then((res)=>{
+                    const freeRequests = parseInt(res.headers['x-ratelimit-remaining']);
+                    // console.log(freeRequests);
+                    if (freeRequests===1) {
+                        freeze=true;
+                        
+                    }
                     retrievedEpisodes.push(...Mappers.mapSeason([...res.data.episodes]));
                 }).catch(error => {
                     console.log("Fatal error" + error.message);
                 })
+                if (freeze) {
+                    console.log("TMDB limit request reached... waiting 5 sec.");
+                    await sleep(5000);
+                    freeze=false;
+                  }
             props.addEpisodes(show.id, retrievedEpisodes);
             // console.log(props.favorites.lastUpdate);
             } 

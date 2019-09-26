@@ -43,7 +43,7 @@ class Timeline extends Component {
     updateEpisodesData = async () => {
         
         this.setState({loading: true})//;setLoading(true);
-        console.log(this.state.loading);
+        // console.log(this.state.loading);
 
         const res = await axios(`https://api.themoviedb.org/3/tv/1418/season/1?api_key=${api_key}`);
 

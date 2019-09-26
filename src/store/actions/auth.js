@@ -56,7 +56,7 @@ export const changePassword = (email, oldPass, newPass) => {
 
         axios.post(urlConfirm,payloadConfirm)
         .then(response=> {
-            console.log('[response] :' + response);
+            // console.log('[response] :' + response);
             
             const payloadChange = {
                 idToken: response.data.idToken,
